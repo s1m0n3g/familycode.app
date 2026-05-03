@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet"/>
 <style>
-:root[data-theme="dark"]{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);--text:#e8e8f0;--text2:#7a7a9a;--text3:#45455a;--accent:#7c6af7;--accent2:#a599ff;--accent-bg:rgba(124,106,247,0.12);--accent-border:rgba(124,106,247,0.3);--green:#3dffc0;--green-bg:rgba(61,255,192,0.08);--red:#ff5c7a;--grid:rgba(255,255,255,0.025)}
-:root[data-theme="light"]{--bg:#f4f4f8;--bg2:#ffffff;--bg3:#ebebf3;--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.14);--text:#0f0f1a;--text2:#606080;--text3:#b0b0c8;--accent:#5b4de8;--accent2:#7c6af7;--accent-bg:rgba(91,77,232,0.08);--accent-border:rgba(91,77,232,0.25);--green:#00b87a;--green-bg:rgba(0,184,122,0.08);--red:#e8335a;--grid:rgba(0,0,0,0.03)}
+:root[data-theme="dark"]{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);--text:#e8e8f0;--text2:#7a7a9a;--text3:#45455a;--accent:#7c6af7;--accent2:#a599ff;--accent-bg:rgba(124,106,247,0.12);--accent-border:rgba(124,106,247,0.3);--green:#3dffc0;--green-bg:rgba(61,255,192,0.08);--grid:rgba(255,255,255,0.025)}
+:root[data-theme="light"]{--bg:#f4f4f8;--bg2:#ffffff;--bg3:#ebebf3;--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.14);--text:#0f0f1a;--text2:#606080;--text3:#b0b0c8;--accent:#5b4de8;--accent2:#7c6af7;--accent-bg:rgba(91,77,232,0.08);--accent-border:rgba(91,77,232,0.25);--green:#00b87a;--green-bg:rgba(0,184,122,0.08);--grid:rgba(0,0,0,0.03)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
 .app{max-width:420px;margin:0 auto;min-height:100vh;padding:0 0 40px;position:relative}
@@ -32,10 +32,9 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .family-card-name{font-size:15px;font-weight:700;margin-bottom:3px}
 .family-card-id{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.08em}
 .family-card-otp{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;letter-spacing:4px;color:var(--accent2);white-space:nowrap}
-.family-card-lock{font-size:16px;opacity:.5}
 .btn{width:100%;padding:14px;border-radius:12px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.01em}
 .btn-primary{background:var(--accent);border:none;color:#fff;box-shadow:0 4px 20px rgba(124,106,247,.35)}
-.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 6px 24px rgba(124,106,247,.45)}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
 .btn-primary:active{transform:translateY(0)}
 .btn-ghost{background:var(--bg2);border:1px solid var(--border2);color:var(--text);margin-top:10px}
 .btn-ghost:hover{background:var(--bg3)}
@@ -46,7 +45,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .field-input:focus{border-color:var(--accent-border);box-shadow:0 0 0 3px var(--accent-bg)}
 .field-input::placeholder{color:var(--text3)}
 /* PIN TOGGLE */
-.pin-toggle-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;cursor:pointer;transition:border-color .2s}
+.pin-toggle-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:20px;cursor:pointer;transition:border-color .2s}
 .pin-toggle-row:hover{border-color:var(--accent-border)}
 .pin-toggle-left{display:flex;flex-direction:column;gap:3px}
 .pin-toggle-title{font-size:14px;font-weight:700}
@@ -55,8 +54,6 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .toggle.on{background:var(--accent)}
 .toggle-knob{width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;transition:left .2s}
 .toggle.on .toggle-knob{left:21px}
-.pin-field-wrap{overflow:hidden;max-height:0;transition:max-height .3s ease}
-.pin-field-wrap.open{max-height:120px}
 /* OTP CARD */
 .otp-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:28px 24px 24px;text-align:center;position:relative;overflow:hidden}
 .otp-card::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,var(--accent-bg) 0%,transparent 70%);pointer-events:none}
@@ -90,23 +87,24 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .lang-item{padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s}
 .lang-item:hover{background:var(--bg3);color:var(--text)}
 .lang-item.active{color:var(--accent2)}
-/* PIN SCREEN */
-.pin-screen-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:32px 24px;text-align:center;margin-top:32px}
-.pin-screen-icon{font-size:36px;margin-bottom:16px}
-.pin-screen-title{font-size:20px;font-weight:800;margin-bottom:6px}
-.pin-screen-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);margin-bottom:24px;line-height:1.6}
-.pin-dots{display:flex;gap:12px;justify-content:center;margin-bottom:28px}
-.pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border2);transition:all .2s}
+/* PIN KEYPAD SCREEN */
+.pin-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:32px 24px;text-align:center;margin-top:24px}
+.pin-card-icon{font-size:34px;margin-bottom:14px}
+.pin-card-title{font-size:20px;font-weight:800;margin-bottom:6px}
+.pin-card-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);margin-bottom:24px;line-height:1.7;white-space:pre-line}
+.pin-dots{display:flex;gap:12px;justify-content:center;margin-bottom:28px;min-height:20px}
+.pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border2);transition:all .15s}
 .pin-dot.filled{background:var(--accent);border-color:var(--accent);box-shadow:0 0 8px var(--accent)}
-.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:260px;margin:0 auto}
-.pin-key{padding:18px;border-radius:14px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;cursor:pointer;transition:all .15s;text-align:center}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:260px;margin:0 auto 20px}
+.pin-key{padding:18px;border-radius:14px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;cursor:pointer;transition:all .15s;text-align:center;user-select:none}
 .pin-key:hover{border-color:var(--accent-border);background:var(--accent-bg);color:var(--accent2)}
-.pin-key:active{transform:scale(.93)}
+.pin-key:active{transform:scale(.92)}
 .pin-key.del{font-size:16px;color:var(--text2)}
-.pin-key.empty{border:none;background:transparent;cursor:default}
-.pin-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-top:20px;line-height:1.6}
-.pin-badge{display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;background:var(--accent-bg);color:var(--accent2);border:1px solid var(--accent-border);margin-left:6px;vertical-align:middle}
-.info-box{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:20px}
+.pin-key.confirm{background:var(--accent);border-color:var(--accent);color:#fff;font-size:16px}
+.pin-key.confirm:hover{background:var(--accent2);border-color:var(--accent2)}
+.pin-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);line-height:1.7;white-space:pre-line}
+.pin-badge{display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:20px;background:var(--accent-bg);color:var(--accent2);border:1px solid var(--accent-border);margin-left:6px;vertical-align:middle}
+.info-box{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:20px;white-space:pre-line;text-align:left}
 </style>
 </head>
 <body>
@@ -137,15 +135,13 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
     <button class="btn btn-ghost" id="btn-join"></button>
   </div>
 
-  <!-- CREATE -->
+  <!-- CREATE: step 1 — name + PIN toggle -->
   <div class="screen" id="create-screen">
     <div class="back" id="back-create"></div>
     <div class="section-title" id="create-title"></div>
     <div class="section-sub" id="create-sub"></div>
     <div class="field-label" id="create-label"></div>
     <input class="field-input" id="new-name" maxlength="30" autocomplete="off"/>
-
-    <!-- PIN TOGGLE -->
     <div class="pin-toggle-row" id="pin-toggle-row">
       <div class="pin-toggle-left">
         <div class="pin-toggle-title" id="pin-toggle-title"></div>
@@ -153,12 +149,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
       </div>
       <div class="toggle" id="pin-toggle"><div class="toggle-knob"></div></div>
     </div>
-    <div class="pin-field-wrap" id="pin-field-wrap">
-      <div class="info-box" id="pin-info-box"></div>
-      <div class="field-label" id="create-pin-label"></div>
-      <input class="field-input" id="new-pin" maxlength="16" type="password" autocomplete="off"/>
-    </div>
-
+    <div class="info-box" id="pin-info-box" style="display:none"></div>
     <button class="btn btn-primary" id="btn-do-create"></button>
   </div>
 
@@ -172,13 +163,13 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
     <button class="btn btn-primary" id="btn-do-join"></button>
   </div>
 
-  <!-- PIN ENTRY (keypad) -->
+  <!-- PIN KEYPAD (shared: create + open) -->
   <div class="screen" id="pin-screen">
     <div class="back" id="back-pin"></div>
-    <div class="pin-screen-card">
-      <div class="pin-screen-icon">🔐</div>
-      <div class="pin-screen-title" id="pin-screen-title"></div>
-      <div class="pin-screen-sub" id="pin-screen-sub"></div>
+    <div class="pin-card">
+      <div class="pin-card-icon" id="pin-icon"></div>
+      <div class="pin-card-title" id="pin-screen-title"></div>
+      <div class="pin-card-sub" id="pin-screen-sub"></div>
       <div class="pin-dots" id="pin-dots"></div>
       <div class="pin-pad" id="pin-pad"></div>
       <div class="pin-note" id="pin-note"></div>
@@ -211,19 +202,183 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 <div class="toast" id="toast"></div>
 
 <script>
-const DB='familycode_v5';
+const DB='familycode_v6';
 let fams=JSON.parse(localStorage.getItem(DB)||'[]');
 let cur=null,ticker=null,lang='en';
 let pinEnabled=false;
-let pendingFamId=null; // family waiting for PIN entry
-let sessionPins={}; // famId -> pin (session only, never persisted)
+// session-only PIN store: never persisted
+let sessionPins={};
+// pin screen state
+let pinMode=null; // 'create' | 'open'
+let pinPendingId=null;
+let pinBuffer='';
 
 const i18n={
-  it:{heroTitle:'Verifica chi<br/>ti <span>chiama.</span>',heroSub:'// codice OTP condiviso per sventare<br/>// truffe vishing e deepfake audio',btnCreate:'+ crea famiglia',btnJoin:'→ unisciti con link',createTitle:'Nuova famiglia',createSub:'// scegli un nome.<br/>// riceverai un link da condividere.',createLabel:'nome famiglia',namePh:'es. Famiglia Rossi',btnDoCreate:'genera link segreto →',joinTitle:'Unisciti',joinSub:'// incolla il link ricevuto<br/>// oppure solo il codice segreto',joinLabel:'link o codice segreto',joinPh:'https://…#s=3f9a…',btnDoJoin:'entra →',back:'← indietro',badge:'LIVE · aggiornamento ogni 30s',hint:'// chiedi questo codice a chi ti chiama',timerPre:'rinnovo tra',timerSuf:'s',renameBtn:'salva',shareLabel:'link da condividere',shareNote:'// tocca per copiare · mandalo una volta sola<br/>// il frammento # non raggiunge mai il server',hideNote:'// per nascondere: svuota il localStorage del browser',toastCopied:'// link copiato',toastInvalid:'// codice non valido',toastAlready:'// già presente',toastRenamed:'// nome aggiornato',toastWelcome:'// bentornato in ',toastAdded:'// famiglia aggiunta',emptyText:'// nessuna famiglia<br/>// creane una o unisciti',keyLbl:'key: ...',pinToggleTitle:'Proteggi con PIN',pinToggleSub:'// il PIN non viene mai salvato',pinInfo:'// il PIN modifica il calcolo dell\'OTP.\n// senza PIN corretto, il codice sarà sbagliato.\n// condividilo separatamente dal link.',pinCreateLabel:'scegli un PIN',pinScreenTitle:'Inserisci il PIN',pinScreenSub:'// il PIN non è salvato da nessuna parte.\n// serve solo per calcolare l\'OTP corretto.',pinNote:'// il PIN esiste solo nella tua testa.\n// nessun server lo conosce.',pinLockBadge:'🔒 PIN'},
-  en:{heroTitle:'Verify who<br/>calls <span>you.</span>',heroSub:'// shared OTP code to defeat<br/>// vishing scams and audio deepfakes',btnCreate:'+ create family',btnJoin:'→ join with link',createTitle:'New family',createSub:'// choose a name.<br/>// you\'ll get a link to share.',createLabel:'family name',namePh:'e.g. The Smiths',btnDoCreate:'generate secret link →',joinTitle:'Join',joinSub:'// paste the link received<br/>// or just the secret code',joinLabel:'link or secret code',joinPh:'https://…#s=3f9a…',btnDoJoin:'enter →',back:'← back',badge:'LIVE · updates every 30s',hint:'// ask this code to whoever calls you',timerPre:'renewal in',timerSuf:'s',renameBtn:'save',shareLabel:'link to share',shareNote:'// tap to copy · share once only<br/>// the # fragment never reaches the server',hideNote:'// to hide: clear browser localStorage',toastCopied:'// link copied',toastInvalid:'// invalid code',toastAlready:'// already present',toastRenamed:'// name updated',toastWelcome:'// welcome back to ',toastAdded:'// family added',emptyText:'// no families yet<br/>// create one or join',keyLbl:'key: ...',pinToggleTitle:'Protect with PIN',pinToggleSub:'// PIN is never saved anywhere',pinInfo:'// the PIN changes the OTP calculation.\n// without the correct PIN, the code will be wrong.\n// share it separately from the link.',pinCreateLabel:'choose a PIN',pinScreenTitle:'Enter PIN',pinScreenSub:'// the PIN is not saved anywhere.\n// it\'s only used to compute the correct OTP.',pinNote:'// the PIN lives only in your head.\n// no server knows it.',pinLockBadge:'🔒 PIN'},
-  es:{heroTitle:'Verifica quién<br/>te <span>llama.</span>',heroSub:'// código OTP compartido para evitar<br/>// estafas vishing y deepfakes',btnCreate:'+ crear familia',btnJoin:'→ unirse con enlace',createTitle:'Nueva familia',createSub:'// elige un nombre.<br/>// recibirás un enlace para compartir.',createLabel:'nombre de familia',namePh:'ej. Familia García',btnDoCreate:'generar enlace secreto →',joinTitle:'Unirse',joinSub:'// pega el enlace recibido<br/>// o solo el código secreto',joinLabel:'enlace o código secreto',joinPh:'https://…#s=3f9a…',btnDoJoin:'entrar →',back:'← volver',badge:'LIVE · actualización cada 30s',hint:'// pide este código a quien te llama',timerPre:'renovación en',timerSuf:'s',renameBtn:'guardar',shareLabel:'enlace para compartir',shareNote:'// toca para copiar · compártelo solo una vez<br/>// el fragmento # nunca llega al servidor',hideNote:'// para ocultar: borra el localStorage del navegador',toastCopied:'// enlace copiado',toastInvalid:'// código no válido',toastAlready:'// ya presente',toastRenamed:'// nombre actualizado',toastWelcome:'// bienvenido de nuevo a ',toastAdded:'// familia añadida',emptyText:'// ninguna familia todavía<br/>// crea una o únete',keyLbl:'clave: ...',pinToggleTitle:'Proteger con PIN',pinToggleSub:'// el PIN nunca se guarda',pinInfo:'// el PIN cambia el cálculo del OTP.\n// sin el PIN correcto, el código será incorrecto.\n// compártelo por separado del enlace.',pinCreateLabel:'elige un PIN',pinScreenTitle:'Introduce el PIN',pinScreenSub:'// el PIN no se guarda en ningún lugar.\n// solo sirve para calcular el OTP correcto.',pinNote:'// el PIN solo existe en tu cabeza.\n// ningún servidor lo conoce.',pinLockBadge:'🔒 PIN'},
-  de:{heroTitle:'Prüfe wer<br/>dich <span>anruft.</span>',heroSub:'// geteilter OTP-Code gegen<br/>// Vishing-Betrug und Deepfakes',btnCreate:'+ Familie erstellen',btnJoin:'→ mit Link beitreten',createTitle:'Neue Familie',createSub:'// wähle einen Namen.<br/>// du erhältst einen Link zum Teilen.',createLabel:'Familienname',namePh:'z.B. Familie Müller',btnDoCreate:'geheimen Link erstellen →',joinTitle:'Beitreten',joinSub:'// füge den erhaltenen Link ein<br/>// oder nur den geheimen Code',joinLabel:'Link oder geheimer Code',joinPh:'https://…#s=3f9a…',btnDoJoin:'eintreten →',back:'← zurück',badge:'LIVE · Aktualisierung alle 30s',hint:'// frage den Code von demjenigen, der anruft',timerPre:'Erneuerung in',timerSuf:'s',renameBtn:'speichern',shareLabel:'Link zum Teilen',shareNote:'// tippen zum Kopieren · nur einmal teilen<br/>// das #-Fragment erreicht nie den Server',hideNote:'// zum Ausblenden: localStorage leeren',toastCopied:'// Link kopiert',toastInvalid:'// ungültiger Code',toastAlready:'// bereits vorhanden',toastRenamed:'// Name aktualisiert',toastWelcome:'// willkommen zurück bei ',toastAdded:'// Familie hinzugefügt',emptyText:'// noch keine Familien<br/>// erstelle eine oder tritt bei',keyLbl:'Schlüssel: ...',pinToggleTitle:'Mit PIN schützen',pinToggleSub:'// PIN wird nirgends gespeichert',pinInfo:'// der PIN ändert die OTP-Berechnung.\n// ohne den richtigen PIN ist der Code falsch.\n// teile ihn separat vom Link.',pinCreateLabel:'PIN wählen',pinScreenTitle:'PIN eingeben',pinScreenSub:'// der PIN wird nirgends gespeichert.\n// er wird nur zur Berechnung des OTP verwendet.',pinNote:'// der PIN existiert nur in deinem Kopf.\n// kein Server kennt ihn.',pinLockBadge:'🔒 PIN'},
-  fr:{heroTitle:'Vérifie qui<br/>t\'<span>appelle.</span>',heroSub:'// code OTP partagé pour contrer<br/>// les arnaques vishing et deepfakes',btnCreate:'+ créer une famille',btnJoin:'→ rejoindre avec un lien',createTitle:'Nouvelle famille',createSub:'// choisis un nom.<br/>// tu recevras un lien à partager.',createLabel:'nom de famille',namePh:'ex. Famille Dupont',btnDoCreate:'générer le lien secret →',joinTitle:'Rejoindre',joinSub:'// colle le lien reçu<br/>// ou juste le code secret',joinLabel:'lien ou code secret',joinPh:'https://…#s=3f9a…',btnDoJoin:'entrer →',back:'← retour',badge:'LIVE · mise à jour toutes les 30s',hint:'// demande ce code à celui qui t\'appelle',timerPre:'renouvellement dans',timerSuf:'s',renameBtn:'enregistrer',shareLabel:'lien à partager',shareNote:'// appuie pour copier · partage une seule fois<br/>// le fragment # n\'atteint jamais le serveur',hideNote:'// pour masquer : vide le localStorage du navigateur',toastCopied:'// lien copié',toastInvalid:'// code invalide',toastAlready:'// déjà présent',toastRenamed:'// nom mis à jour',toastWelcome:'// bon retour dans ',toastAdded:'// famille ajoutée',emptyText:'// aucune famille<br/>// crée-en une ou rejoins',keyLbl:'clé : ...',pinToggleTitle:'Protéger avec PIN',pinToggleSub:'// le PIN n\'est jamais sauvegardé',pinInfo:'// le PIN modifie le calcul de l\'OTP.\n// sans le bon PIN, le code sera incorrect.\n// partage-le séparément du lien.',pinCreateLabel:'choisis un PIN',pinScreenTitle:'Entrer le PIN',pinScreenSub:'// le PIN n\'est sauvegardé nulle part.\n// il sert uniquement à calculer le bon OTP.',pinNote:'// le PIN existe uniquement dans ta tête.\n// aucun serveur ne le connaît.',pinLockBadge:'🔒 PIN'}
+  it:{
+    heroTitle:'Verifica chi<br/>ti <span>chiama.</span>',
+    heroSub:'// codice OTP condiviso per sventare<br/>// truffe vishing e deepfake audio',
+    btnCreate:'+ crea famiglia',btnJoin:'→ unisciti con link',
+    createTitle:'Nuova famiglia',createSub:'// scegli un nome.\n// riceverai un link da condividere.',
+    createLabel:'nome famiglia',namePh:'es. Famiglia Rossi',btnDoCreate:'avanti →',
+    joinTitle:'Unisciti',joinSub:'// incolla il link ricevuto\n// oppure solo il codice segreto',
+    joinLabel:'link o codice segreto',joinPh:'https://…#s=3f9a…',btnDoJoin:'entra →',
+    back:'← indietro',badge:'LIVE · aggiornamento ogni 30s',
+    hint:'// chiedi questo codice a chi ti chiama',
+    timerPre:'rinnovo tra',timerSuf:'s',renameBtn:'salva',
+    shareLabel:'link da condividere',
+    shareNote:'// tocca per copiare · mandalo una volta sola\n// il frammento # non raggiunge mai il server',
+    hideNote:'// per nascondere: svuota il localStorage del browser',
+    toastCopied:'// link copiato',toastInvalid:'// codice non valido',
+    toastAlready:'// già presente',toastRenamed:'// nome aggiornato',
+    toastWelcome:'// bentornato in ',toastAdded:'// famiglia aggiunta',
+    emptyText:'// nessuna famiglia\n// creane una o unisciti',
+    keyLbl:'key: ...',
+    pinToggleTitle:'Proteggi con PIN',
+    pinToggleSub:'// il PIN non viene mai salvato',
+    pinInfo:'// il PIN modifica il calcolo dell\'OTP.\n// senza PIN corretto, il codice sarà sbagliato.\n// condividilo separatamente dal link (voce, SMS diverso…)',
+    pinCreateIcon:'🔐',
+    pinCreateTitle:'Scegli il tuo PIN',
+    pinCreateSub:'// digita il PIN che condividerai\n// con i tuoi familiari.\n// NON viene salvato da nessuna parte.',
+    pinCreateNote:'// condividi questo PIN a voce o\n// su un canale diverso dal link.',
+    pinOpenIcon:'🔒',
+    pinOpenTitle:'Inserisci il PIN',
+    pinOpenSub:'// questa famiglia è protetta da PIN.\n// il PIN non è salvato da nessuna parte:\n// serve solo per calcolare l\'OTP corretto.',
+    pinOpenNote:'// nessun server conosce il tuo PIN.\n// vive solo nella tua testa.',
+    pinBadge:'🔒 PIN',
+    pinConfirm:'✓',pinDel:'⌫',
+  },
+  en:{
+    heroTitle:'Verify who<br/>calls <span>you.</span>',
+    heroSub:'// shared OTP code to defeat<br/>// vishing scams and audio deepfakes',
+    btnCreate:'+ create family',btnJoin:'→ join with link',
+    createTitle:'New family',createSub:'// choose a name.\n// you\'ll get a link to share.',
+    createLabel:'family name',namePh:'e.g. The Smiths',btnDoCreate:'next →',
+    joinTitle:'Join',joinSub:'// paste the link received\n// or just the secret code',
+    joinLabel:'link or secret code',joinPh:'https://…#s=3f9a…',btnDoJoin:'enter →',
+    back:'← back',badge:'LIVE · updates every 30s',
+    hint:'// ask this code to whoever calls you',
+    timerPre:'renewal in',timerSuf:'s',renameBtn:'save',
+    shareLabel:'link to share',
+    shareNote:'// tap to copy · share once only\n// the # fragment never reaches the server',
+    hideNote:'// to hide: clear browser localStorage',
+    toastCopied:'// link copied',toastInvalid:'// invalid code',
+    toastAlready:'// already present',toastRenamed:'// name updated',
+    toastWelcome:'// welcome back to ',toastAdded:'// family added',
+    emptyText:'// no families yet\n// create one or join',
+    keyLbl:'key: ...',
+    pinToggleTitle:'Protect with PIN',
+    pinToggleSub:'// PIN is never saved anywhere',
+    pinInfo:'// the PIN changes the OTP calculation.\n// without the correct PIN, the code will be wrong.\n// share it separately from the link (voice, different SMS…)',
+    pinCreateIcon:'🔐',
+    pinCreateTitle:'Choose your PIN',
+    pinCreateSub:'// type the PIN you\'ll share\n// with your family members.\n// it is NOT saved anywhere.',
+    pinCreateNote:'// share this PIN verbally or\n// through a different channel than the link.',
+    pinOpenIcon:'🔒',
+    pinOpenTitle:'Enter PIN',
+    pinOpenSub:'// this family is PIN-protected.\n// the PIN is not saved anywhere:\n// it\'s only used to compute the correct OTP.',
+    pinOpenNote:'// no server knows your PIN.\n// it lives only in your head.',
+    pinBadge:'🔒 PIN',
+    pinConfirm:'✓',pinDel:'⌫',
+  },
+  es:{
+    heroTitle:'Verifica quién<br/>te <span>llama.</span>',
+    heroSub:'// código OTP compartido para evitar<br/>// estafas vishing y deepfakes',
+    btnCreate:'+ crear familia',btnJoin:'→ unirse con enlace',
+    createTitle:'Nueva familia',createSub:'// elige un nombre.\n// recibirás un enlace para compartir.',
+    createLabel:'nombre de familia',namePh:'ej. Familia García',btnDoCreate:'siguiente →',
+    joinTitle:'Unirse',joinSub:'// pega el enlace recibido\n// o solo el código secreto',
+    joinLabel:'enlace o código secreto',joinPh:'https://…#s=3f9a…',btnDoJoin:'entrar →',
+    back:'← volver',badge:'LIVE · actualización cada 30s',
+    hint:'// pide este código a quien te llama',
+    timerPre:'renovación en',timerSuf:'s',renameBtn:'guardar',
+    shareLabel:'enlace para compartir',
+    shareNote:'// toca para copiar · compártelo solo una vez\n// el fragmento # nunca llega al servidor',
+    hideNote:'// para ocultar: borra el localStorage del navegador',
+    toastCopied:'// enlace copiado',toastInvalid:'// código no válido',
+    toastAlready:'// ya presente',toastRenamed:'// nombre actualizado',
+    toastWelcome:'// bienvenido de nuevo a ',toastAdded:'// familia añadida',
+    emptyText:'// ninguna familia todavía\n// crea una o únete',
+    keyLbl:'clave: ...',
+    pinToggleTitle:'Proteger con PIN',
+    pinToggleSub:'// el PIN nunca se guarda',
+    pinInfo:'// el PIN cambia el cálculo del OTP.\n// sin el PIN correcto, el código será incorrecto.\n// compártelo por separado del enlace (voz, SMS diferente…)',
+    pinCreateIcon:'🔐',
+    pinCreateTitle:'Elige tu PIN',
+    pinCreateSub:'// escribe el PIN que compartirás\n// con tus familiares.\n// NO se guarda en ningún lugar.',
+    pinCreateNote:'// comparte este PIN verbalmente o\n// por un canal diferente al enlace.',
+    pinOpenIcon:'🔒',
+    pinOpenTitle:'Introduce el PIN',
+    pinOpenSub:'// esta familia está protegida con PIN.\n// el PIN no se guarda en ningún lugar:\n// solo sirve para calcular el OTP correcto.',
+    pinOpenNote:'// ningún servidor conoce tu PIN.\n// solo existe en tu cabeza.',
+    pinBadge:'🔒 PIN',
+    pinConfirm:'✓',pinDel:'⌫',
+  },
+  de:{
+    heroTitle:'Prüfe wer<br/>dich <span>anruft.</span>',
+    heroSub:'// geteilter OTP-Code gegen<br/>// Vishing-Betrug und Deepfakes',
+    btnCreate:'+ Familie erstellen',btnJoin:'→ mit Link beitreten',
+    createTitle:'Neue Familie',createSub:'// wähle einen Namen.\n// du erhältst einen Link zum Teilen.',
+    createLabel:'Familienname',namePh:'z.B. Familie Müller',btnDoCreate:'weiter →',
+    joinTitle:'Beitreten',joinSub:'// füge den erhaltenen Link ein\n// oder nur den geheimen Code',
+    joinLabel:'Link oder geheimer Code',joinPh:'https://…#s=3f9a…',btnDoJoin:'eintreten →',
+    back:'← zurück',badge:'LIVE · Aktualisierung alle 30s',
+    hint:'// frage den Code von demjenigen, der anruft',
+    timerPre:'Erneuerung in',timerSuf:'s',renameBtn:'speichern',
+    shareLabel:'Link zum Teilen',
+    shareNote:'// tippen zum Kopieren · nur einmal teilen\n// das #-Fragment erreicht nie den Server',
+    hideNote:'// zum Ausblenden: localStorage leeren',
+    toastCopied:'// Link kopiert',toastInvalid:'// ungültiger Code',
+    toastAlready:'// bereits vorhanden',toastRenamed:'// Name aktualisiert',
+    toastWelcome:'// willkommen zurück bei ',toastAdded:'// Familie hinzugefügt',
+    emptyText:'// noch keine Familien\n// erstelle eine oder tritt bei',
+    keyLbl:'Schlüssel: ...',
+    pinToggleTitle:'Mit PIN schützen',
+    pinToggleSub:'// PIN wird nirgends gespeichert',
+    pinInfo:'// der PIN ändert die OTP-Berechnung.\n// ohne den richtigen PIN ist der Code falsch.\n// teile ihn separat vom Link (Sprache, andere SMS…)',
+    pinCreateIcon:'🔐',
+    pinCreateTitle:'PIN wählen',
+    pinCreateSub:'// gib den PIN ein, den du\n// mit deiner Familie teilen wirst.\n// er wird NIRGENDS gespeichert.',
+    pinCreateNote:'// teile diesen PIN mündlich oder\n// über einen anderen Kanal als den Link.',
+    pinOpenIcon:'🔒',
+    pinOpenTitle:'PIN eingeben',
+    pinOpenSub:'// diese Familie ist PIN-geschützt.\n// der PIN wird nirgends gespeichert:\n// er dient nur zur Berechnung des OTP.',
+    pinOpenNote:'// kein Server kennt deinen PIN.\n// er existiert nur in deinem Kopf.',
+    pinBadge:'🔒 PIN',
+    pinConfirm:'✓',pinDel:'⌫',
+  },
+  fr:{
+    heroTitle:'Vérifie qui<br/>t\'<span>appelle.</span>',
+    heroSub:'// code OTP partagé pour contrer<br/>// les arnaques vishing et deepfakes',
+    btnCreate:'+ créer une famille',btnJoin:'→ rejoindre avec un lien',
+    createTitle:'Nouvelle famille',createSub:'// choisis un nom.\n// tu recevras un lien à partager.',
+    createLabel:'nom de famille',namePh:'ex. Famille Dupont',btnDoCreate:'suivant →',
+    joinTitle:'Rejoindre',joinSub:'// colle le lien reçu\n// ou juste le code secret',
+    joinLabel:'lien ou code secret',joinPh:'https://…#s=3f9a…',btnDoJoin:'entrer →',
+    back:'← retour',badge:'LIVE · mise à jour toutes les 30s',
+    hint:'// demande ce code à celui qui t\'appelle',
+    timerPre:'renouvellement dans',timerSuf:'s',renameBtn:'enregistrer',
+    shareLabel:'lien à partager',
+    shareNote:'// appuie pour copier · partage une seule fois\n// le fragment # n\'atteint jamais le serveur',
+    hideNote:'// pour masquer : vide le localStorage du navigateur',
+    toastCopied:'// lien copié',toastInvalid:'// code invalide',
+    toastAlready:'// déjà présent',toastRenamed:'// nom mis à jour',
+    toastWelcome:'// bon retour dans ',toastAdded:'// famille ajoutée',
+    emptyText:'// aucune famille\n// crée-en une ou rejoins',
+    keyLbl:'clé : ...',
+    pinToggleTitle:'Protéger avec PIN',
+    pinToggleSub:'// le PIN n\'est jamais sauvegardé',
+    pinInfo:'// le PIN modifie le calcul de l\'OTP.\n// sans le bon PIN, le code sera incorrect.\n// partage-le séparément du lien (voix, SMS différent…)',
+    pinCreateIcon:'🔐',
+    pinCreateTitle:'Choisis ton PIN',
+    pinCreateSub:'// tape le PIN que tu partageras\n// avec ta famille.\n// il n\'est PAS sauvegardé.',
+    pinCreateNote:'// partage ce PIN verbalement ou\n// via un canal différent du lien.',
+    pinOpenIcon:'🔒',
+    pinOpenTitle:'Entrer le PIN',
+    pinOpenSub:'// cette famille est protégée par PIN.\n// le PIN n\'est sauvegardé nulle part :\n// il sert uniquement à calculer le bon OTP.',
+    pinOpenNote:'// aucun serveur ne connaît ton PIN.\n// il existe uniquement dans ta tête.',
+    pinBadge:'🔒 PIN',
+    pinConfirm:'✓',pinDel:'⌫',
+  }
 };
 
 const $=id=>document.getElementById(id);
@@ -239,93 +394,28 @@ function otp(secret,pin){
   for(let i=0;i<s.length;i++)h=(Math.imul(31,h)+s.charCodeAt(i))|0;
   return String(Math.abs(h)%1000000).padStart(6,'0');
 }
-
 function left(){return 30-Math.floor(Date.now()/1000)%30}
 function makeUrl(secret,name){return location.href.split('#')[0]+'#s='+secret+'&n='+encodeURIComponent(name)}
 function fmtUrl(url){const hash=url.split('#')[1]||'';const base=url.split('#')[0].replace(/^https?:\/\//,'');return '<span style="color:var(--text3)">'+base+'#</span><span class="url-accent">'+hash.slice(0,26)+'…</span>'}
 
-function applyLang(){
+/* ========== PIN KEYPAD ========== */
+function showPinKeypad(mode, famId){
+  pinMode=mode; pinPendingId=famId; pinBuffer='';
   const t=i18n[lang];
-  $('hero-title').innerHTML=t.heroTitle;$('hero-sub').innerHTML=t.heroSub;
-  $('btn-create').textContent=t.btnCreate;$('btn-join').textContent=t.btnJoin;
-  $('create-title').textContent=t.createTitle;$('create-sub').innerHTML=t.createSub;
-  $('create-label').textContent=t.createLabel;$('new-name').placeholder=t.namePh;
-  $('btn-do-create').textContent=t.btnDoCreate;
-  $('pin-toggle-title').textContent=t.pinToggleTitle;
-  $('pin-toggle-sub').textContent=t.pinToggleSub;
-  $('pin-info-box').textContent=t.pinInfo;
-  $('create-pin-label').textContent=t.pinCreateLabel;
-  $('join-title').textContent=t.joinTitle;$('join-sub').innerHTML=t.joinSub;
-  $('join-label').textContent=t.joinLabel;$('join-code').placeholder=t.joinPh;
-  $('btn-do-join').textContent=t.btnDoJoin;
-  document.querySelectorAll('.back').forEach(b=>b.textContent=t.back);
-  $('badge-text').textContent=t.badge;$('otp-hint').textContent=t.hint;
-  $('btn-rename').textContent=t.renameBtn;$('share-label').textContent=t.shareLabel;
-  $('share-note').innerHTML=t.shareNote;$('hide-note').textContent=t.hideNote;
-  $('pin-screen-title').textContent=t.pinScreenTitle;
-  $('pin-screen-sub').textContent=t.pinScreenSub;
-  $('pin-note').textContent=t.pinNote;
-  $('lang-btn').textContent=lang.toUpperCase();
-  document.documentElement.lang=lang;
-  document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
-  renderHome();
-}
-
-function renderHome(){
-  const t=i18n[lang];const list=$('family-list');
-  if(!fams.length){list.innerHTML='<div class="empty"><div class="empty-icon">⬡</div><div class="empty-text">'+t.emptyText+'</div></div>';return}
-  list.innerHTML=fams.map(f=>{
-    const pin=sessionPins[f.id]||'';
-    const code=otp(f.secret,pin);
-    const lock=f.hasPin?'<span class="pin-badge">'+t.pinLockBadge+'</span>':'';
-    return '<div class="family-card" onclick="cardClick(\''+f.id+'\')">'
-      +'<div><div class="family-card-name">'+f.name+lock+'</div>'
-      +'<div class="family-card-id">'+t.keyLbl+f.secret.slice(-8)+'</div></div>'
-      +'<div class="family-card-otp">'+(f.hasPin&&!sessionPins[f.id]?'••••••':code)+'</div>'
-      +'</div>';
-  }).join('');
-}
-
-function cardClick(id){
-  const f=fams.find(x=>x.id===id);
-  if(f.hasPin&&!sessionPins[id]){showPinScreen(id);return}
-  openFam(id);
-}
-
-/* ---- PIN KEYPAD ---- */
-let pinBuffer='';
-let pinMaxLen=0;
-
-function showPinScreen(famId){
-  pendingFamId=famId;
-  pinBuffer='';
-  pinMaxLen=0; // unknown length — confirm with ✓
-  buildPinPad(false);
-  show('pin-screen');
-}
-
-function showPinCreate(){
-  pendingFamId='__create__';
-  pinBuffer='';
-  pinMaxLen=0;
-  buildPinPad(true);
-  show('pin-screen');
-}
-
-function buildPinPad(isCreate){
-  // dots: show up to 8 positions, grow dynamically
+  if(mode==='create'){
+    $('pin-icon').textContent=t.pinCreateIcon;
+    $('pin-screen-title').textContent=t.pinCreateTitle;
+    $('pin-screen-sub').textContent=t.pinCreateSub;
+    $('pin-note').textContent=t.pinCreateNote;
+  } else {
+    $('pin-icon').textContent=t.pinOpenIcon;
+    $('pin-screen-title').textContent=t.pinOpenTitle;
+    $('pin-screen-sub').textContent=t.pinOpenSub;
+    $('pin-note').textContent=t.pinOpenNote;
+  }
   renderPinDots();
-  const pad=$('pin-pad');
-  const keys=['1','2','3','4','5','6','7','8','9','✓','0','⌫'];
-  pad.innerHTML=keys.map(k=>{
-    let cls='pin-key';
-    if(k==='⌫')cls+=' del';
-    if(k==='✓')cls+=' btn-primary';
-    return '<button class="'+cls+'" data-k="'+k+'">'+k+'</button>';
-  }).join('');
-  pad.querySelectorAll('button').forEach(btn=>{
-    btn.onclick=()=>pinKeyPress(btn.dataset.k);
-  });
+  buildPinPad();
+  show('pin-screen');
 }
 
 function renderPinDots(){
@@ -335,111 +425,189 @@ function renderPinDots(){
   ).join('');
 }
 
-function pinKeyPress(k){
-  if(k==='⌫'){pinBuffer=pinBuffer.slice(0,-1);renderPinDots();return}
-  if(k==='✓'){confirmPin();return}
+function buildPinPad(){
+  const t=i18n[lang];
+  const keys=['1','2','3','4','5','6','7','8','9',t.pinConfirm,'0',t.pinDel];
+  $('pin-pad').innerHTML=keys.map(k=>{
+    let cls='pin-key';
+    if(k===t.pinDel)cls+=' del';
+    if(k===t.pinConfirm)cls+=' confirm';
+    return '<button class="'+cls+'" data-k="'+k+'">'+k+'</button>';
+  }).join('');
+  $('pin-pad').querySelectorAll('button').forEach(btn=>btn.onclick=()=>pinPress(btn.dataset.k));
+}
+
+function pinPress(k){
+  const t=i18n[lang];
+  if(k===t.pinDel){pinBuffer=pinBuffer.slice(0,-1);renderPinDots();return}
+  if(k===t.pinConfirm){pinConfirm();return}
   if(pinBuffer.length>=20)return;
-  pinBuffer+=k;
-  renderPinDots();
+  pinBuffer+=k; renderPinDots();
 }
 
-function confirmPin(){
-  if(!pinBuffer){toast('// PIN?');return}
-  if(pendingFamId==='__create__'){
-    // store temporarily to be picked up by btn-do-create
-    $('new-pin').value=pinBuffer;
+function pinConfirm(){
+  if(!pinBuffer.length){toast('// PIN?');return}
+  if(pinMode==='create'){
+    // we have the name ready, now create the family
+    const name=window._pendingName||'Family';
+    const secret=hex(16),id=hex(4);
+    fams.push({id,name,secret,hasPin:true});
+    sessionPins[id]=pinBuffer;
+    save(); pinBuffer=''; window._pendingName=null;
+    openFam(id);
+  } else {
+    // opening an existing family
+    sessionPins[pinPendingId]=pinBuffer;
     pinBuffer='';
-    show('create-screen');
-    toast('// PIN impostato');
-    return;
+    openFam(pinPendingId);
   }
-  sessionPins[pendingFamId]=pinBuffer;
-  pinBuffer='';
-  openFam(pendingFamId);
 }
 
-function openFam(id){
-  cur=id;const f=fams.find(x=>x.id===id);const t=i18n[lang];
-  $('rename-input').value=f.name;
-  $('otp-tail').textContent=t.keyLbl+f.secret.slice(-8)+(f.hasPin?' 🔒':'');
-  $('share-url').innerHTML=fmtUrl(makeUrl(f.secret,f.name));
-  $('share-url').onclick=()=>navigator.clipboard.writeText(makeUrl(f.secret,f.name)).then(()=>toast(t.toastCopied)).catch(()=>toast(t.toastCopied));
-  startTicker(f);show('otp-screen');
+/* ========== LANG / THEME ========== */
+function applyLang(){
+  const t=i18n[lang];
+  $('hero-title').innerHTML=t.heroTitle; $('hero-sub').innerHTML=t.heroSub;
+  $('btn-create').textContent=t.btnCreate; $('btn-join').textContent=t.btnJoin;
+  $('create-title').textContent=t.createTitle; $('create-sub').textContent=t.createSub;
+  $('create-label').textContent=t.createLabel; $('new-name').placeholder=t.namePh;
+  $('btn-do-create').textContent=t.btnDoCreate;
+  $('pin-toggle-title').textContent=t.pinToggleTitle; $('pin-toggle-sub').textContent=t.pinToggleSub;
+  $('pin-info-box').textContent=t.pinInfo;
+  $('join-title').textContent=t.joinTitle; $('join-sub').textContent=t.joinSub;
+  $('join-label').textContent=t.joinLabel; $('join-code').placeholder=t.joinPh;
+  $('btn-do-join').textContent=t.btnDoJoin;
+  document.querySelectorAll('.back').forEach(b=>b.textContent=t.back);
+  $('badge-text').textContent=t.badge; $('otp-hint').textContent=t.hint;
+  $('btn-rename').textContent=t.renameBtn; $('share-label').textContent=t.shareLabel;
+  $('share-note').textContent=t.shareNote; $('hide-note').textContent=t.hideNote;
+  $('lang-btn').textContent=lang.toUpperCase();
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
+  renderHome();
 }
 
-function startTicker(f){
-  if(ticker)clearInterval(ticker);
-  function tick(){
-    const t=i18n[lang];
-    const pin=sessionPins[f.id]||'';
-    $('otp-display').textContent=otp(f.secret,pin);
-    const tl=left();
-    $('prog').style.width=(tl/30*100)+'%';
-    $('timer-label').textContent='// '+t.timerPre+' '+tl+t.timerSuf;
-  }
-  tick();ticker=setInterval(tick,1000);
-}
-
-/* ---- PIN TOGGLE on create screen ---- */
-$('pin-toggle-row').onclick=()=>{
-  pinEnabled=!pinEnabled;
-  $('pin-toggle').classList.toggle('on',pinEnabled);
-  $('pin-field-wrap').classList.toggle('open',pinEnabled);
-  if(!pinEnabled)$('new-pin').value='';
-};
-
-/* ---- THEME / LANG ---- */
 $('theme-btn').onclick=()=>{const h=document.documentElement;const d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'light':'dark');$('theme-btn').textContent=d?'☽':'☀'};
 $('lang-btn').onclick=e=>{e.stopPropagation();$('lang-menu').classList.toggle('open')};
 document.addEventListener('click',()=>$('lang-menu').classList.remove('open'));
 document.querySelectorAll('.lang-item').forEach(el=>el.onclick=()=>{lang=el.dataset.lang;localStorage.setItem('fc_lang',lang);$('lang-menu').classList.remove('open');applyLang();if(cur)openFam(cur)});
 
-/* ---- NAVIGATION ---- */
-$('btn-create').onclick=()=>{$('new-name').value='';$('new-pin').value='';pinEnabled=false;$('pin-toggle').classList.remove('on');$('pin-field-wrap').classList.remove('open');show('create-screen');setTimeout(()=>$('new-name').focus(),100)};
+/* ========== PIN TOGGLE ========== */
+$('pin-toggle-row').onclick=()=>{
+  pinEnabled=!pinEnabled;
+  $('pin-toggle').classList.toggle('on',pinEnabled);
+  $('pin-info-box').style.display=pinEnabled?'block':'none';
+};
+
+/* ========== HOME ========== */
+function renderHome(){
+  const t=i18n[lang]; const list=$('family-list');
+  if(!fams.length){
+    list.innerHTML='<div class="empty"><div class="empty-icon">⬡</div><div class="empty-text">'+t.emptyText+'</div></div>';
+    return;
+  }
+  list.innerHTML=fams.map(f=>{
+    const pin=sessionPins[f.id]||'';
+    const locked=f.hasPin&&!sessionPins[f.id];
+    const code=locked?'••••••':otp(f.secret,pin);
+    const badge=f.hasPin?'<span class="pin-badge">'+t.pinBadge+'</span>':'';
+    return '<div class="family-card" onclick="cardClick(\''+f.id+'\')">'
+      +'<div><div class="family-card-name">'+f.name+badge+'</div>'
+      +'<div class="family-card-id">'+t.keyLbl+f.secret.slice(-8)+'</div></div>'
+      +'<div class="family-card-otp">'+code+'</div></div>';
+  }).join('');
+}
+
+function cardClick(id){
+  const f=fams.find(x=>x.id===id);
+  if(f.hasPin&&!sessionPins[id]){showPinKeypad('open',id);return}
+  openFam(id);
+}
+
+/* ========== OPEN FAMILY ========== */
+function openFam(id){
+  cur=id; const f=fams.find(x=>x.id===id); const t=i18n[lang];
+  $('rename-input').value=f.name;
+  $('otp-tail').textContent=t.keyLbl+f.secret.slice(-8)+(f.hasPin?' 🔒':'');
+  $('share-url').innerHTML=fmtUrl(makeUrl(f.secret,f.name));
+  $('share-url').onclick=()=>navigator.clipboard.writeText(makeUrl(f.secret,f.name)).then(()=>toast(t.toastCopied)).catch(()=>toast(t.toastCopied));
+  startTicker(f); show('otp-screen');
+}
+
+function startTicker(f){
+  if(ticker)clearInterval(ticker);
+  function tick(){
+    const t=i18n[lang]; const pin=sessionPins[f.id]||'';
+    $('otp-display').textContent=otp(f.secret,pin);
+    const tl=left();
+    $('prog').style.width=(tl/30*100)+'%';
+    $('timer-label').textContent='// '+t.timerPre+' '+tl+t.timerSuf;
+  }
+  tick(); ticker=setInterval(tick,1000);
+}
+
+/* ========== NAVIGATION ========== */
+$('btn-create').onclick=()=>{
+  $('new-name').value=''; pinEnabled=false;
+  $('pin-toggle').classList.remove('on');
+  $('pin-info-box').style.display='none';
+  show('create-screen'); setTimeout(()=>$('new-name').focus(),100);
+};
 $('btn-join').onclick=()=>{$('join-code').value='';show('join-screen');setTimeout(()=>$('join-code').focus(),100)};
 $('back-create').onclick=()=>{show('home');renderHome()};
 $('back-join').onclick=()=>{show('home');renderHome()};
 $('back-otp').onclick=()=>{if(ticker)clearInterval(ticker);cur=null;show('home');renderHome()};
-$('back-pin').onclick=()=>{pinBuffer='';pendingFamId=null;show('home');renderHome()};
-
-/* ---- CREATE ---- */
-$('btn-do-create').onclick=()=>{
-  const name=$('new-name').value.trim()||'Family';
-  const pin=pinEnabled?$('new-pin').value.trim():'';
-  const secret=hex(16),id=hex(4);
-  fams.push({id,name,secret,hasPin:!!pin});
-  if(pin)sessionPins[id]=pin;
-  save();openFam(id);
+$('back-pin').onclick=()=>{
+  pinBuffer='';
+  if(pinMode==='create'){show('create-screen')}
+  else{show('home');renderHome()}
 };
 
-/* ---- JOIN ---- */
+/* ========== CREATE ========== */
+$('btn-do-create').onclick=()=>{
+  const name=$('new-name').value.trim()||'Family';
+  if(pinEnabled){
+    // go to keypad — store name temporarily
+    window._pendingName=name;
+    showPinKeypad('create',null);
+  } else {
+    const secret=hex(16),id=hex(4);
+    fams.push({id,name,secret,hasPin:false});
+    save(); openFam(id);
+  }
+};
+
+/* ========== JOIN ========== */
 $('btn-do-join').onclick=()=>{
-  const t=i18n[lang];let raw=$('join-code').value.trim();
+  const t=i18n[lang]; let raw=$('join-code').value.trim();
   let secret=raw,name='Family';
   if(raw.includes('#s=')){const p=new URLSearchParams(raw.split('#')[1]);secret=p.get('s')||raw;name=p.get('n')||'Family'}
   if(secret.length<16){toast(t.toastInvalid);return}
   const exists=fams.find(f=>f.secret===secret);
   if(exists){toast(t.toastAlready);cardClick(exists.id);return}
   const id=hex(4);
-  // joining: we don't know if PIN is set — user will figure it out
-  // mark hasPin=true only if they tell us; default false, they can set via settings
+  // hasPin unknown at join time — will be discovered when OTP doesn't match
+  // we mark hasPin:false and let user figure it out; they can re-join to set PIN
   fams.push({id,name,secret,hasPin:false});
-  save();toast(t.toastAdded);openFam(id);
+  save(); toast(t.toastAdded);
+  // open directly — if others have PIN, OTP won't match and user will understand
+  openFam(id);
 };
 
-/* ---- RENAME ---- */
+/* ========== RENAME ========== */
 $('btn-rename').onclick=()=>{
-  const t=i18n[lang];const val=$('rename-input').value.trim();if(!val)return;
+  const t=i18n[lang]; const val=$('rename-input').value.trim(); if(!val)return;
   const f=fams.find(x=>x.id===cur);
   if(f){f.name=val;save();$('share-url').innerHTML=fmtUrl(makeUrl(f.secret,f.name));toast(t.toastRenamed);renderHome()}
 };
 
-/* ---- HASH ON LOAD ---- */
+/* ========== HASH ON LOAD ========== */
 function checkHash(){
-  const hash=location.hash;if(!hash||!hash.includes('s='))return;
-  const p=new URLSearchParams(hash.slice(1));const secret=p.get('s'),name=p.get('n')||'Family';
+  const hash=location.hash; if(!hash||!hash.includes('s='))return;
+  const p=new URLSearchParams(hash.slice(1));
+  const secret=p.get('s'),name=p.get('n')||'Family';
   if(!secret||secret.length<16)return;
-  const t=i18n[lang];const exists=fams.find(f=>f.secret===secret);
+  const t=i18n[lang];
+  const exists=fams.find(f=>f.secret===secret);
   if(exists){toast(t.toastWelcome+exists.name);setTimeout(()=>cardClick(exists.id),400);return}
   const id=hex(4);fams.push({id,name,secret,hasPin:false});save();
   toast(t.toastAdded);setTimeout(()=>openFam(id),400);
@@ -447,7 +615,7 @@ function checkHash(){
 
 lang=localStorage.getItem('fc_lang')||(navigator.language||'en').slice(0,2).toLowerCase();
 if(!i18n[lang])lang='en';
-applyLang();checkHash();
+applyLang(); checkHash();
 </script>
 </body>
 </html>
