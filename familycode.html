@@ -103,6 +103,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .pin-key.confirm{background:var(--accent);border-color:var(--accent);color:#fff;font-size:16px}
 .pin-key.confirm:hover{background:var(--accent2);border-color:var(--accent2)}
 .pin-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);line-height:1.7;white-space:pre-line}
+.pin-warning{background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.35);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#f0a800;line-height:1.7;margin-bottom:20px;text-align:left;white-space:pre-line}
+:root[data-theme="light"] .pin-warning{background:rgba(200,120,0,0.07);border-color:rgba(200,120,0,0.3);color:#a06000}
 .pin-badge{display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:20px;background:var(--accent-bg);color:var(--accent2);border:1px solid var(--accent-border);margin-left:6px;vertical-align:middle}
 .info-box{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:20px;white-space:pre-line;text-align:left}
 </style>
@@ -170,6 +172,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
       <div class="pin-card-icon" id="pin-icon"></div>
       <div class="pin-card-title" id="pin-screen-title"></div>
       <div class="pin-card-sub" id="pin-screen-sub"></div>
+      <div class="pin-warning" id="pin-warning"></div>
       <div class="pin-dots" id="pin-dots"></div>
       <div class="pin-pad" id="pin-pad"></div>
       <div class="pin-note" id="pin-note"></div>
@@ -245,6 +248,7 @@ const i18n={
     pinOpenSub:'// questa famiglia è protetta da PIN.\n// il PIN non è salvato da nessuna parte:\n// serve solo per calcolare l\'OTP corretto.',
     pinOpenNote:'// nessun server conosce il tuo PIN.\n// vive solo nella tua testa.',
     pinBadge:'🔒 PIN',
+    pinWarning:'⚠ attenzione: se inserisci un PIN sbagliato\nnon riceverai nessun errore.\nil codice generato sarà semplicemente diverso\nda quello dei tuoi familiari.',
     pinConfirm:'✓',pinDel:'⌫',
   },
   en:{
@@ -278,6 +282,7 @@ const i18n={
     pinOpenSub:'// this family is PIN-protected.\n// the PIN is not saved anywhere:\n// it\'s only used to compute the correct OTP.',
     pinOpenNote:'// no server knows your PIN.\n// it lives only in your head.',
     pinBadge:'🔒 PIN',
+    pinWarning:'⚠ warning: if you enter a wrong PIN\nyou will not get any error message.\nthe generated code will simply be different\nfrom your family members\'.',
     pinConfirm:'✓',pinDel:'⌫',
   },
   es:{
@@ -311,6 +316,7 @@ const i18n={
     pinOpenSub:'// esta familia está protegida con PIN.\n// el PIN no se guarda en ningún lugar:\n// solo sirve para calcular el OTP correcto.',
     pinOpenNote:'// ningún servidor conoce tu PIN.\n// solo existe en tu cabeza.',
     pinBadge:'🔒 PIN',
+    pinWarning:'⚠ atención: si introduces un PIN incorrecto\nno recibirás ningún mensaje de error.\nel código generado será simplemente diferente\nal de tus familiares.',
     pinConfirm:'✓',pinDel:'⌫',
   },
   de:{
@@ -344,6 +350,7 @@ const i18n={
     pinOpenSub:'// diese Familie ist PIN-geschützt.\n// der PIN wird nirgends gespeichert:\n// er dient nur zur Berechnung des OTP.',
     pinOpenNote:'// kein Server kennt deinen PIN.\n// er existiert nur in deinem Kopf.',
     pinBadge:'🔒 PIN',
+    pinWarning:'⚠ achtung: bei falschem PIN erscheint\nkeine Fehlermeldung.\nder generierte Code ist einfach ein anderer\nals der deiner Familie.',
     pinConfirm:'✓',pinDel:'⌫',
   },
   fr:{
@@ -377,6 +384,7 @@ const i18n={
     pinOpenSub:'// cette famille est protégée par PIN.\n// le PIN n\'est sauvegardé nulle part :\n// il sert uniquement à calculer le bon OTP.',
     pinOpenNote:'// aucun serveur ne connaît ton PIN.\n// il existe uniquement dans ta tête.',
     pinBadge:'🔒 PIN',
+    pinWarning:'⚠ attention : si tu entres un mauvais PIN\ntu ne recevras aucun message d\'erreur.\nle code généré sera simplement différent\nde celui de ta famille.',
     pinConfirm:'✓',pinDel:'⌫',
   }
 };
@@ -413,6 +421,7 @@ function showPinKeypad(mode, famId){
     $('pin-screen-sub').textContent=t.pinOpenSub;
     $('pin-note').textContent=t.pinOpenNote;
   }
+  $('pin-warning').textContent=t.pinWarning;
   renderPinDots();
   buildPinPad();
   show('pin-screen');
