@@ -11,7 +11,7 @@
 :root[data-theme="light"]{--bg:#f4f4f8;--bg2:#ffffff;--bg3:#ebebf3;--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.14);--text:#0f0f1a;--text2:#606080;--text3:#b0b0c8;--accent:#5b4de8;--accent2:#7c6af7;--accent-bg:rgba(91,77,232,0.08);--accent-border:rgba(91,77,232,0.25);--green:#00b87a;--green-bg:rgba(0,184,122,0.08);--grid:rgba(0,0,0,0.03)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
-.app{max-width:420px;margin:0 auto;min-height:100vh;padding:0 0 40px;position:relative}
+.app{max-width:420px;margin:0 auto;min-height:100vh;padding:0 0 60px;position:relative}
 .header{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 0;gap:8px}
 .logo{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--accent2);letter-spacing:.04em}
 .logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:blink 2s ease-in-out infinite}
@@ -22,16 +22,16 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .screen{display:none;padding:24px 20px;animation:fadeIn .2s ease}
 .screen.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.hero{margin:32px 0 28px}
-.hero h1{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+.hero{margin:28px 0 24px}
+.hero h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
 .hero h1 span{color:var(--accent2)}
 .hero p{font-size:13px;color:var(--text2);line-height:1.6;font-family:'JetBrains Mono',monospace;font-weight:300}
-.family-list{margin-bottom:24px}
+.family-list{margin-bottom:20px}
 .family-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;cursor:pointer;transition:border-color .2s,transform .15s;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .family-card:hover{border-color:var(--accent-border);transform:translateY(-1px)}
 .family-card-name{font-size:15px;font-weight:700;margin-bottom:3px}
 .family-card-id{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.08em}
-.family-card-otp{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;letter-spacing:4px;color:var(--accent2);white-space:nowrap}
+.family-card-otp{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;letter-spacing:3px;color:var(--accent2);white-space:nowrap}
 .btn{width:100%;padding:14px;border-radius:12px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.01em}
 .btn-primary{background:var(--accent);border:none;color:#fff;box-shadow:0 4px 20px rgba(124,106,247,.35)}
 .btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
@@ -44,17 +44,6 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .field-input{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--border2);background:var(--bg2);color:var(--text);font-size:16px;font-family:'Syne',sans-serif;font-weight:500;margin-bottom:20px;transition:border-color .2s,box-shadow .2s;outline:none}
 .field-input:focus{border-color:var(--accent-border);box-shadow:0 0 0 3px var(--accent-bg)}
 .field-input::placeholder{color:var(--text3)}
-/* PIN TOGGLE */
-.pin-toggle-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:20px;cursor:pointer;transition:border-color .2s}
-.pin-toggle-row:hover{border-color:var(--accent-border)}
-.pin-toggle-left{display:flex;flex-direction:column;gap:3px}
-.pin-toggle-title{font-size:14px;font-weight:700}
-.pin-toggle-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3)}
-.toggle{width:40px;height:22px;border-radius:11px;background:var(--border2);position:relative;transition:background .2s;flex-shrink:0}
-.toggle.on{background:var(--accent)}
-.toggle-knob{width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;transition:left .2s}
-.toggle.on .toggle-knob{left:21px}
-/* OTP CARD */
 .otp-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:28px 24px 24px;text-align:center;position:relative;overflow:hidden}
 .otp-card::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,var(--accent-bg) 0%,transparent 70%);pointer-events:none}
 .otp-family-id{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:20px;letter-spacing:.08em}
@@ -71,7 +60,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .url-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);word-break:break-all;cursor:pointer;transition:border-color .2s;line-height:1.6;margin:8px 0}
 .url-box:hover{border-color:var(--accent-border);color:var(--text2)}
 .url-accent{color:var(--accent2)}
-.url-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);line-height:1.6;letter-spacing:.02em}
+.url-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);line-height:1.6}
 .status-badge{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 10px;border-radius:20px;background:var(--green-bg);color:var(--green);border:1px solid rgba(61,255,192,.15);letter-spacing:.06em;margin-bottom:20px}
 .status-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
 .section-title{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
@@ -87,26 +76,43 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .lang-item{padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s}
 .lang-item:hover{background:var(--bg3);color:var(--text)}
 .lang-item.active{color:var(--accent2)}
-/* PIN KEYPAD SCREEN */
-.pin-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:32px 24px;text-align:center;margin-top:24px}
-.pin-card-icon{font-size:34px;margin-bottom:14px}
-.pin-card-title{font-size:20px;font-weight:800;margin-bottom:6px}
-.pin-card-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);margin-bottom:24px;line-height:1.7;white-space:pre-line}
-.pin-dots{display:flex;gap:12px;justify-content:center;margin-bottom:28px;min-height:20px}
+/* PIN */
+.pin-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:28px 24px;text-align:center;margin-top:16px}
+.pin-card-icon{font-size:32px;margin-bottom:12px}
+.pin-card-title{font-size:19px;font-weight:800;margin-bottom:6px}
+.pin-card-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);margin-bottom:16px;line-height:1.7;white-space:pre-line}
+.pin-warning{background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.35);border-radius:12px;padding:11px 13px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#f0a800;line-height:1.7;margin-bottom:18px;text-align:left;white-space:pre-line}
+:root[data-theme="light"] .pin-warning{background:rgba(200,120,0,0.07);border-color:rgba(200,120,0,0.3);color:#a06000}
+.pin-dots{display:flex;gap:12px;justify-content:center;margin-bottom:22px;min-height:20px}
 .pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border2);transition:all .15s}
 .pin-dot.filled{background:var(--accent);border-color:var(--accent);box-shadow:0 0 8px var(--accent)}
-.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:260px;margin:0 auto 20px}
-.pin-key{padding:18px;border-radius:14px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;cursor:pointer;transition:all .15s;text-align:center;user-select:none}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:260px;margin:0 auto 16px}
+.pin-key{padding:17px;border-radius:14px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;cursor:pointer;transition:all .15s;text-align:center;user-select:none}
 .pin-key:hover{border-color:var(--accent-border);background:var(--accent-bg);color:var(--accent2)}
 .pin-key:active{transform:scale(.92)}
 .pin-key.del{font-size:16px;color:var(--text2)}
 .pin-key.confirm{background:var(--accent);border-color:var(--accent);color:#fff;font-size:16px}
-.pin-key.confirm:hover{background:var(--accent2);border-color:var(--accent2)}
+.pin-key.confirm:hover{background:var(--accent2)}
 .pin-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);line-height:1.7;white-space:pre-line}
-.pin-warning{background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.35);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#f0a800;line-height:1.7;margin-bottom:20px;text-align:left;white-space:pre-line}
-:root[data-theme="light"] .pin-warning{background:rgba(200,120,0,0.07);border-color:rgba(200,120,0,0.3);color:#a06000}
 .pin-badge{display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:20px;background:var(--accent-bg);color:var(--accent2);border:1px solid var(--accent-border);margin-left:6px;vertical-align:middle}
-.info-box{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:20px;white-space:pre-line;text-align:left}
+/* GUIDE */
+.guide-step{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:12px;display:flex;gap:16px;align-items:flex-start}
+.guide-step-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--accent2);background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:8px;padding:4px 9px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.guide-step-body{}
+.guide-step-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.guide-step-desc{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.6}
+.guide-illustration{width:100%;border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--bg2);border:1px solid var(--border)}
+.guide-tip{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:20px}
+/* PRINT OVERLAY */
+.print-overlay{display:none;position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;padding:24px 20px 40px}
+.print-overlay.active{display:block}
+.print-area{background:#fff;border-radius:18px;padding:36px 28px;color:#111;text-align:center}
+@media print{
+  body>*{display:none!important}
+  .print-overlay{display:block!important;position:static!important;background:#fff}
+  .print-area{border-radius:0;padding:20px}
+  .back,.btn,.hbtn{display:none!important}
+}
 </style>
 </head>
 <body>
@@ -114,7 +120,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
   <div class="header">
     <div class="logo"><div class="logo-dot"></div>family_code</div>
     <div class="header-btns">
-      <button class="hbtn" id="lang-btn">EN</button>
+      <button class="hbtn" id="btn-guide-open" title="Guida">?</button>
+      <button class="hbtn" id="lang-btn">IT</button>
       <button class="hbtn" id="theme-btn">☀</button>
     </div>
   </div>
@@ -137,21 +144,13 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
     <button class="btn btn-ghost" id="btn-join"></button>
   </div>
 
-  <!-- CREATE: step 1 — name + PIN toggle -->
+  <!-- CREATE -->
   <div class="screen" id="create-screen">
     <div class="back" id="back-create"></div>
     <div class="section-title" id="create-title"></div>
     <div class="section-sub" id="create-sub"></div>
     <div class="field-label" id="create-label"></div>
     <input class="field-input" id="new-name" maxlength="30" autocomplete="off"/>
-    <div class="pin-toggle-row" id="pin-toggle-row">
-      <div class="pin-toggle-left">
-        <div class="pin-toggle-title" id="pin-toggle-title"></div>
-        <div class="pin-toggle-sub" id="pin-toggle-sub"></div>
-      </div>
-      <div class="toggle" id="pin-toggle"><div class="toggle-knob"></div></div>
-    </div>
-    <div class="info-box" id="pin-info-box" style="display:none"></div>
     <button class="btn btn-primary" id="btn-do-create"></button>
   </div>
 
@@ -165,7 +164,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
     <button class="btn btn-primary" id="btn-do-join"></button>
   </div>
 
-  <!-- PIN KEYPAD (shared: create + open) -->
+  <!-- PIN KEYPAD -->
   <div class="screen" id="pin-screen">
     <div class="back" id="back-pin"></div>
     <div class="pin-card">
@@ -199,204 +198,381 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
       <div class="url-box" id="share-url"></div>
       <div class="url-note" id="share-note"></div>
     </div>
+    <button class="btn btn-ghost" id="btn-print" style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px"></button>
     <div class="hide-note" id="hide-note"></div>
   </div>
+
+  <!-- GUIDE -->
+  <div class="screen" id="guide-screen">
+    <div class="back" id="back-guide"></div>
+    <div class="section-title" id="guide-title"></div>
+    <div class="section-sub" id="guide-intro"></div>
+    <div id="guide-steps"></div>
+    <div class="guide-tip" id="guide-tip"></div>
+  </div>
 </div>
+
+<!-- PRINT OVERLAY -->
+<div class="print-overlay" id="print-overlay">
+  <div style="max-width:420px;margin:0 auto">
+    <div class="back" id="back-print"></div>
+    <div class="print-area" id="print-area">
+      <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:#bbb;text-transform:uppercase;margin-bottom:8px">family_code 🔐</div>
+      <div id="print-name" style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#111;margin-bottom:4px"></div>
+      <div id="print-keytail" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#bbb;margin-bottom:20px"></div>
+      <img id="print-qr-img" style="width:200px;height:200px;border-radius:10px;border:1px solid #eee;padding:8px;margin-bottom:12px" alt="QR"/>
+      <div id="print-scan" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#999;margin-bottom:20px;line-height:1.6"></div>
+      <div id="print-pin-section" style="border-top:2px dashed #eee;padding-top:20px;margin-top:4px">
+        <div id="print-pin-label" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#999;margin-bottom:10px"></div>
+        <div id="print-pin-value" style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;letter-spacing:10px;color:#111;margin-bottom:8px"></div>
+        <div id="print-pin-note" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#bbb;line-height:1.6"></div>
+      </div>
+      <div id="print-footer" style="border-top:1px solid #f0f0f0;margin-top:24px;padding-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#ccc;line-height:1.8"></div>
+    </div>
+    <button class="btn btn-primary" id="btn-do-print" style="margin-top:16px"></button>
+    <div id="print-tip" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-align:center;margin-top:10px;line-height:1.6"></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-const DB='familycode_v6';
+const DB='familycode_v7';
 let fams=JSON.parse(localStorage.getItem(DB)||'[]');
 let cur=null,ticker=null,lang='en';
-let pinEnabled=false;
-// session-only PIN store: never persisted
 let sessionPins={};
-// pin screen state
-let pinMode=null; // 'create' | 'open'
-let pinPendingId=null;
-let pinBuffer='';
+let pinMode=null,pinPendingId=null,pinBuffer='';
 
 const i18n={
   it:{
     heroTitle:'Verifica chi<br/>ti <span>chiama.</span>',
     heroSub:'// codice OTP condiviso per sventare<br/>// truffe vishing e deepfake audio',
     btnCreate:'+ crea famiglia',btnJoin:'→ unisciti con link',
-    createTitle:'Nuova famiglia',createSub:'// scegli un nome.\n// riceverai un link da condividere.',
-    createLabel:'nome famiglia',namePh:'es. Famiglia Rossi',btnDoCreate:'avanti →',
-    joinTitle:'Unisciti',joinSub:'// incolla il link ricevuto\n// oppure solo il codice segreto',
+    createTitle:'Nuova famiglia',createSub:'// scegli un nome.\n// riceverai un link + PIN da condividere.',
+    createLabel:'nome famiglia',namePh:'es. Famiglia Rossi',btnDoCreate:'avanti: scegli PIN →',
+    joinTitle:'Unisciti',joinSub:'// incolla il link ricevuto\n// ti verrà chiesto il PIN',
     joinLabel:'link o codice segreto',joinPh:'https://…#s=3f9a…',btnDoJoin:'entra →',
     back:'← indietro',badge:'LIVE · aggiornamento ogni 30s',
     hint:'// chiedi questo codice a chi ti chiama',
     timerPre:'rinnovo tra',timerSuf:'s',renameBtn:'salva',
     shareLabel:'link da condividere',
-    shareNote:'// tocca per copiare · mandalo una volta sola\n// il frammento # non raggiunge mai il server',
+    shareNote:'// tocca per copiare · il segreto è nel # e non raggiunge mai nessun server',
     hideNote:'// per nascondere: svuota il localStorage del browser',
     toastCopied:'// link copiato',toastInvalid:'// codice non valido',
     toastAlready:'// già presente',toastRenamed:'// nome aggiornato',
     toastWelcome:'// bentornato in ',toastAdded:'// famiglia aggiunta',
-    emptyText:'// nessuna famiglia\n// creane una o unisciti',
-    keyLbl:'key: ...',
-    pinToggleTitle:'Proteggi con PIN',
-    pinToggleSub:'// il PIN non viene mai salvato',
-    pinInfo:'// il PIN modifica il calcolo dell\'OTP.\n// senza PIN corretto, il codice sarà sbagliato.\n// condividilo separatamente dal link (voce, SMS diverso…)',
-    pinCreateIcon:'🔐',
-    pinCreateTitle:'Scegli il tuo PIN',
-    pinCreateSub:'// digita il PIN che condividerai\n// con i tuoi familiari.\n// NON viene salvato da nessuna parte.',
-    pinCreateNote:'// condividi questo PIN a voce o\n// su un canale diverso dal link.',
-    pinOpenIcon:'🔒',
-    pinOpenTitle:'Inserisci il PIN',
-    pinOpenSub:'// questa famiglia è protetta da PIN.\n// il PIN non è salvato da nessuna parte:\n// serve solo per calcolare l\'OTP corretto.',
-    pinOpenNote:'// nessun server conosce il tuo PIN.\n// vive solo nella tua testa.',
-    pinBadge:'🔒 PIN',
-    pinWarning:'⚠ attenzione: se inserisci un PIN sbagliato\nnon riceverai nessun errore.\nil codice generato sarà semplicemente diverso\nda quello dei tuoi familiari.',
+    emptyText:'// nessuna famiglia\n// creane una o unisciti',keyLbl:'key: ...',
+    pinCreateIcon:'🔐',pinCreateTitle:'Scegli il PIN',
+    pinCreateSub:'// digita il PIN da condividere con la famiglia.\n// NON viene salvato da nessuna parte.\n// condividilo a voce, separato dal link.',
+    pinCreateNote:'// minimo 4 cifre · max 20 caratteri',
+    pinOpenIcon:'🔒',pinOpenTitle:'Inserisci il PIN',
+    pinOpenSub:'// questa famiglia è protetta da PIN.\n// serve per calcolare l\'OTP corretto.',
+    pinOpenNote:'// il PIN vive solo nella tua testa.',
+    pinWarning:'⚠ nessun errore se il PIN è sbagliato:\nil codice generato sarà silenziosamente diverso\nda quello dei tuoi familiari.',
     pinConfirm:'✓',pinDel:'⌫',
+    btnPrint:'⬛ stampa QR per familiare',
+    printScan:'// scansiona con la fotocamera\n// per aprire direttamente la famiglia',
+    printPinLabel:'PIN di accesso',
+    printPinNote:'// conserva in un posto sicuro.\n// il PIN non è recuperabile.',
+    printFooter:'family_code · verifica chi ti chiama · nessun dato raggiunge mai il server',
+    btnDoPrint:'🖨 stampa / salva PDF',
+    printTip:'// il PIN appare solo se inserito in questa sessione',
+    backPrint:'← indietro',
+    guideBtn:'?',
+    guideTitle:'Come funziona',
+    guideIntro:'// FamilyCode ti protegge dalle truffe telefoniche.\n// quando ricevi una chiamata sospetta, chiedi il codice.',
+    guideTip:'// il codice cambia ogni 30 secondi e\n// senza il PIN corretto è impossibile indovinarlo.',
+    guideSteps:[
+      {n:'01',title:'Il problema',desc:'I truffatori usano l\'AI per clonare la voce dei tuoi familiari. Ti chiamano fingendo di essere tuo figlio, tua madre, il tuo medico — e la voce sembra vera.'},
+      {n:'02',title:'Crea la famiglia',desc:'Apri FamilyCode e premi "Crea famiglia". Dai un nome al gruppo e scegli un PIN segreto. L\'app genera un link unico a 128 bit.'},
+      {n:'03',title:'Condividi link e PIN separati',desc:'Manda il link su WhatsApp. Comunica il PIN a voce o via SMS separato. Chi ha solo il link, senza il PIN, vedrà un codice sbagliato.'},
+      {n:'04',title:'Ricevi una chiamata sospetta',desc:'Qualcuno ti chiama fingendo di essere un tuo familiare. Prima di credere o dare qualsiasi informazione, apri FamilyCode.'},
+      {n:'05',title:'Chiedi il codice',desc:'Guarda il codice a 6 cifre che vedi. Chiedi al chiamante: "dimmi il codice". Se non lo sa o dice un numero diverso → è un truffatore.'},
+      {n:'06',title:'Stampa per i nonni',desc:'Per i familiari meno pratici con lo smartphone, stampa il foglio QR con il PIN. Basterà scansionare il QR con la fotocamera per aprire l\'app.'},
+    ],
   },
   en:{
     heroTitle:'Verify who<br/>calls <span>you.</span>',
     heroSub:'// shared OTP code to defeat<br/>// vishing scams and audio deepfakes',
     btnCreate:'+ create family',btnJoin:'→ join with link',
-    createTitle:'New family',createSub:'// choose a name.\n// you\'ll get a link to share.',
-    createLabel:'family name',namePh:'e.g. The Smiths',btnDoCreate:'next →',
-    joinTitle:'Join',joinSub:'// paste the link received\n// or just the secret code',
+    createTitle:'New family',createSub:'// choose a name.\n// you\'ll get a link + PIN to share.',
+    createLabel:'family name',namePh:'e.g. The Smiths',btnDoCreate:'next: choose PIN →',
+    joinTitle:'Join',joinSub:'// paste the link received\n// you\'ll be asked for the PIN',
     joinLabel:'link or secret code',joinPh:'https://…#s=3f9a…',btnDoJoin:'enter →',
     back:'← back',badge:'LIVE · updates every 30s',
     hint:'// ask this code to whoever calls you',
     timerPre:'renewal in',timerSuf:'s',renameBtn:'save',
     shareLabel:'link to share',
-    shareNote:'// tap to copy · share once only\n// the # fragment never reaches the server',
+    shareNote:'// tap to copy · the secret is in the # and never reaches any server',
     hideNote:'// to hide: clear browser localStorage',
     toastCopied:'// link copied',toastInvalid:'// invalid code',
     toastAlready:'// already present',toastRenamed:'// name updated',
     toastWelcome:'// welcome back to ',toastAdded:'// family added',
-    emptyText:'// no families yet\n// create one or join',
-    keyLbl:'key: ...',
-    pinToggleTitle:'Protect with PIN',
-    pinToggleSub:'// PIN is never saved anywhere',
-    pinInfo:'// the PIN changes the OTP calculation.\n// without the correct PIN, the code will be wrong.\n// share it separately from the link (voice, different SMS…)',
-    pinCreateIcon:'🔐',
-    pinCreateTitle:'Choose your PIN',
-    pinCreateSub:'// type the PIN you\'ll share\n// with your family members.\n// it is NOT saved anywhere.',
-    pinCreateNote:'// share this PIN verbally or\n// through a different channel than the link.',
-    pinOpenIcon:'🔒',
-    pinOpenTitle:'Enter PIN',
-    pinOpenSub:'// this family is PIN-protected.\n// the PIN is not saved anywhere:\n// it\'s only used to compute the correct OTP.',
-    pinOpenNote:'// no server knows your PIN.\n// it lives only in your head.',
-    pinBadge:'🔒 PIN',
-    pinWarning:'⚠ warning: if you enter a wrong PIN\nyou will not get any error message.\nthe generated code will simply be different\nfrom your family members\'.',
+    emptyText:'// no families yet\n// create one or join',keyLbl:'key: ...',
+    pinCreateIcon:'🔐',pinCreateTitle:'Choose PIN',
+    pinCreateSub:'// type the PIN to share with your family.\n// it is NOT saved anywhere.\n// share it verbally, separate from the link.',
+    pinCreateNote:'// min 4 digits · max 20 chars',
+    pinOpenIcon:'🔒',pinOpenTitle:'Enter PIN',
+    pinOpenSub:'// this family is PIN-protected.\n// needed to compute the correct OTP.',
+    pinOpenNote:'// the PIN lives only in your head.',
+    pinWarning:'⚠ no error if the PIN is wrong:\nthe generated code will silently differ\nfrom your family members\'.',
     pinConfirm:'✓',pinDel:'⌫',
+    btnPrint:'⬛ print QR for family member',
+    printScan:'// scan with camera\n// to open the family directly',
+    printPinLabel:'access PIN',
+    printPinNote:'// keep in a safe place.\n// PIN cannot be recovered.',
+    printFooter:'family_code · verify who calls you · no data ever reaches the server',
+    btnDoPrint:'🖨 print / save PDF',
+    printTip:'// PIN appears only if entered in this session',
+    backPrint:'← back',
+    guideBtn:'?',
+    guideTitle:'How it works',
+    guideIntro:'// FamilyCode protects you from phone scams.\n// when you get a suspicious call, ask for the code.',
+    guideTip:'// the code changes every 30 seconds and\n// without the correct PIN it\'s impossible to guess.',
+    guideSteps:[
+      {n:'01',title:'The problem',desc:'Scammers use AI to clone your family members\' voices. They call pretending to be your son, mother, or doctor — and the voice sounds real.'},
+      {n:'02',title:'Create a family',desc:'Open FamilyCode and press "Create family". Give the group a name and choose a secret PIN. The app generates a unique 128-bit link.'},
+      {n:'03',title:'Share link and PIN separately',desc:'Send the link via WhatsApp. Share the PIN verbally or via a separate SMS. Anyone with only the link, without the PIN, will see a wrong code.'},
+      {n:'04',title:'Receive a suspicious call',desc:'Someone calls pretending to be your family member. Before trusting them or giving any information, open FamilyCode.'},
+      {n:'05',title:'Ask for the code',desc:'Look at the 6-digit code on your screen. Ask the caller: "tell me the code". If they don\'t know it or say a different number → it\'s a scammer.'},
+      {n:'06',title:'Print for grandparents',desc:'For family members less comfortable with smartphones, print the QR sheet with the PIN. Scanning the QR with the camera opens the app directly.'},
+    ],
   },
   es:{
     heroTitle:'Verifica quién<br/>te <span>llama.</span>',
     heroSub:'// código OTP compartido para evitar<br/>// estafas vishing y deepfakes',
     btnCreate:'+ crear familia',btnJoin:'→ unirse con enlace',
-    createTitle:'Nueva familia',createSub:'// elige un nombre.\n// recibirás un enlace para compartir.',
-    createLabel:'nombre de familia',namePh:'ej. Familia García',btnDoCreate:'siguiente →',
-    joinTitle:'Unirse',joinSub:'// pega el enlace recibido\n// o solo el código secreto',
+    createTitle:'Nueva familia',createSub:'// elige un nombre.\n// recibirás un enlace + PIN para compartir.',
+    createLabel:'nombre de familia',namePh:'ej. Familia García',btnDoCreate:'siguiente: elegir PIN →',
+    joinTitle:'Unirse',joinSub:'// pega el enlace recibido\n// se pedirá el PIN',
     joinLabel:'enlace o código secreto',joinPh:'https://…#s=3f9a…',btnDoJoin:'entrar →',
     back:'← volver',badge:'LIVE · actualización cada 30s',
     hint:'// pide este código a quien te llama',
     timerPre:'renovación en',timerSuf:'s',renameBtn:'guardar',
     shareLabel:'enlace para compartir',
-    shareNote:'// toca para copiar · compártelo solo una vez\n// el fragmento # nunca llega al servidor',
-    hideNote:'// para ocultar: borra el localStorage del navegador',
+    shareNote:'// toca para copiar · el secreto está en el # y nunca llega al servidor',
+    hideNote:'// para ocultar: borra el localStorage',
     toastCopied:'// enlace copiado',toastInvalid:'// código no válido',
     toastAlready:'// ya presente',toastRenamed:'// nombre actualizado',
     toastWelcome:'// bienvenido de nuevo a ',toastAdded:'// familia añadida',
-    emptyText:'// ninguna familia todavía\n// crea una o únete',
-    keyLbl:'clave: ...',
-    pinToggleTitle:'Proteger con PIN',
-    pinToggleSub:'// el PIN nunca se guarda',
-    pinInfo:'// el PIN cambia el cálculo del OTP.\n// sin el PIN correcto, el código será incorrecto.\n// compártelo por separado del enlace (voz, SMS diferente…)',
-    pinCreateIcon:'🔐',
-    pinCreateTitle:'Elige tu PIN',
-    pinCreateSub:'// escribe el PIN que compartirás\n// con tus familiares.\n// NO se guarda en ningún lugar.',
-    pinCreateNote:'// comparte este PIN verbalmente o\n// por un canal diferente al enlace.',
-    pinOpenIcon:'🔒',
-    pinOpenTitle:'Introduce el PIN',
-    pinOpenSub:'// esta familia está protegida con PIN.\n// el PIN no se guarda en ningún lugar:\n// solo sirve para calcular el OTP correcto.',
-    pinOpenNote:'// ningún servidor conoce tu PIN.\n// solo existe en tu cabeza.',
-    pinBadge:'🔒 PIN',
-    pinWarning:'⚠ atención: si introduces un PIN incorrecto\nno recibirás ningún mensaje de error.\nel código generado será simplemente diferente\nal de tus familiares.',
+    emptyText:'// ninguna familia todavía\n// crea una o únete',keyLbl:'clave: ...',
+    pinCreateIcon:'🔐',pinCreateTitle:'Elige el PIN',
+    pinCreateSub:'// escribe el PIN para compartir con la familia.\n// NO se guarda en ningún lugar.\n// compártelo verbalmente, separado del enlace.',
+    pinCreateNote:'// mínimo 4 dígitos · máx 20 caracteres',
+    pinOpenIcon:'🔒',pinOpenTitle:'Introduce el PIN',
+    pinOpenSub:'// esta familia está protegida con PIN.\n// necesario para calcular el OTP correcto.',
+    pinOpenNote:'// el PIN solo existe en tu cabeza.',
+    pinWarning:'⚠ ningún error si el PIN es incorrecto:\nel código generado diferirá silenciosamente\ndel de tus familiares.',
     pinConfirm:'✓',pinDel:'⌫',
+    btnPrint:'⬛ imprimir QR para familiar',
+    printScan:'// escanea con la cámara\n// para abrir la familia directamente',
+    printPinLabel:'PIN de acceso',
+    printPinNote:'// guarda en un lugar seguro.\n// el PIN no se puede recuperar.',
+    printFooter:'family_code · verifica quién te llama · ningún dato llega al servidor',
+    btnDoPrint:'🖨 imprimir / guardar PDF',
+    printTip:'// el PIN aparece solo si se introdujo en esta sesión',
+    backPrint:'← volver',
+    guideBtn:'?',
+    guideTitle:'Cómo funciona',
+    guideIntro:'// FamilyCode te protege de las estafas telefónicas.\n// cuando recibes una llamada sospechosa, pide el código.',
+    guideTip:'// el código cambia cada 30 segundos y\n// sin el PIN correcto es imposible adivinarlo.',
+    guideSteps:[
+      {n:'01',title:'El problema',desc:'Los estafadores usan IA para clonar la voz de tus familiares. Llaman fingiendo ser tu hijo, madre o médico — y la voz suena real.'},
+      {n:'02',title:'Crear una familia',desc:'Abre FamilyCode y pulsa "Crear familia". Dale un nombre al grupo y elige un PIN secreto. La app genera un enlace único de 128 bits.'},
+      {n:'03',title:'Comparte enlace y PIN por separado',desc:'Envía el enlace por WhatsApp. Comparte el PIN verbalmente o por SMS separado. Quien solo tenga el enlace, sin el PIN, verá un código incorrecto.'},
+      {n:'04',title:'Recibes una llamada sospechosa',desc:'Alguien llama fingiendo ser un familiar tuyo. Antes de confiar o dar cualquier información, abre FamilyCode.'},
+      {n:'05',title:'Pide el código',desc:'Mira el código de 6 dígitos en tu pantalla. Pregunta al que llama: "dime el código". Si no lo sabe o dice uno diferente → es un estafador.'},
+      {n:'06',title:'Imprime para los abuelos',desc:'Para familiares menos cómodos con el smartphone, imprime la hoja QR con el PIN. Escanear el QR con la cámara abre la app directamente.'},
+    ],
   },
   de:{
     heroTitle:'Prüfe wer<br/>dich <span>anruft.</span>',
     heroSub:'// geteilter OTP-Code gegen<br/>// Vishing-Betrug und Deepfakes',
     btnCreate:'+ Familie erstellen',btnJoin:'→ mit Link beitreten',
-    createTitle:'Neue Familie',createSub:'// wähle einen Namen.\n// du erhältst einen Link zum Teilen.',
-    createLabel:'Familienname',namePh:'z.B. Familie Müller',btnDoCreate:'weiter →',
-    joinTitle:'Beitreten',joinSub:'// füge den erhaltenen Link ein\n// oder nur den geheimen Code',
+    createTitle:'Neue Familie',createSub:'// wähle einen Namen.\n// du erhältst einen Link + PIN zum Teilen.',
+    createLabel:'Familienname',namePh:'z.B. Familie Müller',btnDoCreate:'weiter: PIN wählen →',
+    joinTitle:'Beitreten',joinSub:'// füge den erhaltenen Link ein\n// du wirst nach dem PIN gefragt',
     joinLabel:'Link oder geheimer Code',joinPh:'https://…#s=3f9a…',btnDoJoin:'eintreten →',
     back:'← zurück',badge:'LIVE · Aktualisierung alle 30s',
     hint:'// frage den Code von demjenigen, der anruft',
     timerPre:'Erneuerung in',timerSuf:'s',renameBtn:'speichern',
     shareLabel:'Link zum Teilen',
-    shareNote:'// tippen zum Kopieren · nur einmal teilen\n// das #-Fragment erreicht nie den Server',
+    shareNote:'// tippen zum Kopieren · das Geheimnis ist im # und erreicht nie den Server',
     hideNote:'// zum Ausblenden: localStorage leeren',
     toastCopied:'// Link kopiert',toastInvalid:'// ungültiger Code',
     toastAlready:'// bereits vorhanden',toastRenamed:'// Name aktualisiert',
     toastWelcome:'// willkommen zurück bei ',toastAdded:'// Familie hinzugefügt',
-    emptyText:'// noch keine Familien\n// erstelle eine oder tritt bei',
-    keyLbl:'Schlüssel: ...',
-    pinToggleTitle:'Mit PIN schützen',
-    pinToggleSub:'// PIN wird nirgends gespeichert',
-    pinInfo:'// der PIN ändert die OTP-Berechnung.\n// ohne den richtigen PIN ist der Code falsch.\n// teile ihn separat vom Link (Sprache, andere SMS…)',
-    pinCreateIcon:'🔐',
-    pinCreateTitle:'PIN wählen',
-    pinCreateSub:'// gib den PIN ein, den du\n// mit deiner Familie teilen wirst.\n// er wird NIRGENDS gespeichert.',
-    pinCreateNote:'// teile diesen PIN mündlich oder\n// über einen anderen Kanal als den Link.',
-    pinOpenIcon:'🔒',
-    pinOpenTitle:'PIN eingeben',
-    pinOpenSub:'// diese Familie ist PIN-geschützt.\n// der PIN wird nirgends gespeichert:\n// er dient nur zur Berechnung des OTP.',
-    pinOpenNote:'// kein Server kennt deinen PIN.\n// er existiert nur in deinem Kopf.',
-    pinBadge:'🔒 PIN',
-    pinWarning:'⚠ achtung: bei falschem PIN erscheint\nkeine Fehlermeldung.\nder generierte Code ist einfach ein anderer\nals der deiner Familie.',
+    emptyText:'// noch keine Familien\n// erstelle eine oder tritt bei',keyLbl:'Schlüssel: ...',
+    pinCreateIcon:'🔐',pinCreateTitle:'PIN wählen',
+    pinCreateSub:'// gib den PIN ein, den du mit der Familie teilst.\n// er wird NIRGENDS gespeichert.\n// teile ihn mündlich, getrennt vom Link.',
+    pinCreateNote:'// mind. 4 Ziffern · max. 20 Zeichen',
+    pinOpenIcon:'🔒',pinOpenTitle:'PIN eingeben',
+    pinOpenSub:'// diese Familie ist PIN-geschützt.\n// wird benötigt, um den richtigen OTP zu berechnen.',
+    pinOpenNote:'// der PIN lebt nur in deinem Kopf.',
+    pinWarning:'⚠ kein Fehler bei falschem PIN:\nder generierte Code weicht stillschweigend ab\nvon dem deiner Familie.',
     pinConfirm:'✓',pinDel:'⌫',
+    btnPrint:'⬛ QR für Familienmitglied drucken',
+    printScan:'// mit Kamera scannen\n// um die Familie direkt zu öffnen',
+    printPinLabel:'Zugangs-PIN',
+    printPinNote:'// sicher aufbewahren.\n// PIN kann nicht wiederhergestellt werden.',
+    printFooter:'family_code · prüfe wer dich anruft · keine Daten erreichen je den Server',
+    btnDoPrint:'🖨 drucken / als PDF speichern',
+    printTip:'// PIN erscheint nur, wenn er in dieser Sitzung eingegeben wurde',
+    backPrint:'← zurück',
+    guideBtn:'?',
+    guideTitle:'Wie es funktioniert',
+    guideIntro:'// FamilyCode schützt dich vor Telefonbetrug.\n// bei einem verdächtigen Anruf frage nach dem Code.',
+    guideTip:'// der Code ändert sich alle 30 Sekunden und\n// ohne den richtigen PIN ist er unmöglich zu erraten.',
+    guideSteps:[
+      {n:'01',title:'Das Problem',desc:'Betrüger nutzen KI, um die Stimmen deiner Familienmitglieder zu klonen. Sie rufen an und geben vor, dein Sohn, deine Mutter oder dein Arzt zu sein.'},
+      {n:'02',title:'Familie erstellen',desc:'Öffne FamilyCode und drücke "Familie erstellen". Gib der Gruppe einen Namen und wähle einen geheimen PIN. Die App generiert einen einzigartigen 128-Bit-Link.'},
+      {n:'03',title:'Link und PIN getrennt teilen',desc:'Sende den Link per WhatsApp. Teile den PIN mündlich oder per separater SMS. Wer nur den Link hat, sieht einen falschen Code.'},
+      {n:'04',title:'Verdächtiger Anruf',desc:'Jemand ruft an und gibt vor, ein Familienmitglied zu sein. Bevor du vertraust oder Informationen gibst, öffne FamilyCode.'},
+      {n:'05',title:'Nach dem Code fragen',desc:'Schau dir den 6-stelligen Code an. Frage den Anrufer: "Sag mir den Code". Wenn er ihn nicht weiß → Betrüger.'},
+      {n:'06',title:'Für Großeltern drucken',desc:'Für weniger technikaffine Familienmitglieder drucke das QR-Blatt mit dem PIN. Das Scannen des QR mit der Kamera öffnet die App direkt.'},
+    ],
   },
   fr:{
     heroTitle:'Vérifie qui<br/>t\'<span>appelle.</span>',
     heroSub:'// code OTP partagé pour contrer<br/>// les arnaques vishing et deepfakes',
     btnCreate:'+ créer une famille',btnJoin:'→ rejoindre avec un lien',
-    createTitle:'Nouvelle famille',createSub:'// choisis un nom.\n// tu recevras un lien à partager.',
-    createLabel:'nom de famille',namePh:'ex. Famille Dupont',btnDoCreate:'suivant →',
-    joinTitle:'Rejoindre',joinSub:'// colle le lien reçu\n// ou juste le code secret',
+    createTitle:'Nouvelle famille',createSub:'// choisis un nom.\n// tu recevras un lien + PIN à partager.',
+    createLabel:'nom de famille',namePh:'ex. Famille Dupont',btnDoCreate:'suivant : choisir PIN →',
+    joinTitle:'Rejoindre',joinSub:'// colle le lien reçu\n// le PIN te sera demandé',
     joinLabel:'lien ou code secret',joinPh:'https://…#s=3f9a…',btnDoJoin:'entrer →',
     back:'← retour',badge:'LIVE · mise à jour toutes les 30s',
     hint:'// demande ce code à celui qui t\'appelle',
     timerPre:'renouvellement dans',timerSuf:'s',renameBtn:'enregistrer',
     shareLabel:'lien à partager',
-    shareNote:'// appuie pour copier · partage une seule fois\n// le fragment # n\'atteint jamais le serveur',
-    hideNote:'// pour masquer : vide le localStorage du navigateur',
+    shareNote:'// appuie pour copier · le secret est dans le # et n\'atteint jamais le serveur',
+    hideNote:'// pour masquer : vide le localStorage',
     toastCopied:'// lien copié',toastInvalid:'// code invalide',
     toastAlready:'// déjà présent',toastRenamed:'// nom mis à jour',
     toastWelcome:'// bon retour dans ',toastAdded:'// famille ajoutée',
-    emptyText:'// aucune famille\n// crée-en une ou rejoins',
-    keyLbl:'clé : ...',
-    pinToggleTitle:'Protéger avec PIN',
-    pinToggleSub:'// le PIN n\'est jamais sauvegardé',
-    pinInfo:'// le PIN modifie le calcul de l\'OTP.\n// sans le bon PIN, le code sera incorrect.\n// partage-le séparément du lien (voix, SMS différent…)',
-    pinCreateIcon:'🔐',
-    pinCreateTitle:'Choisis ton PIN',
-    pinCreateSub:'// tape le PIN que tu partageras\n// avec ta famille.\n// il n\'est PAS sauvegardé.',
-    pinCreateNote:'// partage ce PIN verbalement ou\n// via un canal différent du lien.',
-    pinOpenIcon:'🔒',
-    pinOpenTitle:'Entrer le PIN',
-    pinOpenSub:'// cette famille est protégée par PIN.\n// le PIN n\'est sauvegardé nulle part :\n// il sert uniquement à calculer le bon OTP.',
-    pinOpenNote:'// aucun serveur ne connaît ton PIN.\n// il existe uniquement dans ta tête.',
-    pinBadge:'🔒 PIN',
-    pinWarning:'⚠ attention : si tu entres un mauvais PIN\ntu ne recevras aucun message d\'erreur.\nle code généré sera simplement différent\nde celui de ta famille.',
+    emptyText:'// aucune famille\n// crée-en une ou rejoins',keyLbl:'clé : ...',
+    pinCreateIcon:'🔐',pinCreateTitle:'Choisis le PIN',
+    pinCreateSub:'// tape le PIN à partager avec ta famille.\n// il n\'est PAS sauvegardé.\n// partage-le verbalement, séparément du lien.',
+    pinCreateNote:'// min 4 chiffres · max 20 caractères',
+    pinOpenIcon:'🔒',pinOpenTitle:'Entrer le PIN',
+    pinOpenSub:'// cette famille est protégée par PIN.\n// nécessaire pour calculer le bon OTP.',
+    pinOpenNote:'// le PIN existe uniquement dans ta tête.',
+    pinWarning:'⚠ aucune erreur si le PIN est incorrect :\nle code généré différera silencieusement\nde celui de ta famille.',
     pinConfirm:'✓',pinDel:'⌫',
+    btnPrint:'⬛ imprimer QR pour un proche',
+    printScan:'// scanne avec la caméra\n// pour ouvrir la famille directement',
+    printPinLabel:'PIN d\'accès',
+    printPinNote:'// conserve en lieu sûr.\n// le PIN ne peut pas être récupéré.',
+    printFooter:'family_code · vérifie qui t\'appelle · aucune donnée n\'atteint jamais le serveur',
+    btnDoPrint:'🖨 imprimer / enregistrer PDF',
+    printTip:'// le PIN apparaît uniquement s\'il a été saisi dans cette session',
+    backPrint:'← retour',
+    guideBtn:'?',
+    guideTitle:'Comment ça marche',
+    guideIntro:'// FamilyCode te protège des arnaques téléphoniques.\n// quand tu reçois un appel suspect, demande le code.',
+    guideTip:'// le code change toutes les 30 secondes et\n// sans le bon PIN il est impossible à deviner.',
+    guideSteps:[
+      {n:'01',title:'Le problème',desc:'Les escrocs utilisent l\'IA pour cloner la voix de tes proches. Ils appellent en se faisant passer pour ton fils, ta mère ou ton médecin — et la voix semble vraie.'},
+      {n:'02',title:'Créer une famille',desc:'Ouvre FamilyCode et appuie sur "Créer une famille". Donne un nom au groupe et choisis un PIN secret. L\'app génère un lien unique de 128 bits.'},
+      {n:'03',title:'Partager lien et PIN séparément',desc:'Envoie le lien via WhatsApp. Partage le PIN verbalement ou par SMS séparé. Qui n\'a que le lien verra un code incorrect.'},
+      {n:'04',title:'Appel suspect reçu',desc:'Quelqu\'un appelle en se faisant passer pour un proche. Avant de faire confiance ou de donner des informations, ouvre FamilyCode.'},
+      {n:'05',title:'Demande le code',desc:'Regarde le code à 6 chiffres sur ton écran. Demande à l\'appelant : "dis-moi le code". S\'il ne le connaît pas → c\'est un escroc.'},
+      {n:'06',title:'Imprimer pour les grands-parents',desc:'Pour les proches moins à l\'aise avec les smartphones, imprime la feuille QR avec le PIN. Scanner le QR avec la caméra ouvre l\'app directement.'},
+    ],
   }
 };
 
+// SVG illustrations per step
+const stepSVG=[
+  // 01 - phone with evil face
+  `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+    <rect x="110" y="10" width="60" height="100" rx="10" fill="none" stroke="#7c6af7" stroke-width="2"/>
+    <circle cx="140" cy="95" r="4" fill="#7c6af7" opacity=".5"/>
+    <text x="140" y="62" text-anchor="middle" font-size="28" fill="#ff5c7a">👹</text>
+    <text x="230" y="55" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">Sono tuo figlio!</text>
+    <line x1="170" y1="55" x2="220" y2="55" stroke="#ff5c7a" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <circle cx="230" cy="55" r="3" fill="#ff5c7a"/>
+  </svg>`,
+  // 02 - create family + PIN
+  `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+    <rect x="20" y="20" width="120" height="80" rx="10" fill="none" stroke="#7c6af7" stroke-width="2"/>
+    <text x="80" y="52" text-anchor="middle" font-size="11" fill="#a599ff" font-family="JetBrains Mono,monospace">Famiglia Rossi</text>
+    <rect x="35" y="60" width="90" height="24" rx="6" fill="#1a1a24" stroke="#7c6af7" stroke-width="1"/>
+    <text x="80" y="76" text-anchor="middle" font-size="13" fill="#7c6af7" font-family="JetBrains Mono,monospace" letter-spacing="4">● ● ● ●</text>
+    <rect x="180" y="30" width="110" height="60" rx="10" fill="none" stroke="#3dffc0" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="235" y="58" text-anchor="middle" font-size="10" fill="#3dffc0" font-family="JetBrains Mono,monospace">128-bit secret</text>
+    <text x="235" y="74" text-anchor="middle" font-size="9" fill="#45455a" font-family="JetBrains Mono,monospace">3f9a1b2c…</text>
+    <line x1="140" y1="60" x2="178" y2="60" stroke="#7c6af7" stroke-width="1.5" marker-end="url(#arr)"/>
+    <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7c6af7"/></marker></defs>
+  </svg>`,
+  // 03 - link via WA + PIN verbale
+  `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+    <circle cx="60" cy="60" r="30" fill="none" stroke="#7c6af7" stroke-width="2"/>
+    <text x="60" y="66" text-anchor="middle" font-size="22">👤</text>
+    <rect x="100" y="42" width="80" height="22" rx="8" fill="#25D366" opacity=".8"/>
+    <text x="140" y="57" text-anchor="middle" font-size="9" fill="#fff" font-family="JetBrains Mono,monospace">link →</text>
+    <rect x="100" y="72" width="80" height="22" rx="8" fill="#1a1a24" stroke="#f0a800" stroke-width="1.5"/>
+    <text x="140" y="87" text-anchor="middle" font-size="9" fill="#f0a800" font-family="JetBrains Mono,monospace">PIN: voce 🗣</text>
+    <circle cx="260" cy="60" r="30" fill="none" stroke="#3dffc0" stroke-width="2"/>
+    <text x="260" y="66" text-anchor="middle" font-size="22">👴</text>
+    <line x1="190" y1="53" x2="228" y2="53" stroke="#25D366" stroke-width="1.5" marker-end="url(#a2)"/>
+    <line x1="190" y1="83" x2="228" y2="83" stroke="#f0a800" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#a3)"/>
+    <defs>
+      <marker id="a2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#25D366"/></marker>
+      <marker id="a3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#f0a800"/></marker>
+    </defs>
+  </svg>`,
+  // 04 - suspicious call
+  `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+    <rect x="20" y="20" width="60" height="80" rx="8" fill="none" stroke="#ff5c7a" stroke-width="2"/>
+    <text x="50" y="70" text-anchor="middle" font-size="28">📞</text>
+    <rect x="10" y="10" width="20" height="20" rx="4" fill="#ff5c7a" opacity=".8"/>
+    <text x="20" y="24" text-anchor="middle" font-size="12" fill="#fff">!</text>
+    <text x="160" y="45" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">"Mamma, sono in</text>
+    <text x="160" y="62" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">difficoltà, mandami</text>
+    <text x="160" y="79" text-anchor="middle" font-size="11" fill="#ff5c7a" font-family="JetBrains Mono,monospace">soldi subito!"</text>
+    <line x1="82" y1="60" x2="110" y2="60" stroke="#ff5c7a" stroke-width="1.5" stroke-dasharray="4,3"/>
+  </svg>`,
+  // 05 - OTP check
+  `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+    <rect x="20" y="20" width="80" height="80" rx="10" fill="none" stroke="#7c6af7" stroke-width="2"/>
+    <text x="60" y="55" text-anchor="middle" font-size="22" fill="#a599ff" font-family="JetBrains Mono,monospace" font-weight="bold" letter-spacing="2">4</text>
+    <text x="60" y="78" text-anchor="middle" font-size="9" fill="#45455a" font-family="JetBrains Mono,monospace">OTP 30s</text>
+    <rect x="30" y="40" width="60" height="28" rx="6" fill="#1a1a24" stroke="#7c6af7" stroke-width="1"/>
+    <text x="60" y="59" text-anchor="middle" font-size="16" fill="#a599ff" font-family="JetBrains Mono,monospace" letter-spacing="3">482 931</text>
+    <text x="200" y="45" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">"dimmi il codice"</text>
+    <text x="200" y="72" text-anchor="middle" font-size="18" fill="#3dffc0">✓ 482 931</text>
+    <text x="200" y="88" text-anchor="middle" font-size="9" fill="#3dffc0" font-family="JetBrains Mono,monospace">è davvero lui!</text>
+    <line x1="102" y1="60" x2="140" y2="60" stroke="#7c6af7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  </svg>`,
+  // 06 - print QR
+  `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+    <rect x="20" y="15" width="90" height="90" rx="8" fill="none" stroke="#7c6af7" stroke-width="2"/>
+    <rect x="32" y="27" width="30" height="30" rx="3" fill="none" stroke="#a599ff" stroke-width="1.5"/>
+    <rect x="58" y="27" width="10" height="10" rx="1" fill="#7c6af7"/>
+    <rect x="32" y="67" width="30" height="30" rx="3" fill="none" stroke="#a599ff" stroke-width="1.5"/>
+    <rect x="32" y="67" width="10" height="10" rx="1" fill="#7c6af7"/>
+    <rect x="68" y="27" width="30" height="30" rx="3" fill="none" stroke="#a599ff" stroke-width="1.5"/>
+    <rect x="78" y="27" width="10" height="10" rx="1" fill="#7c6af7"/>
+    <text x="65" y="78" text-anchor="middle" font-size="9" fill="#45455a" font-family="JetBrains Mono,monospace">PIN: 4821</text>
+    <line x1="112" y1="60" x2="150" y2="60" stroke="#7c6af7" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#a4)"/>
+    <rect x="152" y="20" width="60" height="80" rx="8" fill="none" stroke="#3dffc0" stroke-width="2"/>
+    <text x="182" y="68" text-anchor="middle" font-size="28">📷</text>
+    <text x="260" y="55" text-anchor="middle" font-size="28">👴</text>
+    <text x="260" y="78" text-anchor="middle" font-size="9" fill="#3dffc0" font-family="JetBrains Mono,monospace">✓ accesso</text>
+    <defs><marker id="a4" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7c6af7"/></marker></defs>
+  </svg>`,
+];
+
 const $=id=>document.getElementById(id);
 function save(){localStorage.setItem(DB,JSON.stringify(fams))}
-function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
+function showOverlay(){$('print-overlay').classList.add('active')}
+function hideOverlay(){$('print-overlay').classList.remove('active')}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)}
 function hex(bytes){const a=new Uint8Array(bytes);crypto.getRandomValues(a);return Array.from(a).map(b=>b.toString(16).padStart(2,'0')).join('')}
 
 function otp(secret,pin){
-  const base=pin?secret+'::'+pin:secret;
+  const base=secret+'::'+pin;
   const t=Math.floor(Date.now()/30000);
   let h=0;const s=base+t;
   for(let i=0;i<s.length;i++)h=(Math.imul(31,h)+s.charCodeAt(i))|0;
@@ -407,24 +583,22 @@ function makeUrl(secret,name){return location.href.split('#')[0]+'#s='+secret+'&
 function fmtUrl(url){const hash=url.split('#')[1]||'';const base=url.split('#')[0].replace(/^https?:\/\//,'');return '<span style="color:var(--text3)">'+base+'#</span><span class="url-accent">'+hash.slice(0,26)+'…</span>'}
 
 /* ========== PIN KEYPAD ========== */
-function showPinKeypad(mode, famId){
-  pinMode=mode; pinPendingId=famId; pinBuffer='';
+function showPinKeypad(mode,famId){
+  pinMode=mode;pinPendingId=famId;pinBuffer='';
   const t=i18n[lang];
   if(mode==='create'){
     $('pin-icon').textContent=t.pinCreateIcon;
     $('pin-screen-title').textContent=t.pinCreateTitle;
     $('pin-screen-sub').textContent=t.pinCreateSub;
     $('pin-note').textContent=t.pinCreateNote;
-  } else {
+  }else{
     $('pin-icon').textContent=t.pinOpenIcon;
     $('pin-screen-title').textContent=t.pinOpenTitle;
     $('pin-screen-sub').textContent=t.pinOpenSub;
     $('pin-note').textContent=t.pinOpenNote;
   }
   $('pin-warning').textContent=t.pinWarning;
-  renderPinDots();
-  buildPinPad();
-  show('pin-screen');
+  renderPinDots();buildPinPad();showScreen('pin-screen');
 }
 
 function renderPinDots(){
@@ -451,21 +625,19 @@ function pinPress(k){
   if(k===t.pinDel){pinBuffer=pinBuffer.slice(0,-1);renderPinDots();return}
   if(k===t.pinConfirm){pinConfirm();return}
   if(pinBuffer.length>=20)return;
-  pinBuffer+=k; renderPinDots();
+  pinBuffer+=k;renderPinDots();
 }
 
 function pinConfirm(){
-  if(!pinBuffer.length){toast('// PIN?');return}
+  if(pinBuffer.length<1){toast('// PIN?');return}
   if(pinMode==='create'){
-    // we have the name ready, now create the family
     const name=window._pendingName||'Family';
     const secret=hex(16),id=hex(4);
-    fams.push({id,name,secret,hasPin:true});
+    fams.push({id,name,secret});
     sessionPins[id]=pinBuffer;
-    save(); pinBuffer=''; window._pendingName=null;
+    save();pinBuffer='';window._pendingName=null;
     openFam(id);
-  } else {
-    // opening an existing family
+  }else{
     sessionPins[pinPendingId]=pinBuffer;
     pinBuffer='';
     openFam(pinPendingId);
@@ -473,25 +645,42 @@ function pinConfirm(){
 }
 
 /* ========== LANG / THEME ========== */
+function buildGuide(){
+  const t=i18n[lang];
+  $('guide-title').textContent=t.guideTitle;
+  $('guide-intro').textContent=t.guideIntro;
+  $('guide-tip').textContent=t.guideTip;
+  $('guide-steps').innerHTML=t.guideSteps.map((s,i)=>
+    '<div class="guide-illustration">'+stepSVG[i]+'</div>'
+    +'<div class="guide-step">'
+    +'<div class="guide-step-num">'+s.n+'</div>'
+    +'<div class="guide-step-body"><div class="guide-step-title">'+s.title+'</div>'
+    +'<div class="guide-step-desc">'+s.desc+'</div></div></div>'
+  ).join('');
+}
+
 function applyLang(){
   const t=i18n[lang];
-  $('hero-title').innerHTML=t.heroTitle; $('hero-sub').innerHTML=t.heroSub;
-  $('btn-create').textContent=t.btnCreate; $('btn-join').textContent=t.btnJoin;
-  $('create-title').textContent=t.createTitle; $('create-sub').textContent=t.createSub;
-  $('create-label').textContent=t.createLabel; $('new-name').placeholder=t.namePh;
+  $('hero-title').innerHTML=t.heroTitle;$('hero-sub').innerHTML=t.heroSub;
+  $('btn-create').textContent=t.btnCreate;$('btn-join').textContent=t.btnJoin;
+  $('create-title').textContent=t.createTitle;$('create-sub').textContent=t.createSub;
+  $('create-label').textContent=t.createLabel;$('new-name').placeholder=t.namePh;
   $('btn-do-create').textContent=t.btnDoCreate;
-  $('pin-toggle-title').textContent=t.pinToggleTitle; $('pin-toggle-sub').textContent=t.pinToggleSub;
-  $('pin-info-box').textContent=t.pinInfo;
-  $('join-title').textContent=t.joinTitle; $('join-sub').textContent=t.joinSub;
-  $('join-label').textContent=t.joinLabel; $('join-code').placeholder=t.joinPh;
+  $('join-title').textContent=t.joinTitle;$('join-sub').textContent=t.joinSub;
+  $('join-label').textContent=t.joinLabel;$('join-code').placeholder=t.joinPh;
   $('btn-do-join').textContent=t.btnDoJoin;
   document.querySelectorAll('.back').forEach(b=>b.textContent=t.back);
-  $('badge-text').textContent=t.badge; $('otp-hint').textContent=t.hint;
-  $('btn-rename').textContent=t.renameBtn; $('share-label').textContent=t.shareLabel;
-  $('share-note').textContent=t.shareNote; $('hide-note').textContent=t.hideNote;
+  $('back-print').textContent=t.backPrint;
+  $('badge-text').textContent=t.badge;$('otp-hint').textContent=t.hint;
+  $('btn-rename').textContent=t.renameBtn;$('share-label').textContent=t.shareLabel;
+  $('share-note').textContent=t.shareNote;$('hide-note').textContent=t.hideNote;
+  $('btn-print').innerHTML='<span>⬛</span><span>'+t.btnPrint.replace('⬛','').trim()+'</span>';
+  $('btn-do-print').textContent=t.btnDoPrint;
+  $('print-tip').textContent=t.printTip;
   $('lang-btn').textContent=lang.toUpperCase();
   document.documentElement.lang=lang;
   document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
+  buildGuide();
   renderHome();
 }
 
@@ -500,131 +689,140 @@ $('lang-btn').onclick=e=>{e.stopPropagation();$('lang-menu').classList.toggle('o
 document.addEventListener('click',()=>$('lang-menu').classList.remove('open'));
 document.querySelectorAll('.lang-item').forEach(el=>el.onclick=()=>{lang=el.dataset.lang;localStorage.setItem('fc_lang',lang);$('lang-menu').classList.remove('open');applyLang();if(cur)openFam(cur)});
 
-/* ========== PIN TOGGLE ========== */
-$('pin-toggle-row').onclick=()=>{
-  pinEnabled=!pinEnabled;
-  $('pin-toggle').classList.toggle('on',pinEnabled);
-  $('pin-info-box').style.display=pinEnabled?'block':'none';
-};
-
 /* ========== HOME ========== */
 function renderHome(){
-  const t=i18n[lang]; const list=$('family-list');
-  if(!fams.length){
-    list.innerHTML='<div class="empty"><div class="empty-icon">⬡</div><div class="empty-text">'+t.emptyText+'</div></div>';
-    return;
-  }
+  const t=i18n[lang];const list=$('family-list');
+  if(!fams.length){list.innerHTML='<div class="empty"><div class="empty-icon">⬡</div><div class="empty-text">'+t.emptyText+'</div></div>';return}
   list.innerHTML=fams.map(f=>{
     const pin=sessionPins[f.id]||'';
-    const locked=f.hasPin&&!sessionPins[f.id];
+    const locked=!sessionPins[f.id];
     const code=locked?'••••••':otp(f.secret,pin);
-    const badge=f.hasPin?'<span class="pin-badge">'+t.pinBadge+'</span>':'';
     return '<div class="family-card" onclick="cardClick(\''+f.id+'\')">'
-      +'<div><div class="family-card-name">'+f.name+badge+'</div>'
+      +'<div><div class="family-card-name">'+f.name+' <span class="pin-badge">🔒 PIN</span></div>'
       +'<div class="family-card-id">'+t.keyLbl+f.secret.slice(-8)+'</div></div>'
       +'<div class="family-card-otp">'+code+'</div></div>';
   }).join('');
 }
 
 function cardClick(id){
-  const f=fams.find(x=>x.id===id);
-  if(f.hasPin&&!sessionPins[id]){showPinKeypad('open',id);return}
+  if(!sessionPins[id]){showPinKeypad('open',id);return}
   openFam(id);
 }
 
 /* ========== OPEN FAMILY ========== */
 function openFam(id){
-  cur=id; const f=fams.find(x=>x.id===id); const t=i18n[lang];
+  cur=id;const f=fams.find(x=>x.id===id);const t=i18n[lang];
   $('rename-input').value=f.name;
-  $('otp-tail').textContent=t.keyLbl+f.secret.slice(-8)+(f.hasPin?' 🔒':'');
+  $('otp-tail').textContent=t.keyLbl+f.secret.slice(-8)+' 🔒';
   $('share-url').innerHTML=fmtUrl(makeUrl(f.secret,f.name));
   $('share-url').onclick=()=>navigator.clipboard.writeText(makeUrl(f.secret,f.name)).then(()=>toast(t.toastCopied)).catch(()=>toast(t.toastCopied));
-  startTicker(f); show('otp-screen');
+  startTicker(f);showScreen('otp-screen');
 }
 
 function startTicker(f){
   if(ticker)clearInterval(ticker);
   function tick(){
-    const t=i18n[lang]; const pin=sessionPins[f.id]||'';
+    const t=i18n[lang];const pin=sessionPins[f.id]||'';
     $('otp-display').textContent=otp(f.secret,pin);
     const tl=left();
     $('prog').style.width=(tl/30*100)+'%';
     $('timer-label').textContent='// '+t.timerPre+' '+tl+t.timerSuf;
   }
-  tick(); ticker=setInterval(tick,1000);
+  tick();ticker=setInterval(tick,1000);
 }
 
+/* ========== PRINT ========== */
+function openPrint(){
+  const f=fams.find(x=>x.id===cur);if(!f)return;
+  const t=i18n[lang];
+  const url=makeUrl(f.secret,f.name);
+  const pin=sessionPins[f.id]||'';
+
+  $('print-name').textContent=f.name;
+  $('print-keytail').textContent=t.keyLbl+f.secret.slice(-8)+' 🔒';
+  $('print-scan').textContent=t.printScan;
+  $('print-footer').textContent=t.printFooter;
+  $('print-pin-label').textContent=t.printPinLabel;
+  $('print-pin-note').textContent=t.printPinNote;
+  $('print-tip').textContent=t.printTip;
+  $('btn-do-print').textContent=t.btnDoPrint;
+
+  // QR via Google Charts API
+  const qrUrl='https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl='+encodeURIComponent(url)+'&choe=UTF-8';
+  $('print-qr-img').src=qrUrl;
+
+  if(pin){
+    $('print-pin-section').style.display='block';
+    $('print-pin-value').textContent=pin;
+  }else{
+    $('print-pin-section').style.display='none';
+  }
+
+  showOverlay();
+}
+
+$('btn-print').onclick=openPrint;
+$('btn-do-print').onclick=()=>window.print();
+$('back-print').onclick=hideOverlay;
+
 /* ========== NAVIGATION ========== */
-$('btn-create').onclick=()=>{
-  $('new-name').value=''; pinEnabled=false;
-  $('pin-toggle').classList.remove('on');
-  $('pin-info-box').style.display='none';
-  show('create-screen'); setTimeout(()=>$('new-name').focus(),100);
-};
-$('btn-join').onclick=()=>{$('join-code').value='';show('join-screen');setTimeout(()=>$('join-code').focus(),100)};
-$('back-create').onclick=()=>{show('home');renderHome()};
-$('back-join').onclick=()=>{show('home');renderHome()};
-$('back-otp').onclick=()=>{if(ticker)clearInterval(ticker);cur=null;show('home');renderHome()};
+$('btn-guide-open').onclick=()=>{buildGuide();showScreen('guide-screen')};
+$('back-guide').onclick=()=>{showScreen('home');renderHome()};
+$('btn-create').onclick=()=>{$('new-name').value='';showScreen('create-screen');setTimeout(()=>$('new-name').focus(),100)};
+$('btn-join').onclick=()=>{$('join-code').value='';showScreen('join-screen');setTimeout(()=>$('join-code').focus(),100)};
+$('back-create').onclick=()=>{showScreen('home');renderHome()};
+$('back-join').onclick=()=>{showScreen('home');renderHome()};
+$('back-otp').onclick=()=>{if(ticker)clearInterval(ticker);cur=null;showScreen('home');renderHome()};
 $('back-pin').onclick=()=>{
   pinBuffer='';
-  if(pinMode==='create'){show('create-screen')}
-  else{show('home');renderHome()}
+  if(pinMode==='create')showScreen('create-screen');
+  else{showScreen('home');renderHome();}
 };
 
-/* ========== CREATE ========== */
 $('btn-do-create').onclick=()=>{
   const name=$('new-name').value.trim()||'Family';
-  if(pinEnabled){
-    // go to keypad — store name temporarily
-    window._pendingName=name;
-    showPinKeypad('create',null);
-  } else {
-    const secret=hex(16),id=hex(4);
-    fams.push({id,name,secret,hasPin:false});
-    save(); openFam(id);
-  }
+  window._pendingName=name;
+  showPinKeypad('create',null);
 };
 
-/* ========== JOIN ========== */
 $('btn-do-join').onclick=()=>{
-  const t=i18n[lang]; let raw=$('join-code').value.trim();
+  const t=i18n[lang];let raw=$('join-code').value.trim();
   let secret=raw,name='Family';
   if(raw.includes('#s=')){const p=new URLSearchParams(raw.split('#')[1]);secret=p.get('s')||raw;name=p.get('n')||'Family'}
   if(secret.length<16){toast(t.toastInvalid);return}
   const exists=fams.find(f=>f.secret===secret);
   if(exists){toast(t.toastAlready);cardClick(exists.id);return}
-  const id=hex(4);
-  // hasPin unknown at join time — will be discovered when OTP doesn't match
-  // we mark hasPin:false and let user figure it out; they can re-join to set PIN
-  fams.push({id,name,secret,hasPin:false});
-  save(); toast(t.toastAdded);
-  // open directly — if others have PIN, OTP won't match and user will understand
-  openFam(id);
+  const id=hex(4);fams.push({id,name,secret});save();
+  toast(t.toastAdded);
+  showPinKeypad('open',id);
 };
 
-/* ========== RENAME ========== */
 $('btn-rename').onclick=()=>{
-  const t=i18n[lang]; const val=$('rename-input').value.trim(); if(!val)return;
+  const t=i18n[lang];const val=$('rename-input').value.trim();if(!val)return;
   const f=fams.find(x=>x.id===cur);
   if(f){f.name=val;save();$('share-url').innerHTML=fmtUrl(makeUrl(f.secret,f.name));toast(t.toastRenamed);renderHome()}
 };
 
-/* ========== HASH ON LOAD ========== */
 function checkHash(){
-  const hash=location.hash; if(!hash||!hash.includes('s='))return;
+  const hash=location.hash;if(!hash||!hash.includes('s='))return;
   const p=new URLSearchParams(hash.slice(1));
   const secret=p.get('s'),name=p.get('n')||'Family';
   if(!secret||secret.length<16)return;
   const t=i18n[lang];
   const exists=fams.find(f=>f.secret===secret);
-  if(exists){toast(t.toastWelcome+exists.name);setTimeout(()=>cardClick(exists.id),400);return}
-  const id=hex(4);fams.push({id,name,secret,hasPin:false});save();
-  toast(t.toastAdded);setTimeout(()=>openFam(id),400);
+  if(exists){
+    toast(t.toastWelcome+exists.name);
+    setTimeout(()=>cardClick(exists.id),400);
+    return;
+  }
+  const id=hex(4);fams.push({id,name,secret});save();
+  toast(t.toastAdded);
+  setTimeout(()=>showPinKeypad('open',id),400);
 }
 
 lang=localStorage.getItem('fc_lang')||(navigator.language||'en').slice(0,2).toLowerCase();
 if(!i18n[lang])lang='en';
-applyLang(); checkHash();
+applyLang();checkHash();
 </script>
 </body>
 </html>
