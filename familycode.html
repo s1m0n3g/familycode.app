@@ -238,6 +238,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 
 <script>
 const DB='familycode_v7';
+ const OTP_WINDOW=300; // 5 minuti
+
 let fams=JSON.parse(localStorage.getItem(DB)||'[]');
 let cur=null,ticker=null,lang='en';
 let sessionPins={};
@@ -252,7 +254,7 @@ const i18n={
     createLabel:'nome famiglia',namePh:'es. Famiglia Rossi',btnDoCreate:'avanti: scegli PIN →',
     joinTitle:'Unisciti',joinSub:'// incolla il link ricevuto\n// ti verrà chiesto il PIN',
     joinLabel:'link o codice segreto',joinPh:'https://…#s=3f9a…',btnDoJoin:'entra →',
-    back:'← indietro',badge:'LIVE · aggiornamento ogni 30s',
+    back:'← indietro',badge:'LIVE · aggiornamento ogni 5m',
     hint:'// chiedi questo codice a chi ti chiama',
     timerPre:'rinnovo tra',timerSuf:'s',renameBtn:'salva',
     shareLabel:'link da condividere',
@@ -281,7 +283,7 @@ const i18n={
     guideBtn:'?',
     guideTitle:'Come funziona',
     guideIntro:'// FamilyCode ti protegge dalle truffe telefoniche.\n// quando ricevi una chiamata sospetta, chiedi il codice.',
-    guideTip:'// il codice cambia ogni 30 secondi e\n// senza il PIN corretto è impossibile indovinarlo.',
+    guideTip:'// il codice cambia ogni 5 minuti e\n// senza il PIN corretto è impossibile indovinarlo.',
     guideSteps:[
       {n:'01',title:'Il problema',desc:'I truffatori usano l\'AI per clonare la voce dei tuoi familiari. Ti chiamano fingendo di essere tuo figlio, tua madre, il tuo medico — e la voce sembra vera.'},
       {n:'02',title:'Crea la famiglia',desc:'Apri FamilyCode e premi "Crea famiglia". Dai un nome al gruppo e scegli un PIN segreto. L\'app genera un link unico a 128 bit.'},
@@ -299,7 +301,7 @@ const i18n={
     createLabel:'family name',namePh:'e.g. The Smiths',btnDoCreate:'next: choose PIN →',
     joinTitle:'Join',joinSub:'// paste the link received\n// you\'ll be asked for the PIN',
     joinLabel:'link or secret code',joinPh:'https://…#s=3f9a…',btnDoJoin:'enter →',
-    back:'← back',badge:'LIVE · updates every 30s',
+    back:'← back',badge:'LIVE · updates every 5m',
     hint:'// ask this code to whoever calls you',
     timerPre:'renewal in',timerSuf:'s',renameBtn:'save',
     shareLabel:'link to share',
@@ -328,7 +330,7 @@ const i18n={
     guideBtn:'?',
     guideTitle:'How it works',
     guideIntro:'// FamilyCode protects you from phone scams.\n// when you get a suspicious call, ask for the code.',
-    guideTip:'// the code changes every 30 seconds and\n// without the correct PIN it\'s impossible to guess.',
+    guideTip:'// the code changes every 5 minutes and\n// without the correct PIN it\'s impossible to guess.',
     guideSteps:[
       {n:'01',title:'The problem',desc:'Scammers use AI to clone your family members\' voices. They call pretending to be your son, mother, or doctor — and the voice sounds real.'},
       {n:'02',title:'Create a family',desc:'Open FamilyCode and press "Create family". Give the group a name and choose a secret PIN. The app generates a unique 128-bit link.'},
@@ -346,7 +348,7 @@ const i18n={
     createLabel:'nombre de familia',namePh:'ej. Familia García',btnDoCreate:'siguiente: elegir PIN →',
     joinTitle:'Unirse',joinSub:'// pega el enlace recibido\n// se pedirá el PIN',
     joinLabel:'enlace o código secreto',joinPh:'https://…#s=3f9a…',btnDoJoin:'entrar →',
-    back:'← volver',badge:'LIVE · actualización cada 30s',
+    back:'← volver',badge:'LIVE · actualización cada 5m',
     hint:'// pide este código a quien te llama',
     timerPre:'renovación en',timerSuf:'s',renameBtn:'guardar',
     shareLabel:'enlace para compartir',
@@ -375,7 +377,7 @@ const i18n={
     guideBtn:'?',
     guideTitle:'Cómo funciona',
     guideIntro:'// FamilyCode te protege de las estafas telefónicas.\n// cuando recibes una llamada sospechosa, pide el código.',
-    guideTip:'// el código cambia cada 30 segundos y\n// sin el PIN correcto es imposible adivinarlo.',
+    guideTip:'// el código cambia cada 5 minutos y\n// sin el PIN correcto es imposible adivinarlo.',
     guideSteps:[
       {n:'01',title:'El problema',desc:'Los estafadores usan IA para clonar la voz de tus familiares. Llaman fingiendo ser tu hijo, madre o médico — y la voz suena real.'},
       {n:'02',title:'Crear una familia',desc:'Abre FamilyCode y pulsa "Crear familia". Dale un nombre al grupo y elige un PIN secreto. La app genera un enlace único de 128 bits.'},
@@ -393,7 +395,7 @@ const i18n={
     createLabel:'Familienname',namePh:'z.B. Familie Müller',btnDoCreate:'weiter: PIN wählen →',
     joinTitle:'Beitreten',joinSub:'// füge den erhaltenen Link ein\n// du wirst nach dem PIN gefragt',
     joinLabel:'Link oder geheimer Code',joinPh:'https://…#s=3f9a…',btnDoJoin:'eintreten →',
-    back:'← zurück',badge:'LIVE · Aktualisierung alle 30s',
+    back:'← zurück',badge:'LIVE · Aktualisierung alle 5m',
     hint:'// frage den Code von demjenigen, der anruft',
     timerPre:'Erneuerung in',timerSuf:'s',renameBtn:'speichern',
     shareLabel:'Link zum Teilen',
@@ -422,7 +424,7 @@ const i18n={
     guideBtn:'?',
     guideTitle:'Wie es funktioniert',
     guideIntro:'// FamilyCode schützt dich vor Telefonbetrug.\n// bei einem verdächtigen Anruf frage nach dem Code.',
-    guideTip:'// der Code ändert sich alle 30 Sekunden und\n// ohne den richtigen PIN ist er unmöglich zu erraten.',
+    guideTip:'// der Code ändert sich alle 5 Minuten und\n// ohne den richtigen PIN ist er unmöglich zu erraten.',
     guideSteps:[
       {n:'01',title:'Das Problem',desc:'Betrüger nutzen KI, um die Stimmen deiner Familienmitglieder zu klonen. Sie rufen an und geben vor, dein Sohn, deine Mutter oder dein Arzt zu sein.'},
       {n:'02',title:'Familie erstellen',desc:'Öffne FamilyCode und drücke "Familie erstellen". Gib der Gruppe einen Namen und wähle einen geheimen PIN. Die App generiert einen einzigartigen 128-Bit-Link.'},
@@ -440,7 +442,7 @@ const i18n={
     createLabel:'nom de famille',namePh:'ex. Famille Dupont',btnDoCreate:'suivant : choisir PIN →',
     joinTitle:'Rejoindre',joinSub:'// colle le lien reçu\n// le PIN te sera demandé',
     joinLabel:'lien ou code secret',joinPh:'https://…#s=3f9a…',btnDoJoin:'entrer →',
-    back:'← retour',badge:'LIVE · mise à jour toutes les 30s',
+    back:'← retour',badge:'LIVE · mise à jour toutes les 5m',
     hint:'// demande ce code à celui qui t\'appelle',
     timerPre:'renouvellement dans',timerSuf:'s',renameBtn:'enregistrer',
     shareLabel:'lien à partager',
@@ -469,7 +471,7 @@ const i18n={
     guideBtn:'?',
     guideTitle:'Comment ça marche',
     guideIntro:'// FamilyCode te protège des arnaques téléphoniques.\n// quand tu reçois un appel suspect, demande le code.',
-    guideTip:'// le code change toutes les 30 secondes et\n// sans le bon PIN il est impossible à deviner.',
+    guideTip:'// le code change toutes les 5 minutes et\n// sans le bon PIN il est impossible à deviner.',
     guideSteps:[
       {n:'01',title:'Le problème',desc:'Les escrocs utilisent l\'IA pour cloner la voix de tes proches. Ils appellent en se faisant passer pour ton fils, ta mère ou ton médecin — et la voix semble vraie.'},
       {n:'02',title:'Créer une famille',desc:'Ouvre FamilyCode et appuie sur "Créer une famille". Donne un nom au groupe et choisis un PIN secret. L\'app génère un lien unique de 128 bits.'},
@@ -536,7 +538,7 @@ const stepSVG=[
   `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
     <rect x="20" y="20" width="80" height="80" rx="10" fill="none" stroke="#7c6af7" stroke-width="2"/>
     <text x="60" y="55" text-anchor="middle" font-size="22" fill="#a599ff" font-family="JetBrains Mono,monospace" font-weight="bold" letter-spacing="2">4</text>
-    <text x="60" y="78" text-anchor="middle" font-size="9" fill="#45455a" font-family="JetBrains Mono,monospace">OTP 30s</text>
+    <text x="60" y="78" text-anchor="middle" font-size="9" fill="#45455a" font-family="JetBrains Mono,monospace">OTP 5m</text>
     <rect x="30" y="40" width="60" height="28" rx="6" fill="#1a1a24" stroke="#7c6af7" stroke-width="1"/>
     <text x="60" y="59" text-anchor="middle" font-size="16" fill="#a599ff" font-family="JetBrains Mono,monospace" letter-spacing="3">482 931</text>
     <text x="200" y="45" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">"dimmi il codice"</text>
@@ -573,12 +575,12 @@ function hex(bytes){const a=new Uint8Array(bytes);crypto.getRandomValues(a);retu
 
 function otp(secret,pin){
   const base=secret+'::'+pin;
-  const t=Math.floor(Date.now()/30000);
+  const t=Math.floor(Date.now()/(OTP_WINDOW*1000));
   let h=0;const s=base+t;
   for(let i=0;i<s.length;i++)h=(Math.imul(31,h)+s.charCodeAt(i))|0;
   return String(Math.abs(h)%1000000).padStart(6,'0');
 }
-function left(){return 30-Math.floor(Date.now()/1000)%30}
+function left(){return OTP_WINDOW-(Math.floor(Date.now()/1000)%OTP_WINDOW)}
 function makeUrl(secret,name){return location.href.split('#')[0]+'#s='+secret+'&n='+encodeURIComponent(name)}
 function fmtUrl(url){const hash=url.split('#')[1]||'';const base=url.split('#')[0].replace(/^https?:\/\//,'');return '<span style="color:var(--text3)">'+base+'#</span><span class="url-accent">'+hash.slice(0,26)+'…</span>'}
 
@@ -725,7 +727,7 @@ function startTicker(f){
     const t=i18n[lang];const pin=sessionPins[f.id]||'';
     $('otp-display').textContent=otp(f.secret,pin);
     const tl=left();
-    $('prog').style.width=(tl/30*100)+'%';
+    $('prog').style.width=(tl/OTP_WINDOW*100)+'%';
     $('timer-label').textContent='// '+t.timerPre+' '+tl+t.timerSuf;
   }
   tick();ticker=setInterval(tick,1000);
@@ -747,8 +749,8 @@ function openPrint(){
   $('print-tip').textContent=t.printTip;
   $('btn-do-print').textContent=t.btnDoPrint;
 
-  // QR via Google Charts API
-  const qrUrl='https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl='+encodeURIComponent(url)+'&choe=UTF-8';
+  // QR via QRServer API
+  const qrUrl='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(url);
   $('print-qr-img').src=qrUrl;
 
   if(pin){
