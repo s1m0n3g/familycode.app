@@ -1,24 +1,33 @@
+<div align="center">
+
 # FamilyCode 🔐
 
-> **Verify who's really calling you.**  
-> A zero-server, zero-signup OTP webapp to defeat vishing scams and audio deepfakes.
+**Verify who's really calling you.**
+
+A zero-server, zero-signup OTP webapp to defeat vishing scams and audio deepfakes.
+
+[![License: PolyForm Noncommercial](https://img.shields.io/badge/License-PolyForm%20NC%201.0.0-blueviolet)](LICENSE)
+[![Single File](https://img.shields.io/badge/Architecture-Single%20HTML-brightgreen)]()
+[![No Server](https://img.shields.io/badge/Server-None-important)]()
+
+</div>
 
 ---
 
 ## The problem
 
-Vishing scams and AI-generated voice deepfakes are on the rise. A fraudster calls pretending to be your son, your mother, your bank — and the voice sounds real. Existing solutions are B2B-only, complex, or require accounts and subscriptions.
+Vishing scams and AI-generated voice deepfakes are on the rise. A fraudster calls pretending to be your son, your mother, your bank — and the voice sounds **real**. Existing solutions are B2B-only, complex, or require accounts and subscriptions.
 
-FamilyCode is different: it's a single HTML file your whole family can use in 30 seconds.
+**FamilyCode is different:** it's a single HTML file your whole family can use in 30 seconds.
 
 ---
 
 ## How it works
 
-Each family shares a **secret 128-bit key embedded in a URL**. Everyone who opens the link computes the same **6-digit OTP**, rotating every 30 seconds — exactly like Google Authenticator, but with zero infrastructure.
+Each family shares a **secret 128-bit key embedded in a URL**. Everyone who opens the link computes the same **6-digit OTP**, rotating every **5 minutes** — similar to Google Authenticator, but with zero infrastructure.
 
 ```
-OTP = hash(secret_128bit [+ PIN] + time_interval)
+OTP = hash(secret_128bit + PIN + time_interval)
 ```
 
 When you get a suspicious call from "your son":
@@ -26,23 +35,30 @@ When you get a suspicious call from "your son":
 1. Open FamilyCode
 2. See the current 6-digit code
 3. Ask the caller: *"tell me the code"*
-4. If they can't → it's a scammer
+4. If they can't → **it's a scammer**
 
-No database. No server. No account. The URL **is** the key.
+No database. No server. No account. **The URL is the key.**
 
 ---
 
 ## Features
 
-- 🔑 **128-bit secret** generated via `crypto.getRandomValues()` — cryptographically secure
-- 🔗 **Secret embedded in URL `#fragment`** — never sent to any server, ever
-- 🔐 **Optional PIN** — modifies OTP calculation; share it separately from the link for double protection
-- ⏱ **30-second rotating OTP** — same code on all devices sharing the same link
-- 👨‍👩‍👧 **Multiple families** — manage as many groups as you need
-- 🌍 **5 languages** — Italian, English, Spanish, German, French (auto-detected)
-- 🌙 **Dark / Light theme** — switchable
-- 📦 **Single HTML file** — no npm, no build step, no dependencies
-- 💾 **localStorage** for convenience — the URL remains the true source of truth
+| | Feature | Description |
+|---|---|---|
+| 🔑 | **128-bit secret** | Generated via `crypto.getRandomValues()`, cryptographically secure |
+| 🔗 | **Secret in URL `#fragment`** | Never sent to any server, ever |
+| 🔐 | **4-digit PIN** | Modifies OTP calculation; share it separately from the link |
+| ⏱ | **5-minute rotating OTP** | Same code on all devices sharing the same link + PIN |
+| 👨‍👩‍👧 | **Multiple families** | Manage as many groups as you need |
+| 🗑 | **Delete families** | With safety warning and restore instructions |
+| 🔄 | **Restore via link** | Re-open the shared link or scan the QR to restore a deleted family |
+| 🖨 | **Print QR + PIN** | Generate a printable sheet for elderly family members |
+| ✏️ | **Rename families** | Update the display name anytime |
+| 🌍 | **5 languages** | Italian, English, Spanish, German, French (auto-detected) |
+| 🌙 | **Dark / Light theme** | Switchable |
+| 📖 | **Built-in guide** | Illustrated step-by-step tutorial inside the app |
+| 📦 | **Single HTML file** | No npm, no build step, no dependencies |
+| 💾 | **localStorage cache** | The URL remains the true source of truth |
 
 ---
 
@@ -59,11 +75,11 @@ No database. No server. No account. The URL **is** the key.
 
 The app has no concept of "correct" or "wrong" PIN. It simply computes:
 
-```
+```javascript
 OTP = hash(secret + "::" + PIN + time)
 ```
 
-An attacker who brute-forces the PIN gets a different OTP for each attempt — but has no way to know which one is correct without calling you and asking. Each attempt requires a real phone call. It's computationally and practically impossible.
+An attacker who brute-forces the PIN gets a different OTP for each attempt — but has **no way to know which one is correct** without calling you and asking. Each attempt requires a real phone call. It's computationally and practically impossible.
 
 The PIN is **never saved** — not in localStorage, not in the URL, not anywhere. It lives only in your memory and is required on every session.
 
@@ -76,14 +92,18 @@ The URL fragment (everything after `#`) is a browser-only construct. It is **nev
 ## Quick start
 
 ### Use it now
+
 Just open `familycode.html` in any browser. No installation required.
 
 ### Host it for free (recommended)
-Drag and drop `familycode.html` on [netlify.com/drop](https://netlify.com/drop).  
+
+Drag and drop `familycode.html` on **[netlify.com/drop](https://netlify.com/drop)**.
 You get a public URL in under 30 seconds, for free.
 
 ### Self-host
+
 Any static file server works:
+
 ```bash
 # Python
 python3 -m http.server 8080
@@ -98,20 +118,35 @@ npx serve .
 
 ```
 Creator
-  │
-  ├─ Creates family → app generates 128-bit secret
-  │
-  ├─ [Optional] Sets a PIN → shared verbally or via separate channel
-  │
-  └─ Shares the link → familycode.app/#s=3f9a...&n=Famiglia+Rossi
-                                         │              │
-                                         │              └─ family name (cosmetic)
-                                         └─ 128-bit secret (never hits server)
+ │
+ ├─ Creates family → app generates 128-bit secret
+ │
+ ├─ Sets a 4-digit PIN → shared verbally or via separate channel
+ │
+ └─ Shares the link → familycode.app/#s=3f9a...&n=Famiglia+Rossi
+     │                  │
+     │                  └─ family name (cosmetic)
+     └─ 128-bit secret (never hits server)
 
 Recipient
-  │
-  └─ Opens link → enters PIN if required → sees the same OTP
+ │
+ ├─ Opens link (or scans QR) → family restored automatically
+ │
+ └─ Enters 4-digit PIN → sees the same OTP
 ```
+
+---
+
+## Delete & restore flow
+
+When you delete a family from the home screen:
+
+1. A **warning modal** explains the consequences
+2. The family is removed from localStorage
+3. **The link still works** — opening it again (or scanning the printed QR) restores the family
+4. The PIN is still required and was never stored
+
+> 💡 *Share the link via WhatsApp or print the QR before deleting. The link is the only way to restore access.*
 
 ---
 
@@ -119,12 +154,12 @@ Recipient
 
 ### OTP algorithm
 
-FamilyCode uses a simplified TOTP-like approach:
+FamilyCode uses a simplified TOTP-like approach with a **5-minute window**:
 
 ```javascript
 function otp(secret, pin) {
-  const base = pin ? secret + '::' + pin : secret;
-  const t = Math.floor(Date.now() / 30000); // 30-second window
+  const base = secret + '::' + pin;
+  const t = Math.floor(Date.now() / (300 * 1000)); // 5-min window
   let h = 0;
   const s = base + t;
   for (let i = 0; i < s.length; i++) {
@@ -134,7 +169,7 @@ function otp(secret, pin) {
 }
 ```
 
-All devices sharing the same secret (and PIN) compute identical results because the only inputs are the shared secret and the current time interval — both identical across devices.
+All devices sharing the same secret and PIN compute identical results because the only inputs are the shared secret and the current time interval — both identical across devices.
 
 ### Secret generation
 
@@ -151,42 +186,54 @@ With 2¹²⁸ possible secrets, brute force is computationally infeasible.
 |---|---|
 | Secret key | URL `#fragment` (source of truth) |
 | Family name | URL `&n=` parameter |
-| PIN | Nowhere — session memory only |
+| PIN (4 digits) | **Nowhere** — session memory only |
 | Family list | `localStorage` (convenience cache) |
 
 ---
 
 ## FAQ
 
-**What if I lose the link?**  
-The link is the only source of truth. Save it as a bookmark or in a password manager. If lost, create a new family and reshare.
+**What if I lose the link?**
+The link is the only source of truth. Save it as a bookmark, in a password manager, or print the QR. If lost, create a new family and reshare.
 
-**What if I forget the PIN?**  
-It cannot be recovered — it was never saved. Create a new family without PIN, or with a new PIN, and reshare.
+**What if I forget the PIN?**
+It cannot be recovered — it was never saved. Create a new family with a new PIN and reshare.
 
-**Can I rename the family?**  
+**What if I delete a family by mistake?**
+If you still have the link (or the printed QR), just open it again. The family will be restored. You'll need to re-enter the PIN.
+
+**Can I rename the family?**
 Yes. The name in the URL updates when you rename and copy the new link. The old link still works with the old name.
 
-**Does FamilyCode work offline?**  
+**Does FamilyCode work offline?**
 Yes, once loaded the app works fully offline. OTP computation requires no network.
 
-**Is this TOTP-compliant (RFC 6238)?**  
+**Is this TOTP-compliant (RFC 6238)?**
 No. FamilyCode uses a custom hash for simplicity and to avoid requiring HMAC-SHA1 in vanilla JS without dependencies. It is not compatible with standard authenticator apps by design.
 
 ---
 
-## Roadmap ideas
+## Roadmap
 
-- [ ] QR code generation for easy sharing (especially useful for elderly family members)
 - [ ] PWA / installable on home screen
 - [ ] Optional HMAC-SHA1 TOTP for RFC 6238 compliance
 - [ ] Notification: "someone just checked the code" (requires minimal backend)
+- [ ] Share via native share sheet (Web Share API)
 
 ---
 
 ## License
 
-MIT — do whatever you want with it.
+This project is licensed under the **[PolyForm Noncommercial License 1.0.0](LICENSE)**.
+
+| | |
+|---|---|
+| ✅ | Personal use |
+| ✅ | Study, research, experimentation |
+| ✅ | Non-profit / educational use |
+| ❌ | **Commercial use — not permitted** |
+
+See [LICENSE](LICENSE) for the full legal text.
 
 ---
 
@@ -194,6 +241,10 @@ MIT — do whatever you want with it.
 
 Issues and PRs welcome. Keep it simple — the single-file constraint is intentional.
 
+By contributing, you agree that your contributions will be licensed under the same PolyForm Noncommercial License 1.0.0.
+
 ---
 
-*Built to protect families from AI-powered phone fraud. No ads. No tracking. No server.*
+<div align="center">
+<sub>Built to protect families from AI-powered phone fraud.<br/>No ads. No tracking. No server.</sub>
+</div>
