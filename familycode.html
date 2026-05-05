@@ -113,6 +113,29 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
   .print-area{border-radius:0;padding:20px}
   .back,.btn,.hbtn{display:none!important}
 }
+
+/* --- text overflow fixes --- */
+.family-card{overflow:hidden}
+.family-card-info{min-width:0;flex:1;overflow:hidden}
+.family-card-name{overflow-wrap:break-word;word-break:break-word}
+.family-card-otp{flex-shrink:0}
+.otp-card{overflow:hidden}
+
+/* --- delete button (matches .hbtn style) --- */
+.family-card-del{width:28px;height:28px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s;flex-shrink:0;font-family:'JetBrains Mono',monospace;font-weight:700}
+.family-card-del:hover{border-color:rgba(255,92,122,0.5);color:#ff5c7a;background:rgba(255,92,122,0.08)}
+
+/* --- delete modal --- */
+.del-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;align-items:center;justify-content:center;padding:20px}
+.del-overlay.open{display:flex}
+.del-box{background:var(--bg2);border:1px solid var(--border2);border-radius:18px;padding:28px 24px;max-width:360px;width:100%;text-align:center}
+.del-title{font-size:18px;font-weight:800;margin-bottom:14px;color:var(--text)}
+.del-msg{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:22px;text-align:left;white-space:pre-line}
+.del-btns{display:flex;gap:10px}
+.del-btns .btn{flex:1;padding:12px;font-size:13px}
+.btn-danger{background:#ff5c7a;border:none;color:#fff;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(255,92,122,0.3);transition:all .2s}
+.btn-danger:hover{background:#ff7a94;transform:translateY(-1px)}
+
 </style>
 </head>
 <body>
@@ -218,7 +241,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
     <div class="back" id="back-print"></div>
     <div class="print-area" id="print-area">
       <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:#bbb;text-transform:uppercase;margin-bottom:8px">family_code 🔐</div>
-      <div id="print-name" style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#111;margin-bottom:4px"></div>
+      <div id="print-name" style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#111;margin-bottom:4px;overflow-wrap:break-word;word-break:break-word"></div>
       <div id="print-keytail" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#bbb;margin-bottom:20px"></div>
       <img id="print-qr-img" style="width:200px;height:200px;border-radius:10px;border:1px solid #eee;padding:8px;margin-bottom:12px" alt="QR"/>
       <div id="print-scan" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#999;margin-bottom:20px;line-height:1.6"></div>
@@ -231,6 +254,19 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
     </div>
     <button class="btn btn-primary" id="btn-do-print" style="margin-top:16px"></button>
     <div id="print-tip" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-align:center;margin-top:10px;line-height:1.6"></div>
+  </div>
+</div>
+
+
+<!-- delete modal -->
+<div class="del-overlay" id="del-overlay">
+  <div class="del-box">
+    <div class="del-title" id="del-title"></div>
+    <div class="del-msg" id="del-msg"></div>
+    <div class="del-btns">
+      <button class="btn btn-ghost" id="del-cancel-btn" style="margin-top:0"></button>
+      <button class="btn btn-danger" id="del-confirm-btn"></button>
+    </div>
   </div>
 </div>
 
@@ -264,9 +300,10 @@ const i18n={
     toastAlready:'// già presente',toastRenamed:'// nome aggiornato',
     toastWelcome:'// bentornato in ',toastAdded:'// famiglia aggiunta',
     emptyText:'// nessuna famiglia\n// creane una o unisciti',keyLbl:'key: ...',
+    deleteTitle:'Eliminare questa famiglia?',deleteWarning:'⚠️ Se cancelli questa famiglia o svuoti la cache del browser, non potrai più accedere al codice generato se perdi il link.\nCondividi il link via WhatsApp a un tuo familiare o conservalo stampando il QR.\nAprendo nuovamente il link, la famiglia verrà ripristinata.',deleteCancel:'Annulla',deleteConfirm:'Elimina',
     pinCreateIcon:'🔐',pinCreateTitle:'Scegli il PIN',
     pinCreateSub:'// digita il PIN da condividere con la famiglia.\n// NON viene salvato da nessuna parte.\n// condividilo a voce, separato dal link.',
-    pinCreateNote:'// minimo 4 cifre · max 20 caratteri',
+    pinCreateNote:'// esattamente 4 cifre',
     pinOpenIcon:'🔒',pinOpenTitle:'Inserisci il PIN',
     pinOpenSub:'// questa famiglia è protetta da PIN.\n// serve per calcolare l\'OTP corretto.',
     pinOpenNote:'// il PIN vive solo nella tua testa.',
@@ -311,9 +348,10 @@ const i18n={
     toastAlready:'// already present',toastRenamed:'// name updated',
     toastWelcome:'// welcome back to ',toastAdded:'// family added',
     emptyText:'// no families yet\n// create one or join',keyLbl:'key: ...',
+    deleteTitle:'Delete this family?',deleteWarning:'⚠️ If you delete this family or clear the browser cache, you won\'t be able to access the generated code if you lose the link.\nShare the link via WhatsApp with a family member or save it by printing the QR.\nOpening the link again will restore the family.',deleteCancel:'Cancel',deleteConfirm:'Delete',
     pinCreateIcon:'🔐',pinCreateTitle:'Choose PIN',
     pinCreateSub:'// type the PIN to share with your family.\n// it is NOT saved anywhere.\n// share it verbally, separate from the link.',
-    pinCreateNote:'// min 4 digits · max 20 chars',
+    pinCreateNote:'// exactly 4 digits',
     pinOpenIcon:'🔒',pinOpenTitle:'Enter PIN',
     pinOpenSub:'// this family is PIN-protected.\n// needed to compute the correct OTP.',
     pinOpenNote:'// the PIN lives only in your head.',
@@ -358,9 +396,10 @@ const i18n={
     toastAlready:'// ya presente',toastRenamed:'// nombre actualizado',
     toastWelcome:'// bienvenido de nuevo a ',toastAdded:'// familia añadida',
     emptyText:'// ninguna familia todavía\n// crea una o únete',keyLbl:'clave: ...',
+    deleteTitle:'¿Eliminar esta familia?',deleteWarning:'⚠️ Si eliminas esta familia o borras la caché del navegador, no podrás acceder al código generado si pierdes el enlace.\nComparte el enlace por WhatsApp con un familiar o consérvalo imprimiendo el QR.\nAbriendo de nuevo el enlace, la familia se restaurará.',deleteCancel:'Cancelar',deleteConfirm:'Eliminar',
     pinCreateIcon:'🔐',pinCreateTitle:'Elige el PIN',
     pinCreateSub:'// escribe el PIN para compartir con la familia.\n// NO se guarda en ningún lugar.\n// compártelo verbalmente, separado del enlace.',
-    pinCreateNote:'// mínimo 4 dígitos · máx 20 caracteres',
+    pinCreateNote:'// exactamente 4 dígitos',
     pinOpenIcon:'🔒',pinOpenTitle:'Introduce el PIN',
     pinOpenSub:'// esta familia está protegida con PIN.\n// necesario para calcular el OTP correcto.',
     pinOpenNote:'// el PIN solo existe en tu cabeza.',
@@ -405,9 +444,10 @@ const i18n={
     toastAlready:'// bereits vorhanden',toastRenamed:'// Name aktualisiert',
     toastWelcome:'// willkommen zurück bei ',toastAdded:'// Familie hinzugefügt',
     emptyText:'// noch keine Familien\n// erstelle eine oder tritt bei',keyLbl:'Schlüssel: ...',
+    deleteTitle:'Diese Familie löschen?',deleteWarning:'⚠️ Wenn du diese Familie löschst oder den Browser-Cache leerst, kannst du nicht mehr auf den generierten Code zugreifen, wenn du den Link verlierst.\nTeile den Link per WhatsApp mit einem Familienmitglied oder bewahre ihn auf, indem du den QR druckst.\nDurch erneutes Öffnen des Links wird die Familie wiederhergestellt.',deleteCancel:'Abbrechen',deleteConfirm:'Löschen',
     pinCreateIcon:'🔐',pinCreateTitle:'PIN wählen',
     pinCreateSub:'// gib den PIN ein, den du mit der Familie teilst.\n// er wird NIRGENDS gespeichert.\n// teile ihn mündlich, getrennt vom Link.',
-    pinCreateNote:'// mind. 4 Ziffern · max. 20 Zeichen',
+    pinCreateNote:'// genau 4 Ziffern',
     pinOpenIcon:'🔒',pinOpenTitle:'PIN eingeben',
     pinOpenSub:'// diese Familie ist PIN-geschützt.\n// wird benötigt, um den richtigen OTP zu berechnen.',
     pinOpenNote:'// der PIN lebt nur in deinem Kopf.',
@@ -452,9 +492,10 @@ const i18n={
     toastAlready:'// déjà présent',toastRenamed:'// nom mis à jour',
     toastWelcome:'// bon retour dans ',toastAdded:'// famille ajoutée',
     emptyText:'// aucune famille\n// crée-en une ou rejoins',keyLbl:'clé : ...',
+    deleteTitle:'Supprimer cette famille ?',deleteWarning:'⚠️ Si tu supprimes cette famille ou vides le cache du navigateur, tu ne pourras plus accéder au code généré si tu perds le lien.\nPartage le lien via WhatsApp avec un proche ou conserve-le en imprimant le QR.\nEn rouvrant le lien, la famille sera restaurée.',deleteCancel:'Annuler',deleteConfirm:'Supprimer',
     pinCreateIcon:'🔐',pinCreateTitle:'Choisis le PIN',
     pinCreateSub:'// tape le PIN à partager avec ta famille.\n// il n\'est PAS sauvegardé.\n// partage-le verbalement, séparément du lien.',
-    pinCreateNote:'// min 4 chiffres · max 20 caractères',
+    pinCreateNote:'// exactement 4 chiffres',
     pinOpenIcon:'🔒',pinOpenTitle:'Entrer le PIN',
     pinOpenSub:'// cette famille est protégée par PIN.\n// nécessaire pour calculer le bon OTP.',
     pinOpenNote:'// le PIN existe uniquement dans ta tête.',
@@ -604,7 +645,7 @@ function showPinKeypad(mode,famId){
 }
 
 function renderPinDots(){
-  const len=Math.max(pinBuffer.length,4);
+  const len=4;
   $('pin-dots').innerHTML=Array.from({length:len},(_,i)=>
     '<div class="pin-dot'+(i<pinBuffer.length?' filled':'')+'"></div>'
   ).join('');
@@ -626,12 +667,12 @@ function pinPress(k){
   const t=i18n[lang];
   if(k===t.pinDel){pinBuffer=pinBuffer.slice(0,-1);renderPinDots();return}
   if(k===t.pinConfirm){pinConfirm();return}
-  if(pinBuffer.length>=20)return;
+  if(pinBuffer.length>=4)return;
   pinBuffer+=k;renderPinDots();
 }
 
 function pinConfirm(){
-  if(pinBuffer.length<1){toast('// PIN?');return}
+  if(pinBuffer.length<4){toast('// PIN: 4');return}
   if(pinMode==='create'){
     const name=window._pendingName||'Family';
     const secret=hex(16),id=hex(4);
@@ -700,12 +741,25 @@ function renderHome(){
     const locked=!sessionPins[f.id];
     const code=locked?'••••••':otp(f.secret,pin);
     return '<div class="family-card" onclick="cardClick(\''+f.id+'\')">'
-      +'<div><div class="family-card-name">'+f.name+' <span class="pin-badge">🔒 PIN</span></div>'
+      +'<div class="family-card-info"><div class="family-card-name">'+f.name+' <span class="pin-badge">🔒 PIN</span></div>'
       +'<div class="family-card-id">'+t.keyLbl+f.secret.slice(-8)+'</div></div>'
-      +'<div class="family-card-otp">'+code+'</div></div>';
+      +'<div class="family-card-otp">'+code+'</div>'
+      +'<button class="family-card-del" onclick="deleteFam(\''+f.id+'\',event)" title="×">×</button></div>';
   }).join('');
 }
 
+
+let pendingDeleteId=null;
+function deleteFam(id,e){
+  e.stopPropagation();
+  pendingDeleteId=id;
+  var t=i18n[lang];
+  $('del-title').textContent=t.deleteTitle;
+  $('del-msg').textContent=t.deleteWarning;
+  $('del-cancel-btn').textContent=t.deleteCancel;
+  $('del-confirm-btn').textContent=t.deleteConfirm;
+  $('del-overlay').classList.add('open');
+}
 function cardClick(id){
   if(!sessionPins[id]){showPinKeypad('open',id);return}
   openFam(id);
@@ -824,6 +878,20 @@ function checkHash(){
 
 lang=localStorage.getItem('fc_lang')||(navigator.language||'en').slice(0,2).toLowerCase();
 if(!i18n[lang])lang='en';
+
+/* delete modal handlers */
+$('del-cancel-btn').onclick=function(){$('del-overlay').classList.remove('open');pendingDeleteId=null;};
+$('del-confirm-btn').onclick=function(){
+  if(pendingDeleteId){
+    fams=fams.filter(function(f){return f.id!==pendingDeleteId;});
+    delete sessionPins[pendingDeleteId];
+    save();pendingDeleteId=null;
+  }
+  $('del-overlay').classList.remove('open');
+  renderHome();
+};
+$('del-overlay').onclick=function(e){if(e.target===$('del-overlay')){$('del-overlay').classList.remove('open');pendingDeleteId=null;}};
+
 applyLang();checkHash();
 </script>
 </body>
