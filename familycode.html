@@ -232,7 +232,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
    <div class="url-box" id="share-url"></div>
    <div class="url-note" id="share-note"></div>
   </div>
-  <button class="btn btn-ghost" id="btn-print" style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px"></button>
+  <button class="btn btn-ghost" id="btn-print-pin" style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px"></button>
+  <button class="btn btn-ghost" id="btn-print-nopin" style="margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px"></button>
   <div class="hide-note" id="hide-note"></div>
  </div>
  <div class="screen" id="guide-screen">
@@ -320,13 +321,13 @@ const i18n={
   pinOpenNote:'// il PIN vive solo nella tua testa.',
   pinWarning:'\u26a0 nessun errore se il PIN \u00e8 sbagliato:\nil codice generato sar\u00e0 silenziosamente diverso\nda quello dei tuoi familiari.',
   pinConfirm:'\u2713',pinDel:'\u232b',
-  btnPrint:'\u2b1b stampa QR per familiare',
-  printScan:'// scansiona con la fotocamera\n// per aprire direttamente la famiglia',
+  btnPrintPin:'\u2b1b stampa QR con PIN',btnPrintNoPIN:'\u2b1b stampa QR senza PIN',
+  printScan:'// scansiona con la fotocamera\n// per aprire direttamente il codice famiglia',
   printPinLabel:'PIN di accesso',
   printPinNote:'// conserva in un posto sicuro.\n// il PIN non \u00e8 recuperabile.',
   printFooter:'family_code \u00b7 verifica chi ti chiama \u00b7 nessun dato raggiunge mai il server',
   btnDoPrint:'\ud83d\udda8 stampa / salva PDF',
-  printTip:'// il PIN appare solo se inserito in questa sessione',
+  printTip:'// condividi il QR senza PIN per un accesso limitato,\n// oppure con PIN per l\'accesso completo.',
   backPrint:'\u2190 indietro',
   guideBtn:'?',guideTitle:'Come funziona',
   guideIntro:'// FamilyCode ti protegge dalle truffe telefoniche.\n// quando ricevi una chiamata sospetta, chiedi il codice.',
@@ -384,13 +385,13 @@ const i18n={
   pinOpenNote:'// the PIN lives only in your head.',
   pinWarning:'\u26a0 no error if the PIN is wrong:\nthe generated code will silently differ\nfrom your family members\'.',
   pinConfirm:'\u2713',pinDel:'\u232b',
-  btnPrint:'\u2b1b print QR for family member',
-  printScan:'// scan with camera\n// to open the family directly',
+  btnPrintPin:'\u2b1b print QR with PIN',btnPrintNoPIN:'\u2b1b print QR without PIN',
+  printScan:'// scan with camera\n// to open the family code directly',
   printPinLabel:'access PIN',
   printPinNote:'// keep in a safe place.\n// PIN cannot be recovered.',
   printFooter:'family_code \u00b7 verify who calls you \u00b7 no data ever reaches the server',
   btnDoPrint:'\ud83d\udda8 print / save PDF',
-  printTip:'// PIN appears only if entered in this session',
+  printTip:'// share the QR without PIN for limited access,\n// or with PIN for full access.',
   backPrint:'\u2190 back',
   guideBtn:'?',guideTitle:'How it works',
   guideIntro:'// FamilyCode protects you from phone scams.\n// when you get a suspicious call, ask for the code.',
@@ -448,13 +449,13 @@ const i18n={
   pinOpenNote:'// el PIN solo existe en tu cabeza.',
   pinWarning:'\u26a0 ning\u00fan error si el PIN es incorrecto:\nel c\u00f3digo generado diferir\u00e1 silenciosamente\ndel de tus familiares.',
   pinConfirm:'\u2713',pinDel:'\u232b',
-  btnPrint:'\u2b1b imprimir QR para familiar',
-  printScan:'// escanea con la c\u00e1mara\n// para abrir la familia directamente',
+  btnPrintPin:'\u2b1b imprimir QR con PIN',btnPrintNoPIN:'\u2b1b imprimir QR sin PIN',
+  printScan:'// escanea con la c\u00e1mara\n// para abrir el c\u00f3digo familiar directamente',
   printPinLabel:'PIN de acceso',
   printPinNote:'// guarda en un lugar seguro.\n// el PIN no se puede recuperar.',
   printFooter:'family_code \u00b7 verifica qui\u00e9n te llama \u00b7 ning\u00fan dato llega al servidor',
   btnDoPrint:'\ud83d\udda8 imprimir / guardar PDF',
-  printTip:'// el PIN aparece solo si se introdujo en esta sesi\u00f3n',
+  printTip:'// comparte el QR sin PIN para acceso limitado,\n// o con PIN para acceso completo.',
   backPrint:'\u2190 volver',
   guideBtn:'?',guideTitle:'C\u00f3mo funciona',
   guideIntro:'// FamilyCode te protege de las estafas telef\u00f3nicas.\n// cuando recibes una llamada sospechosa, pide el c\u00f3digo.',
@@ -512,13 +513,13 @@ const i18n={
   pinOpenNote:'// der PIN lebt nur in deinem Kopf.',
   pinWarning:'\u26a0 kein Fehler bei falschem PIN:\nder generierte Code weicht stillschweigend ab\nvon dem deiner Familie.',
   pinConfirm:'\u2713',pinDel:'\u232b',
-  btnPrint:'\u2b1b QR f\u00fcr Familienmitglied drucken',
-  printScan:'// mit Kamera scannen\n// um die Familie direkt zu \u00f6ffnen',
+  btnPrintPin:'\u2b1b QR mit PIN drucken',btnPrintNoPIN:'\u2b1b QR ohne PIN drucken',
+  printScan:'// mit Kamera scannen\n// um den Familiencode direkt zu \u00f6ffnen',
   printPinLabel:'Zugangs-PIN',
   printPinNote:'// sicher aufbewahren.\n// PIN kann nicht wiederhergestellt werden.',
   printFooter:'family_code \u00b7 pr\u00fcfe wer dich anruft \u00b7 keine Daten erreichen je den Server',
   btnDoPrint:'\ud83d\udda8 drucken / als PDF speichern',
-  printTip:'// PIN erscheint nur, wenn er in dieser Sitzung eingegeben wurde',
+  printTip:'// QR ohne PIN f\u00fcr eingeschr\u00e4nkten Zugang teilen,\n// oder mit PIN f\u00fcr vollen Zugang.',
   backPrint:'\u2190 zur\u00fcck',
   guideBtn:'?',guideTitle:'Wie es funktioniert',
   guideIntro:'// FamilyCode sch\u00fctzt dich vor Telefonbetrug.\n// bei einem verd\u00e4chtigen Anruf frage nach dem Code.',
@@ -576,13 +577,13 @@ const i18n={
   pinOpenNote:'// le PIN existe uniquement dans ta t\u00eate.',
   pinWarning:'\u26a0 aucune erreur si le PIN est incorrect :\nle code g\u00e9n\u00e9r\u00e9 diff\u00e9rera silencieusement\nde celui de ta famille.',
   pinConfirm:'\u2713',pinDel:'\u232b',
-  btnPrint:'\u2b1b imprimer QR pour un proche',
-  printScan:'// scanne avec la cam\u00e9ra\n// pour ouvrir la famille directement',
+  btnPrintPin:'\u2b1b imprimer QR avec PIN',btnPrintNoPIN:'\u2b1b imprimer QR sans PIN',
+  printScan:'// scanne avec la cam\u00e9ra\n// pour ouvrir le code famille directement',
   printPinLabel:'PIN d\'acc\u00e8s',
   printPinNote:'// conserve en lieu s\u00fbr.\n// le PIN ne peut pas \u00eatre r\u00e9cup\u00e9r\u00e9.',
   printFooter:'family_code \u00b7 v\u00e9rifie qui t\'appelle \u00b7 aucune donn\u00e9e n\'atteint jamais le serveur',
   btnDoPrint:'\ud83d\udda8 imprimer / enregistrer PDF',
-  printTip:'// le PIN appara\u00eet uniquement s\'il a \u00e9t\u00e9 saisi dans cette session',
+  printTip:'// partage le QR sans PIN pour un acc\u00e8s limit\u00e9,\n// ou avec PIN pour l\'acc\u00e8s complet.',
   backPrint:'\u2190 retour',
   guideBtn:'?',guideTitle:'Comment \u00e7a marche',
   guideIntro:'// FamilyCode te prot\u00e8ge des arnaques t\u00e9l\u00e9phoniques.\n// quand tu re\u00e7ois un appel suspect, demande le code.',
@@ -802,7 +803,8 @@ function applyLang(){
  $('badge-text').textContent=t.badge;$('otp-hint').textContent=t.hint;
  $('btn-rename').textContent=t.renameBtn;$('share-label').textContent=t.shareLabel;
  $('share-note').textContent=t.shareNote;$('hide-note').textContent=t.hideNote;
- $('btn-print').innerHTML='<span>⬛</span><span>'+t.btnPrint.replace('⬛','').trim()+'</span>';
+ $('btn-print-pin').innerHTML='<span>🔐</span><span>'+t.btnPrintPin.replace('\u2b1b','').trim()+'</span>';
+ $('btn-print-nopin').innerHTML='<span>📎</span><span>'+t.btnPrintNoPIN.replace('\u2b1b','').trim()+'</span>';
  $('btn-do-print').textContent=t.btnDoPrint;
  $('print-tip').textContent=t.printTip;
  $('lang-btn').textContent=langFlags[lang]||lang.toUpperCase();$('lang-btn').title=lang.toUpperCase();
@@ -870,7 +872,7 @@ function startTicker(f){
 }
 
 /* ========== PRINT ========== */
-function openPrint(){
+function openPrint(withPin){
  const f=fams.find(x=>x.id===cur);if(!f)return;
  const t=i18n[lang];
  const url=makeUrl(f.secret,f.name);
@@ -885,7 +887,7 @@ function openPrint(){
  $('btn-do-print').textContent=t.btnDoPrint;
  const qrUrl='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(url);
  $('print-qr-img').src=qrUrl;
- if(pin){
+ if(withPin&&pin){
   $('print-pin-section').style.display='block';
   $('print-pin-value').textContent=pin;
  }else{
@@ -893,7 +895,8 @@ function openPrint(){
  }
  showOverlay();
 }
-$('btn-print').onclick=openPrint;
+$('btn-print-pin').onclick=function(){openPrint(true)};
+$('btn-print-nopin').onclick=function(){openPrint(false)};
 $('btn-do-print').onclick=()=>window.print();
 $('back-print').onclick=hideOverlay;
 
