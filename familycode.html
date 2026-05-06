@@ -2,14 +2,21 @@
 <html lang="it" data-theme="dark">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="theme-color" content="#7c6af7"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="FamilyCode"/>
+<link rel="manifest" id="manifest-link"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>&#x1F510;</text></svg>"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237c6af7'/><text x='50' y='72' text-anchor='middle' font-size='58'>&#x1F510;</text></svg>"/>
 <title>FamilyCode</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet"/>
 <style>
 :root[data-theme="dark"]{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);--text:#e8e8f0;--text2:#7a7a9a;--text3:#45455a;--accent:#7c6af7;--accent2:#a599ff;--accent-bg:rgba(124,106,247,0.12);--accent-border:rgba(124,106,247,0.3);--green:#3dffc0;--green-bg:rgba(61,255,192,0.08);--grid:rgba(255,255,255,0.025)}
 :root[data-theme="light"]{--bg:#f4f4f8;--bg2:#ffffff;--bg3:#ebebf3;--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.14);--text:#0f0f1a;--text2:#606080;--text3:#b0b0c8;--accent:#5b4de8;--accent2:#7c6af7;--accent-bg:rgba(91,77,232,0.08);--accent-border:rgba(91,77,232,0.25);--green:#00b87a;--green-bg:rgba(0,184,122,0.08);--grid:rgba(0,0,0,0.03)}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
 .app{max-width:420px;margin:0 auto;min-height:100vh;padding:0 0 60px;position:relative}
 .header{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 0;gap:8px}
@@ -122,9 +129,26 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .del-btns .btn{flex:1;padding:12px;font-size:13px}
 .btn-danger{background:#ff5c7a;border:none;color:#fff;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(255,92,122,0.3);transition:all .2s}
 .btn-danger:hover{background:#ff7a94;transform:translateY(-1px)}
-.app-footer{text-align:center;padding:32px 20px 20px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.04em}
+.app-footer{text-align:center;padding:40px 20px 28px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.04em}
 .app-footer a{color:var(--text3);text-decoration:none;transition:color .2s}
 .app-footer a:hover{color:var(--accent2);text-decoration:underline}
+.footer-dev{margin-bottom:10px}
+.footer-opensource{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.footer-opensource a{display:inline-flex;align-items:center;gap:5px;color:var(--accent2);text-decoration:none;padding:4px 10px;border-radius:20px;background:var(--accent-bg);border:1px solid var(--accent-border);transition:all .2s;font-size:10px}
+.footer-opensource a:hover{background:var(--accent-border);color:#fff;text-decoration:none}
+.footer-opensource a svg{width:13px;height:13px;fill:currentColor}
+.footer-opensource-label{color:var(--text3);font-size:10px}
+.footer-divider{width:40px;height:1px;background:var(--border2);margin:16px auto}
+.footer-disclaimer{font-size:9px;color:var(--text3);line-height:1.7;max-width:340px;margin:0 auto;opacity:.7}
+.install-card{background:var(--bg2);border:1px solid var(--accent-border);border-radius:14px;padding:20px;margin-top:16px;text-align:center;position:relative;overflow:hidden}
+.install-card::before{content:'';position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:140px;height:140px;background:radial-gradient(circle,var(--accent-bg) 0%,transparent 70%);pointer-events:none}
+.install-card-icon{font-size:28px;margin-bottom:8px;position:relative}
+.install-card-title{font-size:14px;font-weight:700;margin-bottom:6px;position:relative}
+.install-card-desc{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.8;margin-bottom:14px;position:relative;white-space:pre-line}
+.install-card-desc span{color:var(--accent2);font-weight:500}
+.install-card .btn{font-size:13px;padding:12px;position:relative}
+.install-card-close{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;font-family:'JetBrains Mono',monospace;padding:4px;transition:color .2s}
+.install-card-close:hover{color:var(--text)}
 </style>
 </head>
 <body>
@@ -149,6 +173,13 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
   <div class="family-list" id="family-list"></div>
   <button class="btn btn-primary" id="btn-create"></button>
   <button class="btn btn-ghost" id="btn-join"></button>
+<div class="install-card" id="install-card" style="display:none">
+ <button class="install-card-close" id="install-close">&times;</button>
+ <div class="install-card-icon">📲</div>
+ <div class="install-card-title" id="install-title"></div>
+ <div class="install-card-desc" id="install-desc"></div>
+ <button class="btn btn-primary" id="install-btn" style="display:none"></button>
+</div>
  </div>
  <div class="screen" id="create-screen">
   <div class="back" id="back-create"></div>
@@ -207,7 +238,15 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
   <div id="guide-steps"></div>
   <div class="guide-tip" id="guide-tip"></div>
  </div>
- <div class="app-footer">dev by <a href="https://simonegargano.com" target="_blank" rel="noopener">simonegargano.com</a> · © 2026</div>
+ <div class="app-footer">
+ <div class="footer-dev">dev by <a href="https://simonegargano.com" target="_blank" rel="noopener">simonegargano.com</a> &middot; &copy; 2026</div>
+ <div class="footer-opensource">
+  <a href="https://github.com/s1m0n3g/familycode.app" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>familycode.app</a>
+  <span class="footer-opensource-label" id="footer-os-label"></span>
+ </div>
+ <div class="footer-divider"></div>
+ <div class="footer-disclaimer" id="footer-disclaimer"></div>
+</div>
 </div>
 <div class="print-overlay" id="print-overlay">
  <div style="max-width:420px;margin:0 auto">
@@ -296,6 +335,12 @@ const i18n={
    {n:'05',title:'Chiedi il codice',desc:'Guarda il codice a 6 cifre che vedi. Chiedi al chiamante: "dimmi il codice". Se non lo sa o dice un numero diverso \u2192 \u00e8 un truffatore.'},
    {n:'06',title:'Stampa per i nonni',desc:'Per i familiari meno pratici con lo smartphone, stampa il foglio QR con il PIN. Baster\u00e0 scansionare il QR con la fotocamera per aprire l\'app.'},
   ],
+  footerOsLabel:'progetto open source',
+  footerDisclaimer:'\u2696 Disclaimer \u2014 L\'autore non si assume alcuna responsabilit\u00e0 per l\'uso improprio, errato o illecito di questa applicazione. L\'utilizzo avviene interamente a proprio rischio e pericolo.',
+  installTitle:'Installa FamilyCode',
+  installDesc:'Accesso rapido dalla schermata home,\ncome un\'app nativa.',
+  installBtn:'\ud83d\udcf2 installa app',
+  installIos:'Tocca <span>\u2b06\ufe0f Condividi</span> poi <span>"Aggiungi a Home"</span>',
  },
  en:{
   heroTitle:'Verify who<br/>calls <span>you.</span>',
@@ -345,6 +390,12 @@ const i18n={
    {n:'05',title:'Ask for the code',desc:'Look at the 6-digit code on your screen. Ask the caller: "tell me the code". If they don\'t know it or say a different number \u2192 it\'s a scammer.'},
    {n:'06',title:'Print for grandparents',desc:'For family members less comfortable with smartphones, print the QR sheet with the PIN. Scanning the QR with the camera opens the app directly.'},
   ],
+  footerOsLabel:'open source project',
+  footerDisclaimer:'\u2696 Disclaimer \u2014 The author assumes no responsibility for any improper, incorrect, or unlawful use of this application. Use is entirely at your own risk.',
+  installTitle:'Install FamilyCode',
+  installDesc:'Quick access from your home screen,\nlike a native app.',
+  installBtn:'\ud83d\udcf2 install app',
+  installIos:'Tap <span>\u2b06\ufe0f Share</span> then <span>"Add to Home Screen"</span>',
  },
  es:{
   heroTitle:'Verifica qui\u00e9n<br/>te <span>llama.</span>',
@@ -394,6 +445,12 @@ const i18n={
    {n:'05',title:'Pide el c\u00f3digo',desc:'Mira el c\u00f3digo de 6 d\u00edgitos en tu pantalla. Pregunta al que llama: "dime el c\u00f3digo". Si no lo sabe o dice uno diferente \u2192 es un estafador.'},
    {n:'06',title:'Imprime para los abuelos',desc:'Para familiares menos c\u00f3modos con el smartphone, imprime la hoja QR con el PIN. Escanear el QR con la c\u00e1mara abre la app directamente.'},
   ],
+  footerOsLabel:'proyecto open source',
+  footerDisclaimer:'\u2696 Disclaimer \u2014 El autor no asume ninguna responsabilidad por el uso indebido, incorrecto o il\u00edcito de esta aplicaci\u00f3n. El uso es bajo su propio riesgo.',
+  installTitle:'Instalar FamilyCode',
+  installDesc:'Acceso r\u00e1pido desde la pantalla de inicio,\ncomo una app nativa.',
+  installBtn:'\ud83d\udcf2 instalar app',
+  installIos:'Toca <span>\u2b06\ufe0f Compartir</span> luego <span>"A\u00f1adir a inicio"</span>',
  },
  de:{
   heroTitle:'Pr\u00fcfe wer<br/>dich <span>anruft.</span>',
@@ -443,6 +500,12 @@ const i18n={
    {n:'05',title:'Nach dem Code fragen',desc:'Schau dir den 6-stelligen Code an. Frage den Anrufer: "Sag mir den Code". Wenn er ihn nicht wei\u00df \u2192 Betr\u00fcger.'},
    {n:'06',title:'F\u00fcr Gro\u00dfeltern drucken',desc:'F\u00fcr weniger technikaffine Familienmitglieder drucke das QR-Blatt mit dem PIN. Das Scannen des QR mit der Kamera \u00f6ffnet die App direkt.'},
   ],
+  footerOsLabel:'Open-Source-Projekt',
+  footerDisclaimer:'\u2696 Haftungsausschluss \u2014 Der Autor \u00fcbernimmt keine Verantwortung f\u00fcr unsachgem\u00e4\u00dfe, fehlerhafte oder rechtswidrige Nutzung dieser Anwendung. Die Nutzung erfolgt auf eigenes Risiko.',
+  installTitle:'FamilyCode installieren',
+  installDesc:'Schnellzugriff vom Startbildschirm,\nwie eine native App.',
+  installBtn:'\ud83d\udcf2 App installieren',
+  installIos:'Tippe auf <span>\u2b06\ufe0f Teilen</span> dann <span>"Zum Home-Bildschirm"</span>',
  },
  fr:{
   heroTitle:'V\u00e9rifie qui<br/>t\'<span>appelle.</span>',
@@ -492,6 +555,12 @@ const i18n={
    {n:'05',title:'Demande le code',desc:'Regarde le code \u00e0 6 chiffres sur ton \u00e9cran. Demande \u00e0 l\'appelant : "dis-moi le code". S\'il ne le conna\u00eet pas \u2192 c\'est un escroc.'},
    {n:'06',title:'Imprimer pour les grands-parents',desc:'Pour les proches moins \u00e0 l\'aise avec les smartphones, imprime la feuille QR avec le PIN. Scanner le QR avec la cam\u00e9ra ouvre l\'app directement.'},
   ],
+  footerOsLabel:'projet open source',
+  footerDisclaimer:'\u2696 Avertissement \u2014 L\'auteur d\u00e9cline toute responsabilit\u00e9 en cas d\'utilisation inappropri\u00e9e, incorrecte ou illicite de cette application. L\'utilisation se fait \u00e0 vos propres risques.',
+  installTitle:'Installer FamilyCode',
+  installDesc:'Acc\u00e8s rapide depuis l\'\u00e9cran d\'accueil,\ncomme une app native.',
+  installBtn:'\ud83d\udcf2 installer l\'app',
+  installIos:'Appuie sur <span>\u2b06\ufe0f Partager</span> puis <span>"Sur l\'\u00e9cran d\'accueil"</span>',
  }
 };
 
@@ -578,9 +647,13 @@ function hex(bytes){const a=new Uint8Array(bytes);crypto.getRandomValues(a);retu
 function otp(secret,pin){
  const base=secret+'::'+pin;
  const t=Math.floor(Date.now()/(OTP_WINDOW*1000));
- let h=0;const s=base+t;
- for(let i=0;i<s.length;i++)h=(Math.imul(31,h)+s.charCodeAt(i))|0;
- return String(Math.abs(h)%1000000).padStart(6,'0');
+ const s=base+':'+t;
+ let h=0x811c9dc5;
+ for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193)}
+ h=Math.imul(h^(h>>>16),0x45d9f3b);
+ h=Math.imul(h^(h>>>13),0x45d9f3b);
+ h=(h^(h>>>16))>>>0;
+ return String(h%1000000).padStart(6,'0');
 }
 function left(){return OTP_WINDOW-(Math.floor(Date.now()/1000)%OTP_WINDOW)}
 function makeUrl(secret,name){return location.href.split('#')[0]+'#s='+secret+'&n='+encodeURIComponent(name)}
@@ -679,6 +752,7 @@ function applyLang(){
  $('lang-btn').textContent=lang.toUpperCase();
  document.documentElement.lang=lang;
  document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
+ $('footer-os-label').textContent=t.footerOsLabel;$('footer-disclaimer').textContent=t.footerDisclaimer;renderInstallCard();
  buildGuide();renderHome();
 }
 $('theme-btn').onclick=()=>{const h=document.documentElement;const d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'light':'dark');$('theme-btn').textContent=d?'☽':'☀'};
@@ -830,6 +904,65 @@ $('del-confirm-btn').onclick=function(){
  renderHome();
 };
 $('del-overlay').onclick=function(e){if(e.target===$('del-overlay')){$('del-overlay').classList.remove('open');pendingDeleteId=null;}};
+
+/* ========== PWA INSTALL ========== */
+let deferredPrompt=null;
+const isIos=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+const isStandalone=window.matchMedia('(display-mode:standalone)').matches||navigator.standalone;
+
+function renderInstallCard(){
+ const card=$('install-card');
+ if(!card)return;
+ if(isStandalone||localStorage.getItem('fc_pwa_dismissed')){card.style.display='none';return}
+ const t=i18n[lang];
+ $('install-title').textContent=t.installTitle;
+ const btn=$('install-btn');
+ if(isIos){
+  $('install-desc').innerHTML=t.installDesc+'\n'+t.installIos;
+  btn.style.display='none';
+ }else if(deferredPrompt){
+  $('install-desc').textContent=t.installDesc;
+  btn.textContent=t.installBtn;
+  btn.style.display='block';
+ }else{
+  $('install-desc').textContent=t.installDesc;
+  btn.textContent=t.installBtn;
+  btn.style.display='none';
+ }
+ card.style.display='block';
+}
+
+window.addEventListener('beforeinstallprompt',function(e){
+ e.preventDefault();deferredPrompt=e;renderInstallCard();
+});
+
+document.getElementById('install-btn').onclick=function(){
+ if(!deferredPrompt)return;
+ deferredPrompt.prompt();
+ deferredPrompt.userChoice.then(function(r){
+  deferredPrompt=null;
+  if(r.outcome==='accepted')$('install-card').style.display='none';
+ });
+};
+
+document.getElementById('install-close').onclick=function(){
+ $('install-card').style.display='none';
+ localStorage.setItem('fc_pwa_dismissed','1');
+};
+
+window.addEventListener('appinstalled',function(){$('install-card').style.display='none'});
+
+/* manifest + sw */
+(function(){
+ var m={name:'FamilyCode',short_name:'FamilyCode',description:'Anti-vishing OTP',start_url:location.href.split('#')[0],display:'standalone',background_color:'#0a0a0f',theme_color:'#7c6af7',icons:[{src:'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%237c6af7%22/><text x=%2250%22 y=%2272%22 text-anchor=%22middle%22 font-size=%2258%22>%F0%9F%94%90</text></svg>',sizes:'512x512',type:'image/svg+xml',purpose:'any maskable'}]};
+ var blob=new Blob([JSON.stringify(m)],{type:'application/json'});
+ document.getElementById('manifest-link').href=URL.createObjectURL(blob);
+ if('serviceWorker' in navigator){
+  var swCode="self.addEventListener('install',function(e){self.skipWaiting()});self.addEventListener('activate',function(e){e.waitUntil(clients.claim())});self.addEventListener('fetch',function(e){e.respondWith(fetch(e.request).catch(function(){return new Response('offline',{status:503})}))})";
+  var swBlob=new Blob([swCode],{type:'application/javascript'});
+  navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(function(){});
+ }
+})();
 
 lang=localStorage.getItem('fc_lang')||(navigator.language||'en').slice(0,2).toLowerCase();
 if(!i18n[lang])lang='en';
