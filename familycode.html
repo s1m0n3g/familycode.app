@@ -13,6 +13,7 @@
 <title>FamilyCode</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 <style>
 :root[data-theme="dark"]{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);--text:#e8e8f0;--text2:#7a7a9a;--text3:#45455a;--accent:#7c6af7;--accent2:#a599ff;--accent-bg:rgba(124,106,247,0.12);--accent-border:rgba(124,106,247,0.3);--green:#3dffc0;--green-bg:rgba(61,255,192,0.08);--grid:rgba(255,255,255,0.025)}
 :root[data-theme="light"]{--bg:#f4f4f8;--bg2:#ffffff;--bg3:#ebebf3;--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.14);--text:#0f0f1a;--text2:#606080;--text3:#b0b0c8;--accent:#5b4de8;--accent2:#7c6af7;--accent-bg:rgba(91,77,232,0.08);--accent-border:rgba(91,77,232,0.25);--green:#00b87a;--green-bg:rgba(0,184,122,0.08);--grid:rgba(0,0,0,0.03)}
@@ -153,6 +154,11 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .install-card-close:hover{color:var(--text)}
 .guide-block{margin-bottom:6px}
 .guide-connector{text-align:center;padding:8px 0;color:var(--text3);font-size:18px;opacity:.3;letter-spacing:.1em}
+.scan-overlay{display:none;position:fixed;inset:0;background:var(--bg);z-index:300;padding:20px;overflow-y:auto}
+.scan-overlay.open{display:block}
+.scan-box{max-width:420px;margin:0 auto}
+#scan-video{width:100%;border-radius:14px;border:2px solid var(--accent-border);background:#000;display:block;margin-top:16px}
+.scan-hint{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);text-align:center;margin-top:12px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -199,6 +205,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
   <div class="section-sub" id="join-sub"></div>
   <div class="field-label" id="join-label"></div>
   <input class="field-input" id="join-code" autocomplete="off"/>
+   <button class="btn btn-ghost" id="btn-scan-qr" style="margin-bottom:10px;display:none;justify-content:center;align-items:center;gap:8px"></button>
+   <input type="file" id="scan-file-input" accept="image/*" style="display:none"/>
   <button class="btn btn-primary" id="btn-do-join"></button>
  </div>
  <div class="screen" id="pin-screen">
@@ -273,6 +281,13 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
   <div id="print-tip" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-align:center;margin-top:10px;line-height:1.6"></div>
  </div>
 </div>
+<div class="scan-overlay" id="scan-overlay">
+ <div class="scan-box">
+  <div class="back" id="back-scan"></div>
+  <video id="scan-video" autoplay playsinline muted></video>
+  <div class="scan-hint" id="scan-hint"></div>
+ </div>
+</div>
 <div class="del-overlay" id="del-overlay">
  <div class="del-box">
   <div class="del-title" id="del-title"></div>
@@ -295,7 +310,7 @@ const i18n={
  it:{
   heroTitle:'Verifica chi<br/>ti <span>chiama.</span>',
   heroSub:'// codice OTP condiviso per sventare<br/>// truffe vishing e deepfake audio',
-  btnCreate:'+ crea famiglia',btnJoin:'\u2192 unisciti con link',
+  btnCreate:'+ crea famiglia',btnJoin:'\u2192 unisciti con link o QR',
   createTitle:'Nuova famiglia',createSub:'// scegli un nome.\n// riceverai un link + PIN da condividere.',
   createLabel:'nome famiglia',namePh:'es. Famiglia Rossi',btnDoCreate:'avanti: scegli PIN \u2192',
   joinTitle:'Unisciti',joinSub:'// incolla il link ricevuto\n// ti verr\u00e0 chiesto il PIN',
@@ -355,11 +370,13 @@ const i18n={
   svgAskCode:'"dimmi il codice"',
   svgConfirm:'\u00e8 davvero lui!',
   svgAccess:'\u2713 accesso',
+  btnScanQr:'\ud83d\udcf7 scansiona QR',
+  scanHint:'// inquadra il QR code con la fotocamera',
  },
  en:{
   heroTitle:'Verify who<br/>calls <span>you.</span>',
   heroSub:'// shared OTP code to defeat<br/>// vishing scams and audio deepfakes',
-  btnCreate:'+ create family',btnJoin:'\u2192 join with link',
+  btnCreate:'+ create family',btnJoin:'\u2192 join with link or QR',
   createTitle:'New family',createSub:'// choose a name.\n// you\'ll get a link + PIN to share.',
   createLabel:'family name',namePh:'e.g. The Smiths',btnDoCreate:'next: choose PIN \u2192',
   joinTitle:'Join',joinSub:'// paste the link received\n// you\'ll be asked for the PIN',
@@ -419,11 +436,13 @@ const i18n={
   svgAskCode:'"tell me the code"',
   svgConfirm:'it\'s really him!',
   svgAccess:'\u2713 access',
+  btnScanQr:'\ud83d\udcf7 scan QR code',
+  scanHint:'// point your camera at the QR code',
  },
  es:{
   heroTitle:'Verifica qui\u00e9n<br/>te <span>llama.</span>',
   heroSub:'// c\u00f3digo OTP compartido para evitar<br/>// estafas vishing y deepfakes',
-  btnCreate:'+ crear familia',btnJoin:'\u2192 unirse con enlace',
+  btnCreate:'+ crear familia',btnJoin:'\u2192 unirse con enlace o QR',
   createTitle:'Nueva familia',createSub:'// elige un nombre.\n// recibir\u00e1s un enlace + PIN para compartir.',
   createLabel:'nombre de familia',namePh:'ej. Familia Garc\u00eda',btnDoCreate:'siguiente: elegir PIN \u2192',
   joinTitle:'Unirse',joinSub:'// pega el enlace recibido\n// se pedir\u00e1 el PIN',
@@ -483,11 +502,13 @@ const i18n={
   svgAskCode:'"dime el c\u00f3digo"',
   svgConfirm:'\u00a1es \u00e9l de verdad!',
   svgAccess:'\u2713 acceso',
+  btnScanQr:'\ud83d\udcf7 escanear QR',
+  scanHint:'// apunta la c\u00e1mara al c\u00f3digo QR',
  },
  de:{
   heroTitle:'Pr\u00fcfe wer<br/>dich <span>anruft.</span>',
   heroSub:'// geteilter OTP-Code gegen<br/>// Vishing-Betrug und Deepfakes',
-  btnCreate:'+ Familie erstellen',btnJoin:'\u2192 mit Link beitreten',
+  btnCreate:'+ Familie erstellen',btnJoin:'\u2192 mit Link oder QR beitreten',
   createTitle:'Neue Familie',createSub:'// w\u00e4hle einen Namen.\n// du erh\u00e4ltst einen Link + PIN zum Teilen.',
   createLabel:'Familienname',namePh:'z.B. Familie M\u00fcller',btnDoCreate:'weiter: PIN w\u00e4hlen \u2192',
   joinTitle:'Beitreten',joinSub:'// f\u00fcge den erhaltenen Link ein\n// du wirst nach dem PIN gefragt',
@@ -547,11 +568,13 @@ const i18n={
   svgAskCode:'"sag mir den Code"',
   svgConfirm:'er ist es wirklich!',
   svgAccess:'\u2713 Zugang',
+  btnScanQr:'\ud83d\udcf7 QR scannen',
+  scanHint:'// richte die Kamera auf den QR-Code',
  },
  fr:{
   heroTitle:'V\u00e9rifie qui<br/>t\'<span>appelle.</span>',
   heroSub:'// code OTP partag\u00e9 pour contrer<br/>// les arnaques vishing et deepfakes',
-  btnCreate:'+ cr\u00e9er une famille',btnJoin:'\u2192 rejoindre avec un lien',
+  btnCreate:'+ cr\u00e9er une famille',btnJoin:'\u2192 rejoindre avec lien ou QR',
   createTitle:'Nouvelle famille',createSub:'// choisis un nom.\n// tu recevras un lien + PIN \u00e0 partager.',
   createLabel:'nom de famille',namePh:'ex. Famille Dupont',btnDoCreate:'suivant : choisir PIN \u2192',
   joinTitle:'Rejoindre',joinSub:'// colle le lien re\u00e7u\n// le PIN te sera demand\u00e9',
@@ -611,6 +634,8 @@ const i18n={
   svgAskCode:'"dis-moi le code"',
   svgConfirm:'c\'est vraiment lui !',
   svgAccess:'\u2713 acc\u00e8s',
+  btnScanQr:'\ud83d\udcf7 scanner QR',
+  scanHint:'// dirige la cam\u00e9ra vers le QR code',
  }
 };
 
@@ -810,7 +835,7 @@ function applyLang(){
  $('lang-btn').textContent=langFlags[lang]||lang.toUpperCase();$('lang-btn').title=lang.toUpperCase();
  document.documentElement.lang=lang;
  document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
- $('footer-os-label').textContent=t.footerOsLabel;$('footer-disclaimer').textContent=t.footerDisclaimer;renderInstallCard();
+ $('footer-os-label').textContent=t.footerOsLabel;$('footer-disclaimer').textContent=t.footerDisclaimer;if($('btn-scan-qr'))$('btn-scan-qr').textContent=t.btnScanQr;renderInstallCard();showScanBtn();
  buildGuide();renderHome();
 }
 $('theme-btn').onclick=()=>{const h=document.documentElement;const d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'light':'dark');$('theme-btn').textContent=d?'☽':'☀'};
@@ -1023,6 +1048,90 @@ window.addEventListener('appinstalled',function(){$('install-card').style.displa
   navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(function(){});
  }
 })();
+
+/* ========== QR SCANNER (jsQR live camera) ========== */
+let scanStream=null;
+let scanTimer=null;
+
+function showScanBtn(){
+ var b=$('btn-scan-qr');
+ if(b)b.style.display='flex';
+}
+
+function openScanner(){
+ var t=i18n[lang];
+ $('scan-hint').textContent=t.scanHint;
+ $('back-scan').textContent=t.back;
+ if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+  navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(function(stream){
+   scanStream=stream;
+   var video=$('scan-video');
+   video.srcObject=stream;
+   video.setAttribute('playsinline','true');
+   video.play();
+   $('scan-overlay').classList.add('open');
+   var c=document.createElement('canvas');
+   var ctx=c.getContext('2d',{willReadFrequently:true});
+   function detect(){
+    if(!scanStream)return;
+    if(video.readyState===video.HAVE_ENOUGH_DATA&&video.videoWidth>0){
+     c.width=video.videoWidth;c.height=video.videoHeight;
+     ctx.drawImage(video,0,0,c.width,c.height);
+     var imageData=ctx.getImageData(0,0,c.width,c.height);
+     if(typeof jsQR==='function'){
+      var code=jsQR(imageData.data,c.width,c.height,{inversionAttempts:'dontInvert'});
+      if(code&&code.data&&code.data.includes('#s=')){
+       $('join-code').value=code.data;
+       closeScanner();
+       $('btn-do-join').click();
+       return;
+      }
+     }
+    }
+    scanTimer=setTimeout(detect,250);
+   }
+   video.onloadedmetadata=function(){scanTimer=setTimeout(detect,500)};
+  }).catch(function(){
+   $('scan-file-input').click();
+  });
+ }else{
+  $('scan-file-input').click();
+ }
+}
+
+function closeScanner(){
+ if(scanTimer){clearTimeout(scanTimer);scanTimer=null}
+ if(scanStream){scanStream.getTracks().forEach(function(tk){tk.stop()});scanStream=null}
+ $('scan-overlay').classList.remove('open');
+ var v=$('scan-video');if(v){v.pause();v.srcObject=null}
+}
+
+$('scan-file-input').onchange=function(e){
+ var file=e.target.files[0];
+ if(!file)return;
+ var img=new Image();
+ img.onload=function(){
+  var c=document.createElement('canvas');
+  c.width=img.width;c.height=img.height;
+  var ctx=c.getContext('2d');
+  ctx.drawImage(img,0,0);
+  var imageData=ctx.getImageData(0,0,c.width,c.height);
+  if(typeof jsQR==='function'){
+   var code=jsQR(imageData.data,c.width,c.height);
+   if(code&&code.data&&code.data.includes('#s=')){
+    $('join-code').value=code.data;
+    $('btn-do-join').click();
+    return;
+   }
+  }
+  toast('// QR non riconosciuto');
+ };
+ img.src=URL.createObjectURL(file);
+ e.target.value='';
+};
+
+if($('btn-scan-qr'))$('btn-scan-qr').onclick=openScanner;
+if($('back-scan'))$('back-scan').onclick=closeScanner;
 
 lang=localStorage.getItem('fc_lang')||(navigator.language||'en').slice(0,2).toLowerCase();
 if(!i18n[lang])lang='en';
