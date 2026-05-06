@@ -9,8 +9,17 @@ A zero-server, zero-signup OTP webapp to defeat vishing scams and audio deepfake
 [![License: PolyForm Noncommercial](https://img.shields.io/badge/License-PolyForm%20NC%201.0.0-blueviolet)](LICENSE)
 [![Single File](https://img.shields.io/badge/Architecture-Single%20HTML-brightgreen)]()
 [![No Server](https://img.shields.io/badge/Server-None-important)]()
+[![Live Demo](https://img.shields.io/badge/Demo-familycode.netlify.app-7c6af7)](https://familycode.netlify.app)
 
 </div>
+
+---
+
+## 🌐 Live Demo
+
+**Try it now →** [familycode.netlify.app](https://familycode.netlify.app)
+
+No installation needed. Works on any device with a modern browser.
 
 ---
 
@@ -58,6 +67,7 @@ No database. No server. No account. **The URL is the key.**
 | 🌙 | **Dark / Light theme** | Switchable |
 | 📖 | **Built-in guide** | Illustrated step-by-step tutorial inside the app |
 | 📦 | **Single HTML file** | No npm, no build step, no dependencies |
+| 📱 | **PWA installable** | Add to home screen on Android and iOS, works offline |
 | 💾 | **localStorage cache** | The URL remains the true source of truth |
 
 ---
@@ -91,9 +101,9 @@ The URL fragment (everything after `#`) is a browser-only construct. It is **nev
 
 ## Quick start
 
-### Use it now
+### Try it live (recommended)
 
-Just open `familycode.html` in any browser. No installation required.
+Open **[familycode.netlify.app](https://familycode.netlify.app)** — ready to use, nothing to install.
 
 ### Host it for free (recommended)
 
@@ -154,22 +164,27 @@ When you delete a family from the home screen:
 
 ### OTP algorithm
 
-FamilyCode uses a simplified TOTP-like approach with a **5-minute window**:
+FamilyCode uses a **FNV-1a hash with avalanche mixing** and a **5-minute window**:
 
 ```javascript
 function otp(secret, pin) {
   const base = secret + '::' + pin;
   const t = Math.floor(Date.now() / (300 * 1000)); // 5-min window
-  let h = 0;
-  const s = base + t;
+  const s = base + ':' + t;
+  let h = 0x811c9dc5; // FNV-1a offset basis
   for (let i = 0; i < s.length; i++) {
-    h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193); // FNV prime
   }
-  return String(Math.abs(h) % 1000000).padStart(6, '0');
+  // Avalanche mixing
+  h = Math.imul(h ^ (h >>> 16), 0x45d9f3b);
+  h = Math.imul(h ^ (h >>> 13), 0x45d9f3b);
+  h = (h ^ (h >>> 16)) >>> 0;
+  return String(h % 1000000).padStart(6, '0');
 }
 ```
 
-All devices sharing the same secret and PIN compute identical results because the only inputs are the shared secret and the current time interval — both identical across devices.
+The FNV-1a hash ensures strong avalanche properties: a single-bit change in the input (e.g. time advancing by one interval) produces a completely different 6-digit code. All devices sharing the same secret and PIN compute identical results because the only inputs are the shared secret and the current time interval — both identical across devices.
 
 ### Secret generation
 
@@ -208,6 +223,9 @@ Yes. The name in the URL updates when you rename and copy the new link. The old 
 **Does FamilyCode work offline?**
 Yes, once loaded the app works fully offline. OTP computation requires no network.
 
+**Where is FamilyCode hosted?**
+The official instance is live at [familycode.netlify.app](https://familycode.netlify.app). You can also self-host it — it's a single HTML file.
+
 **Is this TOTP-compliant (RFC 6238)?**
 No. FamilyCode uses a custom hash for simplicity and to avoid requiring HMAC-SHA1 in vanilla JS without dependencies. It is not compatible with standard authenticator apps by design.
 
@@ -215,7 +233,7 @@ No. FamilyCode uses a custom hash for simplicity and to avoid requiring HMAC-SHA
 
 ## Roadmap
 
-- [ ] PWA / installable on home screen
+- [x] PWA / installable on home screen
 - [ ] Optional HMAC-SHA1 TOTP for RFC 6238 compliance
 - [ ] Notification: "someone just checked the code" (requires minimal backend)
 - [ ] Share via native share sheet (Web Share API)
