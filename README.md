@@ -17,7 +17,7 @@ A zero-server, zero-signup OTP webapp to defeat vishing scams and audio deepfake
 
 ## 🌐 Live Demo
 
-**Try it now →** [familycode.netlify.app](https://familycode.netlify.app)
+**Try it now →** [familycode.app](https://familycode.app)
 
 No installation needed. Works on any device with a modern browser.
 
