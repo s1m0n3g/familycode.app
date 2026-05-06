@@ -20,7 +20,7 @@
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
 .app{max-width:420px;margin:0 auto;min-height:100vh;padding:0 0 60px;position:relative}
 .header{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 0;gap:8px}
-.logo{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--accent2);letter-spacing:.04em}
+.logo{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--accent2);letter-spacing:.04em;cursor:pointer}
 .logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 .header-btns{display:flex;gap:8px}
@@ -104,12 +104,12 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .pin-key.confirm:hover{background:var(--accent2)}
 .pin-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);line-height:1.7;white-space:pre-line}
 .pin-badge{display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:20px;background:var(--accent-bg);color:var(--accent2);border:1px solid var(--accent-border);margin-left:6px;vertical-align:middle}
-.guide-step{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:12px;display:flex;gap:16px;align-items:flex-start}
+.guide-step{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:6px;display:flex;gap:16px;align-items:flex-start}
 .guide-step-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--accent2);background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:8px;padding:4px 9px;white-space:nowrap;flex-shrink:0;margin-top:2px}
 .guide-step-body{}
 .guide-step-title{font-size:14px;font-weight:700;margin-bottom:4px}
 .guide-step-desc{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.6}
-.guide-illustration{width:100%;border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--bg2);border:1px solid var(--border)}
+.guide-illustration{width:100%;border-radius:12px;margin-bottom:16px;overflow:hidden;background:var(--bg2);border:1px solid var(--border)}
 .guide-tip{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:20px}
 .print-overlay{display:none;position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;padding:24px 20px 40px}
 .print-overlay.active{display:block}
@@ -149,12 +149,14 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .install-card .btn{font-size:13px;padding:12px;position:relative}
 .install-card-close{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;font-family:'JetBrains Mono',monospace;padding:4px;transition:color .2s}
 .install-card-close:hover{color:var(--text)}
+.guide-block{margin-bottom:6px}
+.guide-connector{text-align:center;padding:8px 0;color:var(--text3);font-size:18px;opacity:.3;letter-spacing:.1em}
 </style>
 </head>
 <body>
 <div class="app">
  <div class="header">
-  <div class="logo"><div class="logo-dot"></div>family_code</div>
+  <div class="logo" id="logo"><div class="logo-dot"></div>family_code</div>
   <div class="header-btns">
    <button class="hbtn" id="btn-guide-open" title="Guida">?</button>
    <button class="hbtn" id="lang-btn">IT</button>
@@ -341,6 +343,15 @@ const i18n={
   installDesc:'Accesso rapido dalla schermata home,\ncome un\'app nativa.',
   installBtn:'\ud83d\udcf2 installa app',
   installIos:'Tocca <span>\u2b06\ufe0f Condividi</span> poi <span>"Aggiungi a Home"</span>',
+  svgScammer:'Sono tuo figlio!',
+  svgFamily:'Famiglia Rossi',
+  svgVoice:'PIN: voce \ud83d\udde3',
+  svgScam1:'"Mamma, sono in',
+  svgScam2:'difficolt\u00e0, mandami',
+  svgScam3:'soldi subito!"',
+  svgAskCode:'"dimmi il codice"',
+  svgConfirm:'\u00e8 davvero lui!',
+  svgAccess:'\u2713 accesso',
  },
  en:{
   heroTitle:'Verify who<br/>calls <span>you.</span>',
@@ -396,6 +407,15 @@ const i18n={
   installDesc:'Quick access from your home screen,\nlike a native app.',
   installBtn:'\ud83d\udcf2 install app',
   installIos:'Tap <span>\u2b06\ufe0f Share</span> then <span>"Add to Home Screen"</span>',
+  svgScammer:'I\'m your son!',
+  svgFamily:'The Smiths',
+  svgVoice:'PIN: voice \ud83d\udde3',
+  svgScam1:'"Mom, I\'m in',
+  svgScam2:'trouble, send me',
+  svgScam3:'money now!"',
+  svgAskCode:'"tell me the code"',
+  svgConfirm:'it\'s really him!',
+  svgAccess:'\u2713 access',
  },
  es:{
   heroTitle:'Verifica qui\u00e9n<br/>te <span>llama.</span>',
@@ -451,6 +471,15 @@ const i18n={
   installDesc:'Acceso r\u00e1pido desde la pantalla de inicio,\ncomo una app nativa.',
   installBtn:'\ud83d\udcf2 instalar app',
   installIos:'Toca <span>\u2b06\ufe0f Compartir</span> luego <span>"A\u00f1adir a inicio"</span>',
+  svgScammer:'\u00a1Soy tu hijo!',
+  svgFamily:'Familia Garc\u00eda',
+  svgVoice:'PIN: voz \ud83d\udde3',
+  svgScam1:'"Mam\u00e1, estoy en',
+  svgScam2:'problemas, manda',
+  svgScam3:'dinero ya!"',
+  svgAskCode:'"dime el c\u00f3digo"',
+  svgConfirm:'\u00a1es \u00e9l de verdad!',
+  svgAccess:'\u2713 acceso',
  },
  de:{
   heroTitle:'Pr\u00fcfe wer<br/>dich <span>anruft.</span>',
@@ -506,6 +535,15 @@ const i18n={
   installDesc:'Schnellzugriff vom Startbildschirm,\nwie eine native App.',
   installBtn:'\ud83d\udcf2 App installieren',
   installIos:'Tippe auf <span>\u2b06\ufe0f Teilen</span> dann <span>"Zum Home-Bildschirm"</span>',
+  svgScammer:'Ich bin dein Sohn!',
+  svgFamily:'Familie M\u00fcller',
+  svgVoice:'PIN: Stimme \ud83d\udde3',
+  svgScam1:'"Mama, ich bin in',
+  svgScam2:'Schwierigkeiten,',
+  svgScam3:'schick mir Geld!"',
+  svgAskCode:'"sag mir den Code"',
+  svgConfirm:'er ist es wirklich!',
+  svgAccess:'\u2713 Zugang',
  },
  fr:{
   heroTitle:'V\u00e9rifie qui<br/>t\'<span>appelle.</span>',
@@ -561,21 +599,30 @@ const i18n={
   installDesc:'Acc\u00e8s rapide depuis l\'\u00e9cran d\'accueil,\ncomme une app native.',
   installBtn:'\ud83d\udcf2 installer l\'app',
   installIos:'Appuie sur <span>\u2b06\ufe0f Partager</span> puis <span>"Sur l\'\u00e9cran d\'accueil"</span>',
+  svgScammer:'C\'est ton fils !',
+  svgFamily:'Famille Dupont',
+  svgVoice:'PIN: voix \ud83d\udde3',
+  svgScam1:'"Maman, je suis en',
+  svgScam2:'difficult\u00e9, envoie',
+  svgScam3:'de l\'argent !"',
+  svgAskCode:'"dis-moi le code"',
+  svgConfirm:'c\'est vraiment lui !',
+  svgAccess:'\u2713 acc\u00e8s',
  }
 };
 
-const stepSVG=[
+function getStepSVG(t){return [
 `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
 <rect x="110" y="10" width="60" height="100" rx="10" fill="none" stroke="#7c6af7" stroke-width="2"/>
 <circle cx="140" cy="95" r="4" fill="#7c6af7" opacity=".5"/>
 <text x="140" y="62" text-anchor="middle" font-size="28" fill="#ff5c7a">👹</text>
-<text x="230" y="55" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">Sono tuo figlio!</text>
+<text x="230" y="55" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">${t.svgScammer}</text>
 <line x1="170" y1="55" x2="220" y2="55" stroke="#ff5c7a" stroke-width="1.5" stroke-dasharray="4,3"/>
 <circle cx="230" cy="55" r="3" fill="#ff5c7a"/>
 </svg>`,
 `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
 <rect x="20" y="20" width="120" height="80" rx="10" fill="none" stroke="#7c6af7" stroke-width="2"/>
-<text x="80" y="52" text-anchor="middle" font-size="11" fill="#a599ff" font-family="JetBrains Mono,monospace">Famiglia Rossi</text>
+<text x="80" y="52" text-anchor="middle" font-size="11" fill="#a599ff" font-family="JetBrains Mono,monospace">${t.svgFamily}</text>
 <rect x="35" y="60" width="90" height="24" rx="6" fill="#1a1a24" stroke="#7c6af7" stroke-width="1"/>
 <text x="80" y="76" text-anchor="middle" font-size="13" fill="#7c6af7" font-family="JetBrains Mono,monospace" letter-spacing="4">● ● ● ●</text>
 <rect x="180" y="30" width="110" height="60" rx="10" fill="none" stroke="#3dffc0" stroke-width="1.5" stroke-dasharray="5,3"/>
@@ -590,7 +637,7 @@ const stepSVG=[
 <rect x="100" y="42" width="80" height="22" rx="8" fill="#25D366" opacity=".8"/>
 <text x="140" y="57" text-anchor="middle" font-size="9" fill="#fff" font-family="JetBrains Mono,monospace">link →</text>
 <rect x="100" y="72" width="80" height="22" rx="8" fill="#1a1a24" stroke="#f0a800" stroke-width="1.5"/>
-<text x="140" y="87" text-anchor="middle" font-size="9" fill="#f0a800" font-family="JetBrains Mono,monospace">PIN: voce 🗣</text>
+<text x="140" y="87" text-anchor="middle" font-size="9" fill="#f0a800" font-family="JetBrains Mono,monospace">${t.svgVoice}</text>
 <circle cx="260" cy="60" r="30" fill="none" stroke="#3dffc0" stroke-width="2"/>
 <text x="260" y="66" text-anchor="middle" font-size="22">👴</text>
 <line x1="190" y1="53" x2="228" y2="53" stroke="#25D366" stroke-width="1.5" marker-end="url(#a2)"/>
@@ -605,9 +652,9 @@ const stepSVG=[
 <text x="50" y="70" text-anchor="middle" font-size="28">📞</text>
 <rect x="10" y="10" width="20" height="20" rx="4" fill="#ff5c7a" opacity=".8"/>
 <text x="20" y="24" text-anchor="middle" font-size="12" fill="#fff">!</text>
-<text x="160" y="45" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">"Mamma, sono in</text>
-<text x="160" y="62" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">difficoltà, mandami</text>
-<text x="160" y="79" text-anchor="middle" font-size="11" fill="#ff5c7a" font-family="JetBrains Mono,monospace">soldi subito!"</text>
+<text x="160" y="45" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">${t.svgScam1}</text>
+<text x="160" y="62" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">${t.svgScam2}</text>
+<text x="160" y="79" text-anchor="middle" font-size="11" fill="#ff5c7a" font-family="JetBrains Mono,monospace">${t.svgScam3}</text>
 <line x1="82" y1="60" x2="110" y2="60" stroke="#ff5c7a" stroke-width="1.5" stroke-dasharray="4,3"/>
 </svg>`,
 `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
@@ -615,9 +662,9 @@ const stepSVG=[
 <rect x="30" y="40" width="60" height="28" rx="6" fill="#1a1a24" stroke="#7c6af7" stroke-width="1"/>
 <text x="60" y="59" text-anchor="middle" font-size="16" fill="#a599ff" font-family="JetBrains Mono,monospace" letter-spacing="3">482 931</text>
 <text x="60" y="78" text-anchor="middle" font-size="9" fill="#45455a" font-family="JetBrains Mono,monospace">OTP 5m</text>
-<text x="200" y="45" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">"dimmi il codice"</text>
+<text x="200" y="45" text-anchor="middle" font-size="11" fill="#7a7a9a" font-family="JetBrains Mono,monospace">${t.svgAskCode}</text>
 <text x="200" y="72" text-anchor="middle" font-size="18" fill="#3dffc0">✓ 482 931</text>
-<text x="200" y="88" text-anchor="middle" font-size="9" fill="#3dffc0" font-family="JetBrains Mono,monospace">è davvero lui!</text>
+<text x="200" y="88" text-anchor="middle" font-size="9" fill="#3dffc0" font-family="JetBrains Mono,monospace">${t.svgConfirm}</text>
 <line x1="102" y1="60" x2="140" y2="60" stroke="#7c6af7" stroke-width="1.5" stroke-dasharray="4,3"/>
 </svg>`,
 `<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
@@ -633,10 +680,10 @@ const stepSVG=[
 <rect x="152" y="20" width="60" height="80" rx="8" fill="none" stroke="#3dffc0" stroke-width="2"/>
 <text x="182" y="68" text-anchor="middle" font-size="28">📷</text>
 <text x="260" y="55" text-anchor="middle" font-size="28">👴</text>
-<text x="260" y="78" text-anchor="middle" font-size="9" fill="#3dffc0" font-family="JetBrains Mono,monospace">✓ accesso</text>
+<text x="260" y="78" text-anchor="middle" font-size="9" fill="#3dffc0" font-family="JetBrains Mono,monospace">${t.svgAccess}</text>
 <defs><marker id="a4" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7c6af7"/></marker></defs>
-</svg>`,
-];
+</svg>`
+];}
 const $=id=>document.getElementById(id);
 function save(){localStorage.setItem(DB,JSON.stringify(fams))}
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
@@ -720,17 +767,24 @@ function pinConfirm(){
 /* ========== LANG / THEME ========== */
 function buildGuide(){
  const t=i18n[lang];
+ const svgs=getStepSVG(t);
  $('guide-title').textContent=t.guideTitle;
  $('guide-intro').textContent=t.guideIntro;
  $('guide-tip').textContent=t.guideTip;
- $('guide-steps').innerHTML=t.guideSteps.map((s,i)=>
-  '<div class="guide-illustration">'+stepSVG[i]+'</div>'
-  +'<div class="guide-step">'
-  +'<div class="guide-step-num">'+s.n+'</div>'
-  +'<div class="guide-step-body"><div class="guide-step-title">'+s.title+'</div>'
-  +'<div class="guide-step-desc">'+s.desc+'</div></div></div>'
- ).join('');
+ $('guide-steps').innerHTML=svgs.map((svg,i)=>{
+  var s=t.guideSteps[i];
+  var block='<div class="guide-block">'
+   +'<div class="guide-illustration">'+svg+'</div>'
+   +'<div class="guide-step">'
+   +'<div class="guide-step-num">'+s.n+'</div>'
+   +'<div class="guide-step-body"><div class="guide-step-title">'+s.title+'</div>'
+   +'<div class="guide-step-desc">'+s.desc+'</div></div></div>'
+   +'</div>';
+  if(i<svgs.length-1)block+='<div class="guide-connector">\u2193</div>';
+  return block;
+ }).join('');
 }
+const langFlags={it:'🇮🇹',en:'🇬🇧',es:'🇪🇸',de:'🇩🇪',fr:'🇫🇷'};
 function applyLang(){
  const t=i18n[lang];
  $('hero-title').innerHTML=t.heroTitle;$('hero-sub').innerHTML=t.heroSub;
@@ -749,7 +803,7 @@ function applyLang(){
  $('btn-print').innerHTML='<span>⬛</span><span>'+t.btnPrint.replace('⬛','').trim()+'</span>';
  $('btn-do-print').textContent=t.btnDoPrint;
  $('print-tip').textContent=t.printTip;
- $('lang-btn').textContent=lang.toUpperCase();
+ $('lang-btn').textContent=langFlags[lang]||lang.toUpperCase();$('lang-btn').title=lang.toUpperCase();
  document.documentElement.lang=lang;
  document.querySelectorAll('.lang-item').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
  $('footer-os-label').textContent=t.footerOsLabel;$('footer-disclaimer').textContent=t.footerDisclaimer;renderInstallCard();
@@ -844,6 +898,7 @@ $('back-print').onclick=hideOverlay;
 /* ========== NAVIGATION ========== */
 $('btn-guide-open').onclick=()=>{buildGuide();showScreen('guide-screen')};
 $('back-guide').onclick=()=>{showScreen('home');renderHome()};
+$('logo').onclick=()=>{if(ticker)clearInterval(ticker);cur=null;hideOverlay();$('del-overlay').classList.remove('open');showScreen('home');renderHome()};
 $('btn-create').onclick=()=>{$('new-name').value='';showScreen('create-screen');setTimeout(()=>$('new-name').focus(),100)};
 $('btn-join').onclick=()=>{$('join-code').value='';showScreen('join-screen');setTimeout(()=>$('join-code').focus(),100)};
 $('back-create').onclick=()=>{showScreen('home');renderHome()};
