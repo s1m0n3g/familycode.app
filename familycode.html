@@ -86,23 +86,25 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .lang-item{padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s}
 .lang-item:hover{background:var(--bg3);color:var(--text)}
 .lang-item.active{color:var(--accent2)}
-.pin-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:28px 24px;text-align:center;margin-top:16px}
-.pin-card-icon{font-size:32px;margin-bottom:12px}
-.pin-card-title{font-size:19px;font-weight:800;margin-bottom:6px}
-.pin-card-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);margin-bottom:16px;line-height:1.7;white-space:pre-line}
-.pin-warning{background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.35);border-radius:12px;padding:11px 13px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#f0a800;line-height:1.7;margin-bottom:18px;text-align:left;white-space:pre-line}
+.pin-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:18px 20px 14px;text-align:center;margin-top:10px}
+.pin-card-icon{font-size:24px;margin-bottom:6px}
+.pin-card-title{font-size:16px;font-weight:800;margin-bottom:4px}
+.pin-card-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-bottom:8px;line-height:1.5;white-space:pre-line}
+.pin-warning{background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.35);border-radius:10px;padding:8px 11px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#f0a800;line-height:1.5;margin-bottom:10px;text-align:left;white-space:pre-line}
 :root[data-theme="light"] .pin-warning{background:rgba(200,120,0,0.07);border-color:rgba(200,120,0,0.3);color:#a06000}
-.pin-dots{display:flex;gap:12px;justify-content:center;margin-bottom:22px;min-height:20px}
-.pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border2);transition:all .15s}
+.pin-dots{display:flex;gap:10px;justify-content:center;margin-bottom:14px;min-height:16px}
+.pin-dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--border2);transition:all .15s}
 .pin-dot.filled{background:var(--accent);border-color:var(--accent);box-shadow:0 0 8px var(--accent)}
-.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:260px;margin:0 auto 16px}
-.pin-key{padding:17px;border-radius:14px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;cursor:pointer;transition:all .15s;text-align:center;user-select:none}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:240px;margin:0 auto 10px}
+.pin-key{padding:13px;border-radius:12px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;cursor:pointer;transition:all .15s;text-align:center;user-select:none}
 .pin-key:hover{border-color:var(--accent-border);background:var(--accent-bg);color:var(--accent2)}
 .pin-key:active{transform:scale(.92)}
 .pin-key.del{font-size:16px;color:var(--text2)}
 .pin-key.confirm{background:var(--accent);border-color:var(--accent);color:#fff;font-size:16px}
 .pin-key.confirm:hover{background:var(--accent2)}
-.pin-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);line-height:1.7;white-space:pre-line}
+.pin-note{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);line-height:1.5;white-space:pre-line}
+#pin-screen{padding-top:12px;padding-bottom:12px}
+#pin-screen .back{margin-bottom:8px}
 .pin-badge{display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:20px;background:var(--accent-bg);color:var(--accent2);border:1px solid var(--accent-border);margin-left:6px;vertical-align:middle}
 .guide-step{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:6px;display:flex;gap:16px;align-items:flex-start}
 .guide-step-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--accent2);background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:8px;padding:4px 9px;white-space:nowrap;flex-shrink:0;margin-top:2px}
