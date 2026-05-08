@@ -1,3 +1,4 @@
+<div align="center">
 # FamilyCode 🔐
 
 **Verify who's really calling you.**
@@ -8,7 +9,7 @@ A zero-server, zero-signup OTP webapp to defeat vishing scams and audio deepfake
 [![Single File](https://img.shields.io/badge/Architecture-Single%20HTML-brightgreen)]()
 [![No Server](https://img.shields.io/badge/Server-None-important)]()
 [![Live Demo](https://img.shields.io/badge/Demo-familycode.app-7c6af7)](https://familycode.app)
-
+</div>
 ---
 
 ## 🌐 Live Demo
