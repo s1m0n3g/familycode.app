@@ -1,5 +1,3 @@
-<div align="center">
-
 # FamilyCode 🔐
 
 **Verify who's really calling you.**
@@ -9,9 +7,7 @@ A zero-server, zero-signup OTP webapp to defeat vishing scams and audio deepfake
 [![License: PolyForm Noncommercial](https://img.shields.io/badge/License-PolyForm%20NC%201.0.0-blueviolet)](LICENSE)
 [![Single File](https://img.shields.io/badge/Architecture-Single%20HTML-brightgreen)]()
 [![No Server](https://img.shields.io/badge/Server-None-important)]()
-[![Live Demo](https://img.shields.io/badge/Demo-familycode.netlify.app-7c6af7)](https://familycode.netlify.app)
-
-</div>
+[![Live Demo](https://img.shields.io/badge/Demo-familycode.app-7c6af7)](https://familycode.app)
 
 ---
 
@@ -25,7 +21,9 @@ No installation needed. Works on any device with a modern browser.
 
 ## The problem
 
-Vishing scams and AI-generated voice deepfakes are on the rise. A fraudster calls pretending to be your son, your mother, your bank — and the voice sounds **real**. Existing solutions are B2B-only, complex, or require accounts and subscriptions.
+Vishing scams and AI-generated voice deepfakes are on the rise. A fraudster calls pretending to be your son, your mother, your bank — and the voice sounds **real**.
+
+Existing solutions are B2B-only, complex, or require accounts and subscriptions.
 
 **FamilyCode is different:** it's a single HTML file your whole family can use in 30 seconds.
 
@@ -61,13 +59,15 @@ No database. No server. No account. **The URL is the key.**
 | 👨‍👩‍👧 | **Multiple families** | Manage as many groups as you need |
 | 🗑 | **Delete families** | With safety warning and restore instructions |
 | 🔄 | **Restore via link** | Re-open the shared link or scan the QR to restore a deleted family |
-| 🖨 | **Print QR + PIN** | Generate a printable sheet for elderly family members |
+| 🖨 | **Print QR with/without PIN** | Generate a printable sheet with or without PIN for elderly family members |
+| 📷 | **QR Scanner** | Scan a QR code to join a family — live camera with [jsQR](https://github.com/cozmo/jsQR), works on iOS, Android and PC |
 | ✏️ | **Rename families** | Update the display name anytime |
 | 🌍 | **5 languages** | Italian, English, Spanish, German, French (auto-detected) |
 | 🌙 | **Dark / Light theme** | Switchable |
 | 📖 | **Built-in guide** | Illustrated step-by-step tutorial inside the app |
-| 📦 | **Single HTML file** | No npm, no build step, no dependencies |
+| 📦 | **Single HTML file** | No npm, no build step, no dependencies (except jsQR CDN) |
 | 📱 | **PWA installable** | Add to home screen on Android and iOS, works offline |
+| 🔍 | **Anti-zoom PIN pad** | Prevents accidental zoom on mobile when tapping PIN digits |
 | 💾 | **localStorage cache** | The URL remains the true source of truth |
 
 ---
@@ -101,14 +101,9 @@ The URL fragment (everything after `#`) is a browser-only construct. It is **nev
 
 ## Quick start
 
-### Try it live (recommended)
-
-Open **[familycode.netlify.app](https://familycode.netlify.app)** — ready to use, nothing to install.
-
 ### Host it for free (recommended)
 
-Drag and drop `familycode.html` on **[netlify.com/drop](https://netlify.com/drop)**.
-You get a public URL in under 30 seconds, for free.
+Drag and drop `familycode.html` on **[netlify.com/drop](https://netlify.com/drop)**. You get a public URL in under 30 seconds, for free.
 
 ### Self-host
 
@@ -128,21 +123,21 @@ npx serve .
 
 ```
 Creator
- │
- ├─ Creates family → app generates 128-bit secret
- │
- ├─ Sets a 4-digit PIN → shared verbally or via separate channel
- │
- └─ Shares the link → familycode.app/#s=3f9a...&n=Famiglia+Rossi
-     │                  │
-     │                  └─ family name (cosmetic)
-     └─ 128-bit secret (never hits server)
+│
+├─ Creates family → app generates 128-bit secret
+│
+├─ Sets a 4-digit PIN → shared verbally or via separate channel
+│
+└─ Shares the link → familycode.app/#s=3f9a...&n=Famiglia+Rossi
+   │                  │
+   │                  └─ family name (cosmetic)
+   └─ 128-bit secret (never hits server)
 
 Recipient
- │
- ├─ Opens link (or scans QR) → family restored automatically
- │
- └─ Enters 4-digit PIN → sees the same OTP
+│
+├─ Opens link (or scans QR) → family restored automatically
+│
+└─ Enters 4-digit PIN → sees the same OTP
 ```
 
 ---
@@ -171,20 +166,32 @@ function otp(secret, pin) {
   const base = secret + '::' + pin;
   const t = Math.floor(Date.now() / (300 * 1000)); // 5-min window
   const s = base + ':' + t;
+
   let h = 0x811c9dc5; // FNV-1a offset basis
   for (let i = 0; i < s.length; i++) {
     h ^= s.charCodeAt(i);
     h = Math.imul(h, 0x01000193); // FNV prime
   }
+
   // Avalanche mixing
   h = Math.imul(h ^ (h >>> 16), 0x45d9f3b);
   h = Math.imul(h ^ (h >>> 13), 0x45d9f3b);
   h = (h ^ (h >>> 16)) >>> 0;
+
   return String(h % 1000000).padStart(6, '0');
 }
 ```
 
 The FNV-1a hash ensures strong avalanche properties: a single-bit change in the input (e.g. time advancing by one interval) produces a completely different 6-digit code. All devices sharing the same secret and PIN compute identical results because the only inputs are the shared secret and the current time interval — both identical across devices.
+
+### QR Scanner
+
+The QR scanner uses **live camera** via `getUserMedia` and decodes frames in real time with [jsQR](https://github.com/cozmo/jsQR) (a pure JavaScript QR decoder, ~33KB from CDN). This approach works cross-platform:
+
+- **iOS Safari/Chrome**: live video feed (no "take photo" fallback needed)
+- **Android Chrome/Firefox**: live video feed
+- **Desktop**: webcam feed
+- **Fallback**: file picker if camera access is denied
 
 ### Secret generation
 
@@ -224,7 +231,7 @@ Yes. The name in the URL updates when you rename and copy the new link. The old 
 Yes, once loaded the app works fully offline. OTP computation requires no network.
 
 **Where is FamilyCode hosted?**
-The official instance is live at [familycode.netlify.app](https://familycode.netlify.app). You can also self-host it — it's a single HTML file.
+The official instance is live at [familycode.app](https://familycode.app). You can also self-host it — it's a single HTML file.
 
 **Is this TOTP-compliant (RFC 6238)?**
 No. FamilyCode uses a custom hash for simplicity and to avoid requiring HMAC-SHA1 in vanilla JS without dependencies. It is not compatible with standard authenticator apps by design.
@@ -234,6 +241,9 @@ No. FamilyCode uses a custom hash for simplicity and to avoid requiring HMAC-SHA
 ## Roadmap
 
 - [x] PWA / installable on home screen
+- [x] QR code scanner (live camera, cross-platform via jsQR)
+- [x] Dual print: QR with or without PIN
+- [x] Anti-zoom PIN pad on mobile
 - [ ] Optional HMAC-SHA1 TOTP for RFC 6238 compliance
 - [ ] Notification: "someone just checked the code" (requires minimal backend)
 - [ ] Share via native share sheet (Web Share API)
@@ -263,6 +273,7 @@ By contributing, you agree that your contributions will be licensed under the sa
 
 ---
 
-<div align="center">
-<sub>Built to protect families from AI-powered phone fraud.<br/>No ads. No tracking. No server.</sub>
-</div>
+<p align="center">
+Built to protect families from AI-powered phone fraud.<br>
+No ads. No tracking. No server.
+</p>
