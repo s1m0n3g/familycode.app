@@ -167,7 +167,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
   <div class="logo" id="logo"><div class="logo-dot"></div>family_code</div>
   <div class="header-btns">
    <button class="hbtn" id="btn-guide-open" title="Guida">?</button>
-   <button class="hbtn" id="lang-btn">IT</button>
+   <button class="hbtn" id="lang-btn">EN</button>
    <button class="hbtn" id="theme-btn">☀</button>
   </div>
  </div>
@@ -1133,7 +1133,7 @@ $('scan-file-input').onchange=function(e){
 if($('btn-scan-qr'))$('btn-scan-qr').onclick=openScanner;
 if($('back-scan'))$('back-scan').onclick=closeScanner;
 
-lang=localStorage.getItem('fc_lang')||(navigator.language||'en').slice(0,2).toLowerCase();
+lang=localStorage.getItem('fc_lang')||'en';
 if(!i18n[lang])lang='en';
 applyLang();checkHash();
 </script>
