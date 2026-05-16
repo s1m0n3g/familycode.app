@@ -1133,8 +1133,7 @@ $('scan-file-input').onchange=function(e){
 if($('btn-scan-qr'))$('btn-scan-qr').onclick=openScanner;
 if($('back-scan'))$('back-scan').onclick=closeScanner;
 
-lang=localStorage.getItem('fc_lang')||'en';
-if(!i18n[lang])lang='en';
+lang=localStorage.getItem('fc_lang')||(navigator.language||'en').slice(0,2).toLowerCase();if(!i18n[lang])lang='en';
 applyLang();checkHash();
 </script>
 </body>
