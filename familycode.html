@@ -31,15 +31,15 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .screen.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .hero{margin:28px 0 24px}
-.hero h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+.hero h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.35;margin-bottom:10px}
 .hero h1 span{color:var(--accent2)}
 .hero p{font-size:13px;color:var(--text2);line-height:1.6;font-family:'JetBrains Mono',monospace;font-weight:300}
 .family-list{margin-bottom:20px}
-.family-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;cursor:pointer;transition:border-color .2s,transform .15s;display:flex;align-items:center;justify-content:space-between;gap:12px;overflow:hidden}
+.family-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;cursor:pointer;transition:border-color .2s,transform .15s;display:flex;align-items:center;justify-content:space-between;gap:12px;overflow:visible}
 .family-card:hover{border-color:var(--accent-border);transform:translateY(-1px)}
-.family-card-info{min-width:0;flex:1;overflow:hidden}
-.family-card-name{font-size:15px;font-weight:700;margin-bottom:3px;overflow-wrap:break-word;word-break:break-word}
-.family-card-id{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.08em}
+.family-card-info{min-width:0;flex:1;overflow:visible}
+.family-card-name{font-size:15px;font-weight:700;margin-bottom:3px;overflow-wrap:break-word;word-break:break-word;line-height:1.5;padding-bottom:3px}
+.family-card-id{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.08em;line-height:1.5}
 .family-card-otp{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;letter-spacing:3px;color:var(--accent2);white-space:nowrap;flex-shrink:0}
 .family-card-del{width:28px;height:28px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s;flex-shrink:0;font-family:'JetBrains Mono',monospace;font-weight:700}
 .family-card-del:hover{border-color:rgba(255,92,122,0.5);color:#ff5c7a;background:rgba(255,92,122,0.08)}
@@ -52,19 +52,19 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .back{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);cursor:pointer;margin-bottom:24px;padding:6px 0;transition:color .2s;letter-spacing:.05em}
 .back:hover{color:var(--text2)}
 .field-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;margin-bottom:8px}
-.field-input{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--border2);background:var(--bg2);color:var(--text);font-size:16px;font-family:'Syne',sans-serif;font-weight:500;margin-bottom:20px;transition:border-color .2s,box-shadow .2s;outline:none}
+.field-input{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--border2);background:var(--bg2);color:var(--text);font-size:16px;font-family:'Syne',sans-serif;font-weight:500;line-height:1.5;margin-bottom:20px;transition:border-color .2s,box-shadow .2s;outline:none}
 .field-input:focus{border-color:var(--accent-border);box-shadow:0 0 0 3px var(--accent-bg)}
 .field-input::placeholder{color:var(--text3)}
-.otp-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:28px 24px 24px;text-align:center;position:relative;overflow:hidden}
+.otp-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:28px 24px 24px;text-align:center;position:relative;overflow:visible}
 .otp-card::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,var(--accent-bg) 0%,transparent 70%);pointer-events:none}
-.otp-family-id{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:20px;letter-spacing:.08em}
+.otp-family-id{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:20px;letter-spacing:.08em;line-height:1.5;padding-bottom:2px}
 .otp-digits{font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:700;letter-spacing:12px;color:var(--accent2);text-shadow:0 0 30px rgba(124,106,247,.4);margin-bottom:4px;line-height:1}
 .otp-hint{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);margin-bottom:20px;letter-spacing:.04em}
 .progress-bar{height:2px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:6px}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width 1s linear}
 .timer-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.08em}
 .rename-row{display:flex;gap:8px;align-items:center;margin-bottom:20px}
-.rename-row .field-input{margin:0;flex:1;font-size:15px;overflow:hidden;text-overflow:ellipsis}
+.rename-row .field-input{margin:0;flex:1;font-size:15px;overflow:visible;line-height:1.5}
 .rename-btn{padding:13px 16px;border-radius:12px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer;white-space:nowrap;transition:all .2s;font-weight:500}
 .rename-btn:hover{border-color:var(--accent-border);color:var(--accent2)}
 .url-section{margin-top:20px}
@@ -74,7 +74,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .url-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);line-height:1.6}
 .status-badge{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 10px;border-radius:20px;background:var(--green-bg);color:var(--green);border:1px solid rgba(61,255,192,.15);letter-spacing:.06em;margin-bottom:20px}
 .status-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
-.section-title{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+.section-title{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px;line-height:1.4}
 .section-sub{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);margin-bottom:28px;line-height:1.6;font-weight:300}
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:10px 20px;border-radius:30px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;opacity:0;transition:all .3s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -89,7 +89,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .lang-item.active{color:var(--accent2)}
 .pin-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:18px 20px 14px;text-align:center;margin-top:10px}
 .pin-card-icon{font-size:24px;margin-bottom:6px}
-.pin-card-title{font-size:16px;font-weight:800;margin-bottom:4px}
+.pin-card-title{font-size:16px;font-weight:800;margin-bottom:4px;line-height:1.5}
 .pin-card-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-bottom:8px;line-height:1.5;white-space:pre-line}
 .pin-warning{background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.35);border-radius:10px;padding:8px 11px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#f0a800;line-height:1.5;margin-bottom:10px;text-align:left;white-space:pre-line}
 :root[data-theme="light"] .pin-warning{background:rgba(200,120,0,0.07);border-color:rgba(200,120,0,0.3);color:#a06000}
@@ -273,7 +273,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
   <div class="back" id="back-print"></div>
   <div class="print-area" id="print-area">
    <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:#bbb;text-transform:uppercase;margin-bottom:8px">family_code 🔐</div>
-   <div id="print-name" style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#111;margin-bottom:4px;overflow-wrap:break-word;word-break:break-word"></div>
+   <div id="print-name" style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#111;margin-bottom:6px;line-height:1.5;padding:2px 0 6px 0;text-decoration:none;text-shadow:none;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision;overflow-wrap:break-word;word-break:break-word"></div>
    <div id="print-keytail" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#bbb;margin-bottom:20px"></div>
    <img id="print-qr-img" style="width:200px;height:200px;border-radius:10px;border:1px solid #eee;padding:8px;margin-bottom:12px" alt="QR"/>
    <div id="print-scan" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#999;margin-bottom:20px;line-height:1.6"></div>
@@ -281,6 +281,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
     <div id="print-pin-label" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#999;margin-bottom:10px"></div>
     <div id="print-pin-value" style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;letter-spacing:10px;color:#111;margin-bottom:8px"></div>
     <div id="print-pin-note" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#bbb;line-height:1.6"></div>
+<div id="print-pin-warning" style="background:rgba(255,180,0,0.10);border:1.5px solid rgba(255,180,0,0.5);border-radius:10px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#b37700;line-height:1.7;margin-top:12px;text-align:left;white-space:pre-line"></div>
    </div>
    <div id="print-footer" style="border-top:1px solid #f0f0f0;margin-top:24px;padding-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#ccc;line-height:1.8"></div>
   </div>
@@ -347,6 +348,7 @@ const i18n={
   printScan:'// scansiona con la fotocamera\n// per aprire direttamente il codice famiglia',
   printPinLabel:'PIN di accesso',
   printPinNote:'// conserva in un posto sicuro.\n// il PIN non \u00e8 recuperabile.',
+printPinWarning:'⚠️ Non condividere il PIN con l\u2019interlocutore al telefono.\nIl codice da comunicare è quello generato dall\u2019app dopo la scansione del QR e l\u2019inserimento corretto del PIN.',
   printFooter:'family_code \u00b7 verifica chi ti chiama \u00b7 nessun dato raggiunge mai il server',
   btnDoPrint:'\ud83d\udda8 stampa / salva PDF',
   printTip:'// condividi il QR senza PIN per un accesso limitato,\n// oppure con PIN per l\'accesso completo.',
@@ -361,6 +363,13 @@ const i18n={
    {n:'04',title:'Ricevi una chiamata sospetta',desc:'Qualcuno ti chiama fingendo di essere un tuo familiare. Prima di credere o dare qualsiasi informazione, apri FamilyCode.'},
    {n:'05',title:'Chiedi il codice',desc:'Guarda il codice a 6 cifre che vedi. Chiedi al chiamante: "dimmi il codice". Se non lo sa o dice un numero diverso \u2192 \u00e8 un truffatore.'},
    {n:'06',title:'Stampa per i nonni',desc:'Per i familiari meno pratici con lo smartphone, stampa il foglio QR con il PIN. Baster\u00e0 scansionare il QR con la fotocamera per aprire l\'app.'},
+  ],
+  securityTitle:'Perché è sicura',
+  securitySteps:[
+   {n:'07',title:'Nessun server, nessun database',desc:'FamilyCode non invia e non salva nulla su internet. Non esiste nessun server, nessun database, nessun cloud. Un hacker non può rubare ciò che non esiste: il tuo codice famiglia vive solo nel tuo dispositivo.'},
+   {n:'08',title:'I dati restano nel tuo browser',desc:'Il codice viene salvato nella memoria locale (localStorage) del browser che usi. Ogni browser e ogni app ha la sua memoria separata: Chrome, Safari, Instagram, la PWA — sono tutte sessioni diverse. Scegli un solo posto dove usare FamilyCode, oppure salva il link in un luogo sicuro. La scelta più sicura è stampare il QR e conservarlo in un cassetto.'},
+   {n:'09',title:'Il link senza PIN è inutile',desc:'Il link e il QR contengono il segreto della famiglia, ma senza il PIN corretto generano un codice OTP sbagliato. Nessun errore, nessun avviso: semplicemente il numero sarà diverso da quello dei tuoi familiari. Chi intercetta il link non può fare nulla senza il PIN.'},
+   {n:'10',title:'Perché non basta un PIN concordato a voce?',desc:'Un PIN fisso non cambia mai: se un truffatore lo scopre, lo usa per sempre. Le persone scelgono numeri prevedibili (date, sequenze). Un PIN detto al telefono può essere ascoltato e riutilizzato. FamilyCode genera un codice diverso ogni 5 minuti, calcolato da un segreto a 128 bit + il PIN. Anche conoscendo il PIN, senza il segreto nel link il codice è impossibile da indovinare.'},
   ],
   footerOsLabel:'progetto open source',
   footerDisclaimer:'\u2696 Disclaimer \u2014 L\'autore non si assume alcuna responsabilit\u00e0 per l\'uso improprio, errato o illecito di questa applicazione. L\'utilizzo avviene interamente a proprio rischio e pericolo.',
@@ -413,6 +422,7 @@ const i18n={
   printScan:'// scan with camera\n// to open the family code directly',
   printPinLabel:'access PIN',
   printPinNote:'// keep in a safe place.\n// PIN cannot be recovered.',
+printPinWarning:'⚠️ Do not share the PIN with the caller on the phone.\nThe code to share is the one generated by the app after scanning the QR and entering the correct PIN.',
   printFooter:'family_code \u00b7 verify who calls you \u00b7 no data ever reaches the server',
   btnDoPrint:'\ud83d\udda8 print / save PDF',
   printTip:'// share the QR without PIN for limited access,\n// or with PIN for full access.',
@@ -427,6 +437,13 @@ const i18n={
    {n:'04',title:'Receive a suspicious call',desc:'Someone calls pretending to be your family member. Before trusting them or giving any information, open FamilyCode.'},
    {n:'05',title:'Ask for the code',desc:'Look at the 6-digit code on your screen. Ask the caller: "tell me the code". If they don\'t know it or say a different number \u2192 it\'s a scammer.'},
    {n:'06',title:'Print for grandparents',desc:'For family members less comfortable with smartphones, print the QR sheet with the PIN. Scanning the QR with the camera opens the app directly.'},
+  ],
+  securityTitle:'Why it\'s secure',
+  securitySteps:[
+   {n:'07',title:'No server, no database',desc:'FamilyCode does not send or store anything online. There is no server, no database, no cloud. A hacker cannot steal what doesn\'t exist: your family code lives only on your device.'},
+   {n:'08',title:'Data stays in your browser',desc:'The code is saved in the local storage (localStorage) of the browser you use. Each browser and each app has its own separate memory: Chrome, Safari, Instagram, the PWA — they are all different sessions. Choose one place to use FamilyCode, or save the link somewhere safe. The safest choice is to print the QR and keep it in a drawer.'},
+   {n:'09',title:'The link without PIN is useless',desc:'The link and the QR contain the family secret, but without the correct PIN they generate a wrong OTP code. No error, no warning: the number will simply be different from your family members\'. Anyone who intercepts the link can do nothing without the PIN.'},
+   {n:'10',title:'Why isn\'t a verbal PIN enough?',desc:'A fixed PIN never changes: if a scammer discovers it once, they can use it forever. People choose predictable numbers (dates, sequences). A PIN spoken on the phone can be overheard and reused. FamilyCode generates a different code every 5 minutes, calculated from a 128-bit secret + PIN. Even knowing the PIN, without the secret in the link the code is impossible to guess.'},
   ],
   footerOsLabel:'open source project',
   footerDisclaimer:'\u2696 Disclaimer \u2014 The author assumes no responsibility for any improper, incorrect, or unlawful use of this application. Use is entirely at your own risk.',
@@ -479,6 +496,7 @@ const i18n={
   printScan:'// escanea con la c\u00e1mara\n// para abrir el c\u00f3digo familiar directamente',
   printPinLabel:'PIN de acceso',
   printPinNote:'// guarda en un lugar seguro.\n// el PIN no se puede recuperar.',
+printPinWarning:'⚠️ No compartas el PIN con la persona al teléfono.\nEl código a compartir es el generado por la app tras escanear el QR e introducir el PIN correcto.',
   printFooter:'family_code \u00b7 verifica qui\u00e9n te llama \u00b7 ning\u00fan dato llega al servidor',
   btnDoPrint:'\ud83d\udda8 imprimir / guardar PDF',
   printTip:'// comparte el QR sin PIN para acceso limitado,\n// o con PIN para acceso completo.',
@@ -493,6 +511,13 @@ const i18n={
    {n:'04',title:'Recibes una llamada sospechosa',desc:'Alguien llama fingiendo ser un familiar tuyo. Antes de confiar o dar cualquier informaci\u00f3n, abre FamilyCode.'},
    {n:'05',title:'Pide el c\u00f3digo',desc:'Mira el c\u00f3digo de 6 d\u00edgitos en tu pantalla. Pregunta al que llama: "dime el c\u00f3digo". Si no lo sabe o dice uno diferente \u2192 es un estafador.'},
    {n:'06',title:'Imprime para los abuelos',desc:'Para familiares menos c\u00f3modos con el smartphone, imprime la hoja QR con el PIN. Escanear el QR con la c\u00e1mara abre la app directamente.'},
+  ],
+  securityTitle:'Por qué es segura',
+  securitySteps:[
+   {n:'07',title:'Sin servidor, sin base de datos',desc:'FamilyCode no envía ni guarda nada en internet. No hay servidor, ni base de datos, ni nube. Un hacker no puede robar lo que no existe: tu código familiar vive solo en tu dispositivo.'},
+   {n:'08',title:'Los datos quedan en tu navegador',desc:'El código se guarda en la memoria local (localStorage) del navegador que uses. Cada navegador y cada app tiene su memoria separada: Chrome, Safari, Instagram, la PWA — son sesiones diferentes. Elige un solo lugar para usar FamilyCode o guarda el enlace en un sitio seguro. Lo más seguro es imprimir el QR y guardarlo en un cajón.'},
+   {n:'09',title:'El enlace sin PIN es inútil',desc:'El enlace y el QR contienen el secreto familiar, pero sin el PIN correcto generan un código OTP equivocado. Sin error, sin aviso: simplemente el número será diferente al de tus familiares. Quien intercepte el enlace no puede hacer nada sin el PIN.'},
+   {n:'10',title:'¿Por qué no basta un PIN acordado de voz?',desc:'Un PIN fijo nunca cambia: si un estafador lo descubre, lo usa para siempre. Las personas eligen números predecibles (fechas, secuencias). Un PIN dicho por teléfono puede ser escuchado y reutilizado. FamilyCode genera un código diferente cada 5 minutos, calculado a partir de un secreto de 128 bits + PIN. Incluso conociendo el PIN, sin el secreto del enlace el código es imposible de adivinar.'},
   ],
   footerOsLabel:'proyecto open source',
   footerDisclaimer:'\u2696 Disclaimer \u2014 El autor no asume ninguna responsabilidad por el uso indebido, incorrecto o il\u00edcito de esta aplicaci\u00f3n. El uso es bajo su propio riesgo.',
@@ -545,6 +570,7 @@ const i18n={
   printScan:'// mit Kamera scannen\n// um den Familiencode direkt zu \u00f6ffnen',
   printPinLabel:'Zugangs-PIN',
   printPinNote:'// sicher aufbewahren.\n// PIN kann nicht wiederhergestellt werden.',
+printPinWarning:'⚠️ Teile den PIN nicht mit dem Anrufer am Telefon.\nDer zu teilende Code wird von der App nach dem Scannen des QR und Eingabe der richtigen PIN generiert.',
   printFooter:'family_code \u00b7 pr\u00fcfe wer dich anruft \u00b7 keine Daten erreichen je den Server',
   btnDoPrint:'\ud83d\udda8 drucken / als PDF speichern',
   printTip:'// QR ohne PIN f\u00fcr eingeschr\u00e4nkten Zugang teilen,\n// oder mit PIN f\u00fcr vollen Zugang.',
@@ -559,6 +585,13 @@ const i18n={
    {n:'04',title:'Verd\u00e4chtiger Anruf',desc:'Jemand ruft an und gibt vor, ein Familienmitglied zu sein. Bevor du vertraust oder Informationen gibst, \u00f6ffne FamilyCode.'},
    {n:'05',title:'Nach dem Code fragen',desc:'Schau dir den 6-stelligen Code an. Frage den Anrufer: "Sag mir den Code". Wenn er ihn nicht wei\u00df \u2192 Betr\u00fcger.'},
    {n:'06',title:'F\u00fcr Gro\u00dfeltern drucken',desc:'F\u00fcr weniger technikaffine Familienmitglieder drucke das QR-Blatt mit dem PIN. Das Scannen des QR mit der Kamera \u00f6ffnet die App direkt.'},
+  ],
+  securityTitle:'Warum es sicher ist',
+  securitySteps:[
+   {n:'07',title:'Kein Server, keine Datenbank',desc:'FamilyCode sendet und speichert nichts im Internet. Es gibt keinen Server, keine Datenbank, keine Cloud. Ein Hacker kann nicht stehlen, was nicht existiert: dein Familiencode lebt nur auf deinem Gerät.'},
+   {n:'08',title:'Daten bleiben in deinem Browser',desc:'Der Code wird im lokalen Speicher (localStorage) deines Browsers gespeichert. Jeder Browser und jede App hat seinen eigenen Speicher: Chrome, Safari, Instagram, die PWA — alles separate Sitzungen. Wähle einen Ort für FamilyCode oder speichere den Link sicher. Am sichersten: QR drucken und in einer Schublade aufbewahren.'},
+   {n:'09',title:'Der Link ohne PIN ist nutzlos',desc:'Link und QR enthalten das Familiengeheimnis, aber ohne die richtige PIN erzeugen sie einen falschen OTP-Code. Kein Fehler, keine Warnung: die Zahl ist einfach anders als die deiner Familie. Wer den Link abfängt, kann ohne PIN nichts damit anfangen.'},
+   {n:'10',title:'Warum reicht eine mündlich vereinbarte PIN nicht?',desc:'Eine feste PIN ändert sich nie: entdeckt ein Betrüger sie einmal, nutzt er sie für immer. Menschen wählen vorhersehbare Zahlen (Daten, Reihenfolgen). Eine am Telefon gesagte PIN kann abgehört werden. FamilyCode generiert alle 5 Minuten einen neuen Code aus einem 128-Bit-Geheimnis + PIN. Selbst mit der PIN ist der Code ohne das Geheimnis im Link nicht zu erraten.'},
   ],
   footerOsLabel:'Open-Source-Projekt',
   footerDisclaimer:'\u2696 Haftungsausschluss \u2014 Der Autor \u00fcbernimmt keine Verantwortung f\u00fcr unsachgem\u00e4\u00dfe, fehlerhafte oder rechtswidrige Nutzung dieser Anwendung. Die Nutzung erfolgt auf eigenes Risiko.',
@@ -611,6 +644,7 @@ const i18n={
   printScan:'// scanne avec la cam\u00e9ra\n// pour ouvrir le code famille directement',
   printPinLabel:'PIN d\'acc\u00e8s',
   printPinNote:'// conserve en lieu s\u00fbr.\n// le PIN ne peut pas \u00eatre r\u00e9cup\u00e9r\u00e9.',
+printPinWarning:'⚠️ Ne partagez pas le PIN avec votre interlocuteur au téléphone.\nLe code à communiquer est celui généré par l\u2019app après avoir scanné le QR et saisi le bon PIN.',
   printFooter:'family_code \u00b7 v\u00e9rifie qui t\'appelle \u00b7 aucune donn\u00e9e n\'atteint jamais le serveur',
   btnDoPrint:'\ud83d\udda8 imprimer / enregistrer PDF',
   printTip:'// partage le QR sans PIN pour un acc\u00e8s limit\u00e9,\n// ou avec PIN pour l\'acc\u00e8s complet.',
@@ -625,6 +659,13 @@ const i18n={
    {n:'04',title:'Appel suspect re\u00e7u',desc:'Quelqu\'un appelle en se faisant passer pour un proche. Avant de faire confiance ou de donner des informations, ouvre FamilyCode.'},
    {n:'05',title:'Demande le code',desc:'Regarde le code \u00e0 6 chiffres sur ton \u00e9cran. Demande \u00e0 l\'appelant : "dis-moi le code". S\'il ne le conna\u00eet pas \u2192 c\'est un escroc.'},
    {n:'06',title:'Imprimer pour les grands-parents',desc:'Pour les proches moins \u00e0 l\'aise avec les smartphones, imprime la feuille QR avec le PIN. Scanner le QR avec la cam\u00e9ra ouvre l\'app directement.'},
+  ],
+  securityTitle:'Pourquoi c\'est sûr',
+  securitySteps:[
+   {n:'07',title:'Aucun serveur, aucune base de données',desc:'FamilyCode n\'envoie et ne stocke rien sur internet. Il n\'y a aucun serveur, aucune base de données, aucun cloud. Un pirate ne peut pas voler ce qui n\'existe pas : ton code famille vit uniquement sur ton appareil.'},
+   {n:'08',title:'Les données restent dans ton navigateur',desc:'Le code est sauvegardé dans la mémoire locale (localStorage) du navigateur utilisé. Chaque navigateur et chaque app a sa propre mémoire : Chrome, Safari, Instagram, la PWA — ce sont des sessions séparées. Choisis un seul endroit pour utiliser FamilyCode ou sauvegarde le lien en lieu sûr. Le plus sûr : imprimer le QR et le garder dans un tiroir.'},
+   {n:'09',title:'Le lien sans PIN est inutile',desc:'Le lien et le QR contiennent le secret de la famille, mais sans le bon PIN ils génèrent un code OTP incorrect. Pas d\'erreur, pas d\'alerte : le numéro sera simplement différent de celui de ta famille. Quiconque intercepte le lien ne peut rien faire sans le PIN.'},
+   {n:'10',title:'Pourquoi un PIN convenu verbalement ne suffit pas ?',desc:'Un PIN fixe ne change jamais : si un escroc le découvre, il l\'utilise pour toujours. Les gens choisissent des numéros prévisibles (dates, suites). Un PIN dit au téléphone peut être entendu et réutilisé. FamilyCode génère un code différent toutes les 5 minutes, calculé à partir d\'un secret de 128 bits + PIN. Même en connaissant le PIN, sans le secret du lien le code est impossible à deviner.'},
   ],
   footerOsLabel:'projet open source',
   footerDisclaimer:'\u2696 Avertissement \u2014 L\'auteur d\u00e9cline toute responsabilit\u00e9 en cas d\'utilisation inappropri\u00e9e, incorrecte ou illicite de cette application. L\'utilisation se fait \u00e0 vos propres risques.',
@@ -696,6 +737,7 @@ btnPrintNoPIN:'⬛ PINなしQR印刷',
 printScan:'// カメラでスキャン\n// ファミリーコードを直接開けます',
 printPinLabel:'アクセスPIN',
 printPinNote:'// 安全な場所に保管。\n// PINは復元できません。',
+printPinWarning:'⚠️ 電話の相手にPINを教えないでください。\n共有するコードは、QRをスキャンし正しいPINを入力した後にアプリが生成するものです。',
 printFooter:'family_code · 電話の相手を確認 · データはサーバーに届きません',
 btnDoPrint:'🖨 印刷 / PDF保存',
 printTip:'// PINなしQRで制限付きアクセス、\n// PIN付きQRでフルアクセス。',
@@ -711,6 +753,13 @@ guideSteps:[
    {n:'04',title:'不審な電話',desc:'家族を装った電話がかかってきたら、信用する前にFamilyCodeを開いてください。'},
    {n:'05',title:'コードを聞く',desc:'画面の6桁コードを確認。相手に「コードを教えて」と聞きます。知らなければ→詐欺師です。'},
    {n:'06',title:'祖父母用に印刷',desc:'スマホが苦手な家族にはPIN付きQRシートを印刷。カメラでスキャンするだけでアプリが開きます。'}],
+securityTitle:'なぜ安全なのか',
+securitySteps:[
+ {n:'07',title:'サーバーもデータベースもなし',desc:'FamilyCodeはインターネットに何も送信・保存しません。サーバーもデータベースもクラウドもありません。存在しないものをハッカーは盗めません。あなたの家族コードはあなたのデバイスにのみ存在します。'},
+ {n:'08',title:'データはブラウザ内にのみ保存',desc:'コードは使用しているブラウザのローカルストレージ（localStorage）に保存されます。Chrome、Safari、Instagram、PWAアプリはすべて別のセッションです。FamilyCodeを使う場所を1つに決めるか、リンクを安全な場所に保存してください。最も安全なのはQRを印刷して引き出しに保管することです。'},
+ {n:'09',title:'PINなしのリンクは無意味',desc:'リンクとQRには家族の秘密が含まれますが、正しいPINなしでは間違ったOTPコードが生成されます。エラーも警告もなく、単に家族のものと異なる番号になります。リンクを傍受してもPINなしでは何もできません。'},
+ {n:'10',title:'口頭で決めたPINだけでは不十分な理由',desc:'固定PINは変わりません。詐欺師が一度知れば永遠に使えます。人は予測可能な番号（日付、連番）を選びがちです。電話で言ったPINは盗聴・再利用される可能性があります。FamilyCodeは128ビットの秘密+PINから5分ごとに異なるコードを生成します。PINを知っていてもリンク内の秘密なしではコードを推測できません。'},
+],
 footerOsLabel:'オープンソースプロジェクト',
 footerDisclaimer:'⚖ 免責事項 — 本アプリの不適切・誤った・違法な使用について作者は責任を負いません。使用は自己責任です。',
 installTitle:'FamilyCodeをインストール',
@@ -781,6 +830,7 @@ btnPrintNoPIN:'⬛ 打印不含PIN的二维码',
 printScan:'// 用相机扫描\n// 直接打开家庭验证码',
 printPinLabel:'访问PIN码',
 printPinNote:'// 请妥善保管。\n// PIN码无法恢复。',
+printPinWarning:'⚠️ 请勿将PIN告知电话中的对方。\n应分享的验证码是扫描二维码并正确输入PIN后由应用生成的。',
 printFooter:'family_code · 验证来电者 · 数据不会发送到服务器',
 btnDoPrint:'🖨 打印 / 保存PDF',
 printTip:'// 分享不含PIN的二维码为有限访问，\n// 含PIN的为完全访问。',
@@ -796,6 +846,13 @@ guideSteps:[
    {n:'04',title:'可疑来电',desc:'有人冒充家人打电话。在相信或提供信息前，打开FamilyCode。'},
    {n:'05',title:'询问验证码',desc:'查看屏幕上的6位验证码。问来电者："告诉我验证码"。不知道→是诈骗者。'},
    {n:'06',title:'为老人打印',desc:'为不擅长使用智能手机的家人打印含PIN的二维码。用相机扫描即可打开应用。'}],
+securityTitle:'为什么安全',
+securitySteps:[
+ {n:'07',title:'无服务器，无数据库',desc:'FamilyCode不向互联网发送或存储任何数据。没有服务器、没有数据库、没有云。黑客无法窃取不存在的东西：你的家庭验证码仅存在于你的设备上。'},
+ {n:'08',title:'数据仅保存在浏览器中',desc:'验证码保存在你使用的浏览器的本地存储（localStorage）中。每个浏览器和应用都有独立的存储：Chrome、Safari、Instagram、PWA应用——它们是不同的会话。选择一个固定的地方使用FamilyCode，或将链接保存在安全的地方。最安全的方式是打印二维码并保存在抽屉里。'},
+ {n:'09',title:'没有PIN的链接毫无用处',desc:'链接和二维码包含家庭密钥，但没有正确的PIN会生成错误的OTP验证码。没有错误提示，没有警告：数字与家人的不同。拦截链接的人没有PIN什么也做不了。'},
+ {n:'10',title:'为什么仅口头约定PIN不够？',desc:'固定PIN永远不变：骗子一旦发现就能永远使用。人们倾向选择可预测的数字（日期、序列）。电话中说的PIN可能被窃听和重用。FamilyCode每5分钟从128位密钥+PIN生成不同的验证码。即使知道PIN，没有链接中的密钥也无法猜测验证码。'},
+],
 footerOsLabel:'开源项目',
 footerDisclaimer:'⚖ 免责声明 — 作者不对本应用的不当、错误或非法使用承担任何责任。使用风险自负。',
 installTitle:'安装FamilyCode',
@@ -866,6 +923,7 @@ btnPrintNoPIN:'⬛ PIN रहित QR प्रिंट',
 printScan:'// कैमरे से स्कैन करें\n// परिवार कोड सीधे खोलें',
 printPinLabel:'एक्सेस PIN',
 printPinNote:'// सुरक्षित जगह रखें।\n// PIN पुनर्प्राप्त नहीं हो सकता।',
+printPinWarning:'⚠️ फोन पर बात करने वाले को PIN न बताएं।\nसाझा करने वाला कोड वह है जो QR स्कैन और सही PIN दर्ज करने के बाद ऐप द्वारा जनरेट होता है।',
 printFooter:'family_code · कॉलर की पहचान करें · डेटा सर्वर तक नहीं पहुंचता',
 btnDoPrint:'🖨 प्रिंट / PDF सहेजें',
 printTip:'// सीमित एक्सेस के लिए PIN रहित QR साझा करें,\n// पूर्ण एक्सेस के लिए PIN सहित।',
@@ -881,6 +939,13 @@ guideSteps:[
    {n:'04',title:'संदिग्ध कॉल',desc:'कोई परिवार का सदस्य बनकर कॉल करे। भरोसा करने से पहले FamilyCode खोलें।'},
    {n:'05',title:'कोड पूछें',desc:'स्क्रीन पर 6 अंकों का कोड देखें। कॉलर से पूछें: "कोड बताओ"। नहीं जानता → धोखेबाज़ है।'},
    {n:'06',title:'बुज़ुर्गों के लिए प्रिंट',desc:'स्मार्टफोन में कम सहज परिवार के लिए PIN सहित QR शीट प्रिंट करें। कैमरे से स्कैन करके ऐप खुलता है।'}],
+securityTitle:'यह सुरक्षित क्यों है',
+securitySteps:[
+ {n:'07',title:'कोई सर्वर नहीं, कोई डेटाबेस नहीं',desc:'FamilyCode इंटरनेट पर कुछ भी नहीं भेजता या सहेजता। कोई सर्वर नहीं, कोई डेटाबेस नहीं, कोई क्लाउड नहीं। हैकर वो नहीं चुरा सकता जो मौजूद ही नहीं: आपका फैमिली कोड सिर्फ आपके डिवाइस पर है।'},
+ {n:'08',title:'डेटा सिर्फ आपके ब्राउज़र में रहता है',desc:'कोड आपके ब्राउज़र के लोकल स्टोरेज (localStorage) में सहेजा जाता है। हर ब्राउज़र और ऐप की अपनी अलग मेमोरी होती है: Chrome, Safari, Instagram, PWA — सब अलग सेशन हैं। FamilyCode के लिए एक ही जगह चुनें या लिंक सुरक्षित जगह सहेजें। सबसे सुरक्षित: QR प्रिंट करके दराज में रखें।'},
+ {n:'09',title:'PIN के बिना लिंक बेकार है',desc:'लिंक और QR में परिवार का रहस्य होता है, लेकिन सही PIN के बिना गलत OTP कोड बनता है। कोई त्रुटि नहीं, कोई चेतावनी नहीं: बस नंबर आपके परिवार से अलग होगा। लिंक इंटरसेप्ट करने वाला PIN के बिना कुछ नहीं कर सकता।'},
+ {n:'10',title:'मौखिक PIN पर्याप्त क्यों नहीं?',desc:'एक निश्चित PIN कभी नहीं बदलता: अगर धोखेबाज़ एक बार जान ले, तो हमेशा इस्तेमाल कर सकता है। लोग अनुमानित नंबर चुनते हैं (तारीख, क्रम)। फोन पर बोला PIN सुना और दोबारा इस्तेमाल किया जा सकता है। FamilyCode हर 5 मिनट 128-बिट सीक्रेट + PIN से अलग कोड बनाता है। PIN जानते हुए भी लिंक के सीक्रेट के बिना कोड अनुमान लगाना असंभव है।'},
+],
 footerOsLabel:'ओपन सोर्स प्रोजेक्ट',
 footerDisclaimer:'⚖ अस्वीकरण — इस एप्लिकेशन के अनुचित, गलत या अवैध उपयोग के लिए लेखक कोई ज़िम्मेदारी नहीं लेता। उपयोग पूरी तरह आपके जोखिम पर है।',
 installTitle:'FamilyCode इंस्टॉल करें',
@@ -951,6 +1016,7 @@ btnPrintNoPIN:'⬛ طباعة QR بدون PIN',
 printScan:'// امسح بالكاميرا\n// لفتح رمز العائلة مباشرة',
 printPinLabel:'PIN الوصول',
 printPinNote:'// احفظ في مكان آمن.\n// لا يمكن استعادة PIN.',
+printPinWarning:'⚠️ لا تشارك رقم PIN مع المتصل عبر الهاتف.\nالرمز الذي يجب مشاركته هو الذي يُنشئه التطبيق بعد مسح QR وإدخال PIN الصحيح.',
 printFooter:'family_code · تحقق ممن يتصل · لا بيانات تصل للخادم',
 btnDoPrint:'🖨 طباعة / حفظ PDF',
 printTip:'// شارك QR بدون PIN لوصول محدود،\n// أو مع PIN لوصول كامل.',
@@ -966,6 +1032,13 @@ guideSteps:[
    {n:'04',title:'مكالمة مشبوهة',desc:'شخص يتصل متظاهرًا بأنه من عائلتك. قبل أن تثق أو تعطي معلومات، افتح FamilyCode.'},
    {n:'05',title:'اطلب الرمز',desc:'انظر للرمز المكون من 6 أرقام. اسأل المتصل: "أخبرني بالرمز". إذا لم يعرفه → محتال.'},
    {n:'06',title:'اطبع للأجداد',desc:'لأفراد العائلة الأقل خبرة بالهواتف، اطبع ورقة QR مع PIN. مسح QR بالكاميرا يفتح التطبيق مباشرة.'}],
+securityTitle:'لماذا هو آمن',
+securitySteps:[
+ {n:'07',title:'لا خادم، لا قاعدة بيانات',desc:'FamilyCode لا يرسل ولا يخزن أي شيء على الإنترنت. لا يوجد خادم، لا قاعدة بيانات، لا سحابة. لا يمكن للقراصنة سرقة ما لا يوجد: رمز عائلتك موجود فقط على جهازك.'},
+ {n:'08',title:'البيانات تبقى في متصفحك فقط',desc:'يُحفظ الرمز في التخزين المحلي (localStorage) للمتصفح المستخدم. كل متصفح وتطبيق له ذاكرته الخاصة: Chrome، Safari، Instagram، تطبيق PWA — كلها جلسات منفصلة. اختر مكانًا واحدًا لاستخدام FamilyCode أو احفظ الرابط في مكان آمن. الأكثر أمانًا: اطبع QR واحفظه في درج.'},
+ {n:'09',title:'الرابط بدون PIN عديم الفائدة',desc:'يحتوي الرابط وQR على سر العائلة، لكن بدون PIN الصحيح يُنشأ رمز OTP خاطئ. لا خطأ، لا تحذير: الرقم ببساطة سيختلف عن رقم أفراد عائلتك. من يعترض الرابط لا يستطيع فعل شيء بدون PIN.'},
+ {n:'10',title:'لماذا لا يكفي PIN متفق عليه شفهيًا؟',desc:'PIN ثابت لا يتغير أبدًا: إذا اكتشفه محتال، يستخدمه للأبد. الناس يختارون أرقامًا متوقعة (تواريخ، تسلسلات). PIN يُقال عبر الهاتف يمكن التنصت عليه وإعادة استخدامه. FamilyCode يُنشئ رمزًا مختلفًا كل 5 دقائق من سر 128 بت + PIN. حتى مع معرفة PIN، بدون السر في الرابط يستحيل تخمين الرمز.'},
+],
 footerOsLabel:'مشروع مفتوح المصدر',
 footerDisclaimer:'⚖ إخلاء مسؤولية — لا يتحمل المؤلف أي مسؤولية عن الاستخدام غير السليم أو الخاطئ أو غير القانوني لهذا التطبيق. الاستخدام على مسؤوليتك الخاصة.',
 installTitle:'تثبيت FamilyCode',
@@ -1036,6 +1109,7 @@ btnPrintNoPIN:'⬛ imprimir QR sem PIN',
 printScan:'// digitaliza com a câmara\n// para abrir o código família diretamente',
 printPinLabel:'PIN de acesso',
 printPinNote:'// guarda em local seguro.\n// o PIN não pode ser recuperado.',
+printPinWarning:'⚠️ Não partilhes o PIN com o interlocutor ao telefone.\nO código a partilhar é o gerado pela app após digitalizar o QR e introduzir o PIN correto.',
 printFooter:'family_code · verifica quem te liga · nenhum dado chega ao servidor',
 btnDoPrint:'🖨 imprimir / guardar PDF',
 printTip:'// partilha o QR sem PIN para acesso limitado,\n// ou com PIN para acesso completo.',
@@ -1051,6 +1125,13 @@ guideSteps:[
    {n:'04',title:'Chamada suspeita',desc:'Alguém liga fingindo ser familiar. Antes de confiar ou dar informações, abre o FamilyCode.'},
    {n:'05',title:'Pede o código',desc:'Olha para o código de 6 dígitos no ecrã. Pergunta: "diz-me o código". Se não souber → é burlão.'},
    {n:'06',title:'Imprime para os avós',desc:'Para familiares menos à vontade com smartphones, imprime a folha QR com PIN. Digitalizar o QR com a câmara abre a app diretamente.'}],
+securityTitle:'Porque é seguro',
+securitySteps:[
+ {n:'07',title:'Sem servidor, sem base de dados',desc:'FamilyCode não envia nem guarda nada na internet. Não há servidor, nem base de dados, nem cloud. Um hacker não pode roubar o que não existe: o teu código familiar vive apenas no teu dispositivo.'},
+ {n:'08',title:'Os dados ficam no teu navegador',desc:'O código é guardado no armazenamento local (localStorage) do navegador que usas. Cada navegador e cada app tem a sua própria memória: Chrome, Safari, Instagram, a PWA — são sessões separadas. Escolhe um único lugar para usar o FamilyCode ou guarda o link num local seguro. O mais seguro: imprime o QR e guarda-o numa gaveta.'},
+ {n:'09',title:'O link sem PIN é inútil',desc:'O link e o QR contêm o segredo da família, mas sem o PIN correto geram um código OTP errado. Sem erro, sem aviso: o número será simplesmente diferente do dos teus familiares. Quem interceptar o link não pode fazer nada sem o PIN.'},
+ {n:'10',title:'Porque não basta um PIN combinado verbalmente?',desc:'Um PIN fixo nunca muda: se um burlão o descobre, usa-o para sempre. As pessoas escolhem números previsíveis (datas, sequências). Um PIN dito ao telefone pode ser ouvido e reutilizado. FamilyCode gera um código diferente a cada 5 minutos, calculado a partir de um segredo de 128 bits + PIN. Mesmo conhecendo o PIN, sem o segredo no link o código é impossível de adivinhar.'},
+],
 footerOsLabel:'projeto open source',
 footerDisclaimer:'⚖ Aviso — O autor não assume qualquer responsabilidade pelo uso indevido, incorreto ou ilícito desta aplicação. A utilização é inteiramente por sua conta e risco.',
 installTitle:'Instalar FamilyCode',
@@ -1121,6 +1202,7 @@ btnPrintNoPIN:'⬛ печать QR без PIN',
 printScan:'// сканируй камерой\n// чтобы открыть семейный код',
 printPinLabel:'PIN доступа',
 printPinNote:'// храни в надёжном месте.\n// PIN нельзя восстановить.',
+printPinWarning:'⚠️ Не сообщайте PIN собеседнику по телефону.\nКод, который нужно назвать — тот, что генерируется приложением после сканирования QR и ввода правильного PIN.',
 printFooter:'family_code · проверь кто звонит · данные не попадают на сервер',
 btnDoPrint:'🖨 печать / сохранить PDF',
 printTip:'// QR без PIN — ограниченный доступ,\n// QR с PIN — полный доступ.',
@@ -1136,6 +1218,13 @@ guideSteps:[
    {n:'04',title:'Подозрительный звонок',desc:'Кто-то звонит, выдавая себя за родственника. Прежде чем доверять, открой FamilyCode.'},
    {n:'05',title:'Спроси код',desc:'Посмотри 6-значный код на экране. Спроси звонящего: «скажи код». Не знает → мошенник.'},
    {n:'06',title:'Распечатай для бабушки',desc:'Для тех, кто не дружит со смартфоном, распечатай QR-лист с PIN. Сканирование QR камерой откроет приложение.'}],
+securityTitle:'Почему это безопасно',
+securitySteps:[
+ {n:'07',title:'Нет сервера, нет базы данных',desc:'FamilyCode не отправляет и не хранит ничего в интернете. Нет сервера, нет базы данных, нет облака. Хакер не может украсть то, чего не существует: ваш семейный код живёт только на вашем устройстве.'},
+ {n:'08',title:'Данные остаются в вашем браузере',desc:'Код сохраняется в локальном хранилище (localStorage) используемого браузера. У каждого браузера и приложения своя память: Chrome, Safari, Instagram, PWA — это разные сессии. Выберите одно место для FamilyCode или сохраните ссылку в надёжном месте. Самый безопасный вариант: распечатайте QR и храните в ящике.'},
+ {n:'09',title:'Ссылка без PIN бесполезна',desc:'Ссылка и QR содержат семейный секрет, но без правильного PIN генерируют неверный OTP-код. Без ошибки, без предупреждения: число просто будет отличаться от кода вашей семьи. Перехватив ссылку, без PIN ничего сделать нельзя.'},
+ {n:'10',title:'Почему устного PIN недостаточно?',desc:'Фиксированный PIN не меняется: если мошенник узнает его, использует навсегда. Люди выбирают предсказуемые числа (даты, последовательности). PIN, сказанный по телефону, можно подслушать. FamilyCode генерирует новый код каждые 5 минут из 128-битного секрета + PIN. Даже зная PIN, без секрета в ссылке код невозможно угадать.'},
+],
 footerOsLabel:'проект с открытым кодом',
 footerDisclaimer:'⚖ Отказ от ответственности — Автор не несёт ответственности за ненадлежащее, ошибочное или незаконное использование приложения. Использование на свой страх и риск.',
 installTitle:'Установить FamilyCode',
@@ -1206,6 +1295,7 @@ btnPrintNoPIN:'⬛ PIN 없이 QR 인쇄',
 printScan:'// 카메라로 스캔\n// 가족 코드를 바로 열 수 있습니다',
 printPinLabel:'접근 PIN',
 printPinNote:'// 안전한 곳에 보관하세요.\n// PIN은 복구할 수 없습니다.',
+printPinWarning:'⚠️ 전화 상대방에게 PIN을 알려주지 마세요.\n공유할 코드는 QR을 스캔하고 올바른 PIN을 입력한 후 앱이 생성하는 코드입니다.',
 printFooter:'family_code · 전화한 사람 확인 · 데이터는 서버에 전송되지 않습니다',
 btnDoPrint:'🖨 인쇄 / PDF 저장',
 printTip:'// PIN 없이 QR 공유로 제한된 접근,\n// PIN 포함으로 전체 접근.',
@@ -1221,6 +1311,13 @@ guideSteps:[
    {n:'04',title:'의심스러운 전화',desc:'누군가 가족인 척 전화합니다. 믿기 전에 FamilyCode를 여세요.'},
    {n:'05',title:'코드 물어보기',desc:'화면의 6자리 코드를 확인하세요. 상대에게 "코드를 말해봐"라고 물으세요. 모르면 → 사기꾼입니다.'},
    {n:'06',title:'조부모를 위해 인쇄',desc:'스마트폰에 익숙하지 않은 가족을 위해 PIN이 포함된 QR 시트를 인쇄하세요. 카메라로 QR을 스캔하면 앱이 바로 열립니다.'}],
+securityTitle:'왜 안전한가',
+securitySteps:[
+ {n:'07',title:'서버 없음, 데이터베이스 없음',desc:'FamilyCode는 인터넷에 아무것도 전송하거나 저장하지 않습니다. 서버도, 데이터베이스도, 클라우드도 없습니다. 해커는 존재하지 않는 것을 훔칠 수 없습니다. 가족 코드는 오직 당신의 기기에만 존재합니다.'},
+ {n:'08',title:'데이터는 브라우저에만 저장',desc:'코드는 사용 중인 브라우저의 로컬 스토리지(localStorage)에 저장됩니다. Chrome, Safari, Instagram, PWA 앱은 모두 별도의 세션입니다. FamilyCode를 사용할 곳을 하나로 정하거나 링크를 안전한 곳에 저장하세요. 가장 안전한 방법: QR을 인쇄하여 서랍에 보관하세요.'},
+ {n:'09',title:'PIN 없는 링크는 무용지물',desc:'링크와 QR에는 가족 비밀이 포함되지만, 올바른 PIN 없이는 잘못된 OTP 코드가 생성됩니다. 오류도 경고도 없이 단순히 가족의 코드와 다른 번호가 됩니다. 링크를 가로채도 PIN 없이는 아무것도 할 수 없습니다.'},
+ {n:'10',title:'구두로 정한 PIN만으로는 왜 부족한가?',desc:'고정 PIN은 절대 변하지 않습니다. 사기꾼이 한 번 알아내면 영원히 사용합니다. 사람들은 예측 가능한 번호(날짜, 연속번호)를 선택합니다. 전화로 말한 PIN은 도청되어 재사용될 수 있습니다. FamilyCode는 128비트 비밀+PIN으로 5분마다 다른 코드를 생성합니다. PIN을 알아도 링크의 비밀 없이는 코드를 추측할 수 없습니다.'},
+],
 footerOsLabel:'오픈소스 프로젝트',
 footerDisclaimer:'⚖ 면책 조항 — 이 애플리케이션의 부적절하거나 잘못되거나 불법적인 사용에 대해 저자는 어떠한 책임도 지지 않습니다. 사용은 전적으로 본인의 책임입니다.',
 installTitle:'FamilyCode 설치',
@@ -1312,6 +1409,75 @@ function getStepSVG(t){return [
 <text x="260" y="55" text-anchor="middle" font-size="28">👴</text>
 <text x="260" y="78" text-anchor="middle" font-size="9" fill="#3dffc0" font-family="JetBrains Mono,monospace">${t.svgAccess}</text>
 <defs><marker id="a4" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7c6af7"/></marker></defs>
+</svg>`,
+`<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+<rect x="30" y="20" width="60" height="80" rx="6" fill="none" stroke="#7c6af7" stroke-width="2" opacity="0.4"/>
+<line x1="15" y1="15" x2="105" y2="105" stroke="#f44" stroke-width="3"/>
+<line x1="105" y1="15" x2="15" y2="105" stroke="#f44" stroke-width="3"/>
+<circle cx="60" cy="45" r="4" fill="#7c6af7" opacity="0.4"/><circle cx="60" cy="60" r="4" fill="#7c6af7" opacity="0.4"/><circle cx="60" cy="75" r="4" fill="#7c6af7" opacity="0.4"/>
+<line x1="120" y1="60" x2="155" y2="60" stroke="#555" stroke-width="1.5" stroke-dasharray="4,3"/>
+<path d="M190,25 L215,15 L240,25 L240,65 C240,85 215,100 215,100 C215,100 190,85 190,65 Z" fill="none" stroke="#4ade80" stroke-width="2"/>
+<polyline points="202,58 212,70 228,45" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="258" y="30" width="40" height="60" rx="6" fill="none" stroke="#7c6af7" stroke-width="2"/>
+<circle cx="278" cy="80" r="3" fill="#7c6af7"/>
+<text x="278" y="62" font-family="JetBrains Mono,monospace" font-size="8" fill="#7c6af7" text-anchor="middle">key</text>
+</svg>`,
+`<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+<rect x="10" y="15" width="65" height="50" rx="6" fill="none" stroke="#7c6af7" stroke-width="1.5"/>
+<rect x="10" y="15" width="65" height="12" rx="6" fill="#7c6af7" opacity="0.2"/>
+<circle cx="20" cy="21" r="2.5" fill="#f44"/><circle cx="28" cy="21" r="2.5" fill="#fb0"/><circle cx="36" cy="21" r="2.5" fill="#4ade80"/>
+<text x="42" y="50" font-family="JetBrains Mono,monospace" font-size="7" fill="#7c6af7" text-anchor="middle">Chrome</text>
+<rect x="18" y="68" width="50" height="14" rx="3" fill="#7c6af7" opacity="0.12" stroke="#7c6af7" stroke-width="0.8"/>
+<text x="43" y="78" font-family="JetBrains Mono,monospace" font-size="6" fill="#7c6af7" text-anchor="middle">localStorage</text>
+<rect x="90" y="15" width="65" height="50" rx="6" fill="none" stroke="#7c6af7" stroke-width="1.5"/>
+<rect x="90" y="15" width="65" height="12" rx="6" fill="#7c6af7" opacity="0.2"/>
+<circle cx="100" cy="21" r="2.5" fill="#f44"/><circle cx="108" cy="21" r="2.5" fill="#fb0"/><circle cx="116" cy="21" r="2.5" fill="#4ade80"/>
+<text x="122" y="50" font-family="JetBrains Mono,monospace" font-size="7" fill="#7c6af7" text-anchor="middle">Safari</text>
+<rect x="98" y="68" width="50" height="14" rx="3" fill="#7c6af7" opacity="0.12" stroke="#7c6af7" stroke-width="0.8"/>
+<text x="123" y="78" font-family="JetBrains Mono,monospace" font-size="6" fill="#7c6af7" text-anchor="middle">localStorage</text>
+<rect x="170" y="15" width="65" height="50" rx="6" fill="none" stroke="#7c6af7" stroke-width="1.5"/>
+<rect x="170" y="15" width="65" height="12" rx="6" fill="#7c6af7" opacity="0.2"/>
+<circle cx="180" cy="21" r="2.5" fill="#f44"/><circle cx="188" cy="21" r="2.5" fill="#fb0"/><circle cx="196" cy="21" r="2.5" fill="#4ade80"/>
+<text x="202" y="50" font-family="JetBrains Mono,monospace" font-size="7" fill="#7c6af7" text-anchor="middle">PWA</text>
+<rect x="178" y="68" width="50" height="14" rx="3" fill="#7c6af7" opacity="0.12" stroke="#7c6af7" stroke-width="0.8"/>
+<text x="203" y="78" font-family="JetBrains Mono,monospace" font-size="6" fill="#7c6af7" text-anchor="middle">localStorage</text>
+<line x1="80" y1="15" x2="80" y2="85" stroke="#555" stroke-width="0.8" stroke-dasharray="3,3"/>
+<line x1="160" y1="15" x2="160" y2="85" stroke="#555" stroke-width="0.8" stroke-dasharray="3,3"/>
+<rect x="255" y="20" width="50" height="50" rx="4" fill="none" stroke="#4ade80" stroke-width="1.5"/>
+<rect x="263" y="28" width="34" height="34" rx="2" fill="#4ade80" opacity="0.15"/>
+<text x="280" y="50" font-family="JetBrains Mono,monospace" font-size="8" fill="#4ade80" text-anchor="middle">QR</text>
+<text x="280" y="85" font-family="JetBrains Mono,monospace" font-size="7" fill="#4ade80" text-anchor="middle">&#x1F5A8; print</text>
+<text x="160" y="105" font-family="JetBrains Mono,monospace" font-size="8" fill="#888" text-anchor="middle">// each session is separate</text>
+</svg>`,
+`<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+<text x="10" y="35" font-family="JetBrains Mono,monospace" font-size="9" fill="#7c6af7">&#x1F517; link</text>
+<text x="80" y="35" font-family="JetBrains Mono,monospace" font-size="12" fill="#555">&#x2192;</text>
+<rect x="100" y="20" width="90" height="24" rx="6" fill="none" stroke="#f44" stroke-width="1.5"/>
+<text x="145" y="36" font-family="JetBrains Mono,monospace" font-size="10" fill="#f44" text-anchor="middle">8 3 7 1 0 2</text>
+<text x="205" y="36" font-family="sans-serif" font-size="14" fill="#f44">&#x2717;</text>
+<text x="225" y="36" font-family="JetBrains Mono,monospace" font-size="8" fill="#888">// wrong</text>
+<line x1="10" y1="48" x2="290" y2="48" stroke="#333" stroke-width="0.5" stroke-dasharray="4,3"/>
+<text x="10" y="75" font-family="JetBrains Mono,monospace" font-size="9" fill="#7c6af7">&#x1F517; link</text>
+<text x="55" y="75" font-family="JetBrains Mono,monospace" font-size="9" fill="#7c6af7">+</text>
+<rect x="62" y="62" width="30" height="18" rx="4" fill="#7c6af7" opacity="0.15" stroke="#7c6af7" stroke-width="1"/>
+<text x="77" y="74" font-family="JetBrains Mono,monospace" font-size="8" fill="#7c6af7" text-anchor="middle">PIN</text>
+<text x="100" y="75" font-family="JetBrains Mono,monospace" font-size="12" fill="#555">&#x2192;</text>
+<rect x="115" y="60" width="90" height="24" rx="6" fill="none" stroke="#4ade80" stroke-width="1.5"/>
+<text x="160" y="76" font-family="JetBrains Mono,monospace" font-size="10" fill="#4ade80" text-anchor="middle">0 4 9 2 6 5</text>
+<text x="220" y="76" font-family="sans-serif" font-size="14" fill="#4ade80">&#x2713;</text>
+<text x="240" y="76" font-family="JetBrains Mono,monospace" font-size="8" fill="#888">// correct</text>
+</svg>`,
+`<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;padding:16px">
+<rect x="10" y="20" width="120" height="70" rx="8" fill="none" stroke="#f44" stroke-width="1.5" opacity="0.6"/>
+<text x="70" y="42" font-family="JetBrains Mono,monospace" font-size="9" fill="#f44" text-anchor="middle">PIN fisso</text>
+<text x="70" y="60" font-family="JetBrains Mono,monospace" font-size="16" fill="#f44" text-anchor="middle" font-weight="bold">1 2 3 4</text>
+<text x="70" y="78" font-family="sans-serif" font-size="9" fill="#f44" text-anchor="middle">&#x26A0; sempre uguale</text>
+<text x="155" y="60" font-family="JetBrains Mono,monospace" font-size="11" fill="#555" text-anchor="middle">vs</text>
+<rect x="180" y="20" width="130" height="70" rx="8" fill="none" stroke="#4ade80" stroke-width="1.5"/>
+<text x="245" y="42" font-family="JetBrains Mono,monospace" font-size="9" fill="#4ade80" text-anchor="middle">FamilyCode OTP</text>
+<text x="245" y="60" font-family="JetBrains Mono,monospace" font-size="16" fill="#4ade80" text-anchor="middle" font-weight="bold">0 4 9 2 6 5</text>
+<text x="245" y="78" font-family="sans-serif" font-size="9" fill="#4ade80" text-anchor="middle">&#x1F504; ogni 5 min</text>
+<text x="160" y="110" font-family="JetBrains Mono,monospace" font-size="8" fill="#888" text-anchor="middle">128-bit secret + PIN &#x2192; TOTP</text>
 </svg>`
 ];}
 const $=id=>document.getElementById(id);
@@ -1401,18 +1567,38 @@ function buildGuide(){
  $('guide-title').textContent=t.guideTitle;
  $('guide-intro').textContent=t.guideIntro;
  $('guide-tip').textContent=t.guideTip;
- $('guide-steps').innerHTML=svgs.map((svg,i)=>{
+ var h='';
+ for(var i=0;i<t.guideSteps.length;i++){
   var s=t.guideSteps[i];
-  var block='<div class="guide-block">'
-   +'<div class="guide-illustration">'+svg+'</div>'
+  h+='<div class="guide-block">'
+   +'<div class="guide-illustration">'+svgs[i]+'</div>'
    +'<div class="guide-step">'
    +'<div class="guide-step-num">'+s.n+'</div>'
    +'<div class="guide-step-body"><div class="guide-step-title">'+s.title+'</div>'
    +'<div class="guide-step-desc">'+s.desc+'</div></div></div>'
    +'</div>';
-  if(i<svgs.length-1)block+='<div class="guide-connector">\u2193</div>';
-  return block;
- }).join('');
+  if(i<t.guideSteps.length-1)h+='<div class="guide-connector">\u2193</div>';
+ }
+ if(t.securitySteps&&t.securitySteps.length){
+  h+='<div style="border-top:1px solid var(--border);margin:32px 0 24px;padding-top:24px">'
+   +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">'
+   +'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M12 2L3 7v5c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V7L12 2z"/><polyline points="9 12 11 14 15 10" stroke="#4ade80" stroke-width="2" fill="none"/></svg>'
+   +'<span style="font-size:18px;font-weight:800;letter-spacing:-.02em;line-height:1.4">'+t.securityTitle+'</span></div>';
+  for(var j=0;j<t.securitySteps.length;j++){
+   var ss=t.securitySteps[j];
+   var si=t.guideSteps.length+j;
+   h+='<div class="guide-block">'
+    +'<div class="guide-illustration">'+svgs[si]+'</div>'
+    +'<div class="guide-step">'
+    +'<div class="guide-step-num">'+ss.n+'</div>'
+    +'<div class="guide-step-body"><div class="guide-step-title">'+ss.title+'</div>'
+    +'<div class="guide-step-desc">'+ss.desc+'</div></div></div>'
+    +'</div>';
+   if(j<t.securitySteps.length-1)h+='<div class="guide-connector">\u2193</div>';
+  }
+  h+='</div>';
+ }
+ $('guide-steps').innerHTML=h;
 }
 const langFlags={it:'🇮🇹',en:'🇬🇧',es:'🇪🇸',de:'🇩🇪',fr:'🇫🇷',ja:'🇯🇵',zh:'🇨🇳',hi:'🇮🇳',ar:'🇸🇦',pt:'🇧🇷',ru:'🇷🇺',ko:'🇰🇷'};
 function applyLang(){
@@ -1510,6 +1696,7 @@ function openPrint(withPin){
  $('print-footer').textContent=t.printFooter;
  $('print-pin-label').textContent=t.printPinLabel;
  $('print-pin-note').textContent=t.printPinNote;
+$('print-pin-warning').textContent=t.printPinWarning;
  $('print-tip').textContent=t.printTip;
  $('btn-do-print').textContent=t.btnDoPrint;
  const qrUrl='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(url);
