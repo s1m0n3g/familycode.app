@@ -66,13 +66,15 @@ No database. No server. No account. **The URL is the key.**
 | 🖨 | **Print QR with/without PIN** | Generate a printable sheet with or without PIN for elderly family members |
 | 📷 | **QR Scanner** | Scan a QR code to join a family — live camera with [jsQR](https://github.com/cozmo/jsQR), works on iOS, Android and PC |
 | ✏️ | **Rename families** | Update the display name anytime |
-| 🌍 | **5 languages** | Italian, English, Spanish, German, French (auto-detected) |
+| 🌍 | **12 languages** | Italian, English, Spanish, German, French, Japanese, Chinese, Hindi, Arabic, Portuguese, Russian, Korean (auto-detected) |
 | 🌙 | **Dark / Light theme** | Switchable |
 | 📖 | **Built-in guide** | Illustrated step-by-step tutorial inside the app |
+| 🛡️ | **Security guide** | In-app illustrated section explaining why FamilyCode is secure, in all 12 languages |
 | 📦 | **Single HTML file** | No npm, no build step, no dependencies (except jsQR CDN) |
 | 📱 | **PWA installable** | Add to home screen on Android and iOS, works offline |
 | 🔍 | **Anti-zoom PIN pad** | Prevents accidental zoom on mobile when tapping PIN digits |
 | 💾 | **localStorage cache** | The URL remains the true source of truth |
+| ⬆️ | **Scroll to top** | Floating button in the guide for easy navigation on long pages |
 
 ---
 
@@ -100,6 +102,40 @@ The PIN is **never saved** — not in localStorage, not in the URL, not anywhere
 ### The `#fragment` privacy guarantee
 
 The URL fragment (everything after `#`) is a browser-only construct. It is **never transmitted to the server** in HTTP requests. This means even if FamilyCode is hosted on a public server, the operator cannot see your secret key in server logs.
+
+---
+
+## Why FamilyCode is secure
+
+### 🚫 No server, no database
+
+FamilyCode does not send or store anything online. There is no server, no database, no cloud. A hacker cannot steal what doesn't exist: your family code lives **only on your device**.
+
+### 🌐 Data stays in your browser
+
+The code is saved in the **local storage (localStorage)** of the browser you use. Each browser and each app has its own separate memory:
+
+- Chrome, Safari, Firefox → separate sessions
+- Instagram in-app browser → separate session
+- PWA (installed on home screen) → separate session
+
+**Choose one place** to use FamilyCode, or save the link somewhere safe (password manager, private note). The safest choice is to **print the QR and keep it in a drawer**.
+
+### 🔒 The link without PIN is useless
+
+The link and the QR contain the family secret, but without the correct PIN they generate a **wrong OTP code**. No error, no warning: the number will simply be different from your family members'. Anyone who intercepts the link can do nothing without the PIN.
+
+### 🔄 Why isn't a verbal PIN enough?
+
+You might wonder: *"Can't I just agree on a PIN with my family and skip the app?"*
+
+A fixed PIN has critical weaknesses:
+
+- **It never changes** — if a scammer discovers it once, they use it forever
+- **People choose predictable numbers** — birthdays, sequences (1234), repeated digits
+- **It can be overheard** — spoken on the phone, it can be intercepted and reused
+
+FamilyCode generates a **different code every 5 minutes**, calculated from a **128-bit secret + PIN**. Even knowing the PIN, without the secret embedded in the link the code is **impossible to guess**.
 
 ---
 
@@ -133,9 +169,9 @@ Creator
 ├─ Sets a 4-digit PIN → shared verbally or via separate channel
 │
 └─ Shares the link → familycode.app/#s=3f9a...&n=Famiglia+Rossi
-   │                  │
-   │                  └─ family name (cosmetic)
-   └─ 128-bit secret (never hits server)
+│                  │
+│                  └─ family name (cosmetic)
+└─ 128-bit secret (never hits server)
 
 Recipient
 │
@@ -167,22 +203,22 @@ FamilyCode uses a **FNV-1a hash with avalanche mixing** and a **5-minute window*
 
 ```javascript
 function otp(secret, pin) {
-  const base = secret + '::' + pin;
-  const t = Math.floor(Date.now() / (300 * 1000)); // 5-min window
-  const s = base + ':' + t;
+const base = secret + '::' + pin;
+const t = Math.floor(Date.now() / (300 * 1000)); // 5-min window
+const s = base + ':' + t;
 
-  let h = 0x811c9dc5; // FNV-1a offset basis
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193); // FNV prime
-  }
+let h = 0x811c9dc5; // FNV-1a offset basis
+for (let i = 0; i < s.length; i++) {
+h ^= s.charCodeAt(i);
+h = Math.imul(h, 0x01000193); // FNV prime
+}
 
-  // Avalanche mixing
-  h = Math.imul(h ^ (h >>> 16), 0x45d9f3b);
-  h = Math.imul(h ^ (h >>> 13), 0x45d9f3b);
-  h = (h ^ (h >>> 16)) >>> 0;
+// Avalanche mixing
+h = Math.imul(h ^ (h >>> 16), 0x45d9f3b);
+h = Math.imul(h ^ (h >>> 13), 0x45d9f3b);
+h = (h ^ (h >>> 16)) >>> 0;
 
-  return String(h % 1000000).padStart(6, '0');
+return String(h % 1000000).padStart(6, '0');
 }
 ```
 
@@ -248,6 +284,9 @@ No. FamilyCode uses a custom hash for simplicity and to avoid requiring HMAC-SHA
 - [x] QR code scanner (live camera, cross-platform via jsQR)
 - [x] Dual print: QR with or without PIN
 - [x] Anti-zoom PIN pad on mobile
+- [x] 12 languages with auto-detection
+- [x] In-app security guide (illustrated, multilingual)
+- [x] Scroll-to-top navigation in guide
 - [ ] Optional HMAC-SHA1 TOTP for RFC 6238 compliance
 - [ ] Notification: "someone just checked the code" (requires minimal backend)
 - [ ] Share via native share sheet (Web Share API)
