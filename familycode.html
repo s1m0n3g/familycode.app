@@ -311,6 +311,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
   </div>
  </div>
 </div>
+<button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
 <div class="toast" id="toast"></div><script>
 const DB='familycode_v7';
 const OTP_WINDOW=300;
@@ -1935,14 +1936,13 @@ applyLang();checkHash();
  var gs=document.getElementById('guide-screen');
  if(!btn||!gs)return;
  function checkScroll(){
-  if(gs.style.display!=='none'&&gs.scrollTop>300){btn.classList.add('visible')}
+  if(gs.classList.contains('active')&&window.scrollY>300){btn.classList.add('visible')}
   else{btn.classList.remove('visible')}
  }
- gs.addEventListener('scroll',checkScroll);
- btn.addEventListener('click',function(){gs.scrollTo({top:0,behavior:'smooth'})});
- new MutationObserver(checkScroll).observe(gs,{attributes:true,attributeFilter:['style']});
+ window.addEventListener('scroll',checkScroll,{passive:true});
+ btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+ new MutationObserver(checkScroll).observe(gs,{attributes:true,attributeFilter:['class']});
 })();
 </script>
-<button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
 </body>
 </html>
