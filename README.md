@@ -37,7 +37,7 @@ Existing solutions are B2B-only, complex, or require accounts and subscriptions.
 
 Each family shares a **secret 128-bit key embedded in a URL**. Everyone who opens the link computes the same **6-digit OTP**, rotating every **5 minutes** — similar to Google Authenticator, but with zero infrastructure.
 
-```
+```text
 OTP = hash(secret_128bit + PIN + time_interval)
 ```
 
@@ -83,9 +83,14 @@ No database. No server. No account. **The URL is the key.**
 | Threat | Without PIN | With PIN |
 |---|---|---|
 | Attacker intercepts the link (e.g. WhatsApp theft) | ❌ vulnerable | ✅ protected |
-| Attacker has physical access to unlocked device | ❌ vulnerable | ✅ protected (PIN not saved) |
-| Malware on device | ❌ | ❌ |
-| Social engineering | ❌ | ❌ |
+| Attacker has physical access to an unlocked device | ❌ vulnerable | ✅ partially protected — PIN is not saved |
+| Voice impersonation / AI deepfake call | ❌ vulnerable | ✅ protected if the family asks for the current code |
+| Attacker only knows the PIN | ❌ vulnerable if PIN is the only shared secret | ✅ useless without the 128-bit link secret |
+| Attacker tricks the user into revealing the PIN or OTP | ❌ not protected | ❌ not protected |
+| Malware on the user's own device | ❌ not protected | ❌ not protected |
+
+> FamilyCode is designed to stop **impersonation during phone calls**: a voice, even if cloned with AI, is not enough.  
+> It does **not** protect against every possible form of social engineering. If a user reveals the PIN, shares the QR/link with the attacker, reads the OTP to the attacker, or ignores the verification step, no tool can fully protect them.
 
 ### Why the PIN is unbreakable without a server
 
@@ -161,7 +166,7 @@ npx serve .
 
 ## Sharing flow
 
-```
+```text
 Creator
 │
 ├─ Creates family → app generates 128-bit secret
@@ -203,22 +208,22 @@ FamilyCode uses a **FNV-1a hash with avalanche mixing** and a **5-minute window*
 
 ```javascript
 function otp(secret, pin) {
-const base = secret + '::' + pin;
-const t = Math.floor(Date.now() / (300 * 1000)); // 5-min window
-const s = base + ':' + t;
+  const base = secret + '::' + pin;
+  const t = Math.floor(Date.now() / (300 * 1000)); // 5-min window
+  const s = base + ':' + t;
 
-let h = 0x811c9dc5; // FNV-1a offset basis
-for (let i = 0; i < s.length; i++) {
-h ^= s.charCodeAt(i);
-h = Math.imul(h, 0x01000193); // FNV prime
-}
+  let h = 0x811c9dc5; // FNV-1a offset basis
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193); // FNV prime
+  }
 
-// Avalanche mixing
-h = Math.imul(h ^ (h >>> 16), 0x45d9f3b);
-h = Math.imul(h ^ (h >>> 13), 0x45d9f3b);
-h = (h ^ (h >>> 16)) >>> 0;
+  // Avalanche mixing
+  h = Math.imul(h ^ (h >>> 16), 0x45d9f3b);
+  h = Math.imul(h ^ (h >>> 13), 0x45d9f3b);
+  h = (h ^ (h >>> 16)) >>> 0;
 
-return String(h % 1000000).padStart(6, '0');
+  return String(h % 1000000).padStart(6, '0');
 }
 ```
 
